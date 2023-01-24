@@ -4,16 +4,17 @@ from app.models import Project
 
 project_routes = Blueprint('projects', __name__)
 
-
-@project_routes.route('/')
+#P1 get all
+@project_routes.route('')
 @login_required
 def allProjects():
     """
     Query for all users and returns them in a list of project dictionaries
     """
-    return {'projects': [project.to_dict_full() for project in Project.query.all()]}
+    return {'Projects': [project.to_dict_full() for project in Project.query.all()]}
 
 
+#P2 get one
 @project_routes.route('/<int:id>')
 @login_required
 def projectById(id):
@@ -23,3 +24,10 @@ def projectById(id):
     """
     project = Project.query.get(id)
     return project.to_dict_full()
+
+#P1 get all
+#P2 get one
+#P3 get by user Id
+#P4 create
+#P5 edit
+#p6 delete

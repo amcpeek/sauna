@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import ViewProject from '../src/components/Projects/ViewProject/index'
+import ViewAllProjects from './components/Projects/ViewAllProjects/index';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,6 +42,13 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/projects'exact={true} >
+          <ViewAllProjects/>
+        </Route>
+        <Route path='/projects/:id'exact={true} >
+          <ViewProject/>
+        </Route>
+
         <Route path='/' exact={true} >
           <h1>My Home Page</h1>
         </Route>

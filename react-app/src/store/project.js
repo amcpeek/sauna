@@ -1,9 +1,10 @@
 //action types
-const READ_PROJECTS = 'projects/READ_PROJECTS'
-const READ_SINGLE_PROJECT = 'projects/READ_SINGLE_PROJECT'
-const CREATE_PROJECT = 'projects/CREATE_PROJECT'
-const UPDATE_PROJECT = 'projects/UPDATE_PROJECT'
-const DELETE_PROJECT = 'projects/DELETE_PROJECT'
+const READ_PROJECTS = 'projects/READ_PROJECTS' //p1
+const READ_SINGLE_PROJECT = 'projects/READ_SINGLE_PROJECT' //p2
+const READ_BY_USER_ID = 'projects/READ_BY_USER_ID' //p3
+const CREATE_PROJECT = 'projects/CREATE_PROJECT' //p4
+const UPDATE_PROJECT = 'projects/UPDATE_PROJECT' //p5
+const DELETE_PROJECT = 'projects/DELETE_PROJECT' //p6
 
 
 //action creators
@@ -17,6 +18,11 @@ const getOne = (project) => ({
     project
 }
 )
+
+const getById = ({Projects}) => ({
+    type: READ_BY_USER_ID,
+    Projects
+})
 
 const create = (project) => ({
     type: CREATE_PROJECT,
@@ -38,8 +44,10 @@ const remove = (id) => ({
 //thunks
 export const fetchAllProjects = () => async dispatch => {
     const response = await fetch(`/api/projects`);
+
     if(response.ok){
         const projectsList = await response.json()
+        // console.log('projectlist', projectsList)
         dispatch(getAll(projectsList))
     }
     if(response.status>=400) throw response
@@ -54,6 +62,8 @@ export const fetchOneProject = (projectId) => async dispatch => {
     if(response.status>=400) throw response
 }
 
+//add get by user id fetch later
+
 export const fetchCreateProject = (project) => async dispatch => {
     const response = await fetch(`/api/projects`, {
         method: 'POST',
@@ -63,9 +73,9 @@ export const fetchCreateProject = (project) => async dispatch => {
         body: JSON.stringify(project)
     })
     if(response.ok){
-        const newproject = await response.json()
-        dispatch(create(newproject))
-        return newproject
+        const newProject = await response.json()
+        dispatch(create(newProject))
+        return newProject
     }
     if(response.status>=400) throw response
 }
@@ -79,9 +89,9 @@ export const fetchUpdateProject = (project) => async dispatch => {
         body: JSON.stringify(project)
     })
     if(response.ok){
-        const editproject = await response.json()
-        dispatch(edit(editproject))
-        return editproject
+        const editProject = await response.json()
+        dispatch(edit(editProject))
+        return editProject
     }
     if(response.status>=400) throw response
 }
@@ -97,6 +107,7 @@ export const fetchDeleteProject = (id) => async dispatch => {
     if(response.status>=400) throw response
 }
 
+//will need to change shape to include get by user id
 //reducer
 const initialState = {}
 

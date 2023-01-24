@@ -20,7 +20,7 @@ const ViewAllProjects = () => {
 
     let allProjectsObj = useSelector(state => {return state.project})
     let allProjects = Object.values(allProjectsObj)
-    console.log('oneProject', allProjects[0].name)
+    //console.log('oneProject', allProjects[0].name)
 
     return (
         <div>

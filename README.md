@@ -14,7 +14,6 @@ The backend uses SqlAlchemy and Flask in Python. The frontend uses React and Red
 ## Home Page:
 Brief description of what Guava is.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_37
-
 ![]()
 
 ## Kanban Board:
@@ -75,4 +74,3 @@ npm start
 Annika McPeek
 ammcpeek@gmail.com
 linkedin.com/in/annika-mcpeek/
-

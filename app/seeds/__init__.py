@@ -18,16 +18,15 @@ def seed():
         # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        #this is because the build command in Render needs to do the undo and the redo on the free tier
         undo_tasks()
         undo_projects()
         undo_users()
-    undo_tasks()
-    undo_projects()
-    undo_users()
-    # Before seeding, truncate all tables prefixed with schema name
-        # db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
-        # # Add a truncate command here for every table that will be seeded.
-        # db.session.commit()
+    #not needed can do flask seed undo to hit this
+    # undo_tasks()
+    # undo_projects()
+    # undo_users()
+
     seed_users()
     seed_projects()
     seed_tasks()
@@ -35,6 +34,7 @@ def seed():
 
 
 # Creates the `flask seed undo` command
+#this resets the whole db 
 @seed_commands.command('undo')
 def undo():
     undo_tasks()
@@ -42,3 +42,9 @@ def undo():
     undo_users()
 
     # Add other undo functions here
+
+#put this in individual files
+  # Before seeding, truncate all tables prefixed with schema name
+        # db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        # # Add a truncate command here for every table that will be seeded.
+        # db.session.commit()

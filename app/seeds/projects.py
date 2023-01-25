@@ -17,9 +17,10 @@ def seed_projects():
 
 def undo_projects():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.projects RESTART IDENTITY CASCADE;") #postgres need something different
+        #bc identify auto-increments, want to set back to 1
     else:
-        db.session.execute("DELETE FROM projects")
+        db.session.execute("DELETE FROM projects") #local command sqlite
 
     db.session.commit()
 

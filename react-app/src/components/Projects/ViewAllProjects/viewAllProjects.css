@@ -1,0 +1,151 @@
+.flex {
+    display:flex;
+}
+
+.row {
+    display:flex;
+    flex-direction: row;
+}
+
+.col {
+    display:flex;
+    flex-direction: column
+}
+
+.jc-c {
+    display:flex;
+    justify-content: center;
+}
+
+.jc-sb {
+    display:flex;
+    justify-content: space-between
+}
+
+.jc-sa {
+    display:flex;
+    justify-content: space-around
+}
+
+.jc-st {
+    display:flex;
+    justify-content: flex-start;
+}
+
+.ai-c {
+    display:flex;
+    align-items: center;
+}
+
+.ai-st{
+    display:flex;
+    align-items: flex-start;
+}
+
+.bg-green {
+    display:flex;
+    background-color: green;
+}
+
+.color-purple {
+    display:flex;
+    color: purple;
+}
+
+.border-blue {
+    display:flex;
+    border: solid blue .5em;
+}
+
+.border-yellow {
+    display:flex;
+    border: solid yellow .5em;
+}
+
+.border-orange {
+    display:flex;
+    border: solid orange .5em;
+}
+
+.border-red {
+    display:flex;
+    border: solid red .5em;
+}
+
+.circle {
+    display:flex;
+    border-radius: 50%;
+}
+
+.round-sq {
+    display:flex;
+    border-radius: 10%;
+}
+
+.all-padding {
+    display:flex;
+    padding: 5em;
+}
+
+.all-margin {
+    display:flex;
+    margin: 5em;
+}
+
+.no-border {
+    display:flex;
+    border: none
+}
+
+.cursor {
+    cursor: pointer
+ }
+
+.box {
+display:flex;
+width: 10em;
+height: 10em;
+}
+
+.main-img-1 {
+    width: 30em;
+    height: 40em;
+    object-fit: cover;
+    position: relative;
+    top: 5em;
+    right: 5em;
+}
+
+.main-img-2 {
+    width: 30em;
+    height: 40em;
+    object-fit: cover;
+    position: relative;
+    top: 10em;
+    right: 5em;
+}
+
+
+.main-gray-box {
+    display: flex;
+    /* width: 30em;
+    height: 50em; */
+    width: 40%;
+    background-color: grey;
+    }
+
+
+.main-left {
+    width: 60%;
+}
+
+.main-left-proj {
+    width: 60%;
+}
+
+.small-box {
+    display:flex;
+width: 2em;
+height: 2em;
+
+}

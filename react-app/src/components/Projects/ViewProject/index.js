@@ -22,23 +22,24 @@ const ViewProject = () => {
     let oneProject = useSelector(state => {return state.project[id]})
 
     return (
-        <div>Single Project:
-            <br/>
-            <br/>
+        <div>
+            <div><i className="fa-solid fa-house-chimney"></i></div>
+            <div className='bg-green small-box round-sq'></div>
         {oneProject && (
             <div>
-                Name: {oneProject.name}
+                {oneProject.name}
+                <button>edit & delete</button>
                 <br/>
                 <br/>
-            Description: {oneProject.description}
+            {oneProject.description}
             <br/>
             <br/>
-            Associated tasks:
+            TASKS:
             <br/>
             {oneProject.tasks.map(task => {
     return (
         <div>
-        <div>{task.id}. {task.name}</div>
+        <div>{task.id}. {task.name} Stage: {task.stageId}</div>
         <br/>
        </div>
     )})}

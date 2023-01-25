@@ -2,11 +2,13 @@ import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchAllProjects } from '../../../store/project'
-
+import './viewAllProjects.css'
 
 const ViewAllProjects = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    //https://assets.asana.biz/transform/5e1c89aa-e1af-44f5-8902-f692c819c3b2/home-hero-1a
+    //https://assets.asana.biz/transform/efb32754-4aa7-4fd8-ba6f-2d019316dd4a/home-hero-1b
 
 
     const findProjectTest = async () => {
@@ -24,27 +26,68 @@ const ViewAllProjects = () => {
 
     return (
         <div>
-            <div>All Projects & Home Page</div>
-            <Link to={`/projects/create`}>Create Project</Link>
-
-            <br/>
-            <br/>
-        {allProjects && (allProjects.map(project => {
-            return (
-                <Link to={`/projects/${project.id}`}>
+            <div className='jc-sb border-orange'>
+                <div><i className="fa-solid fa-house-chimney"></i></div>
+                <div>Why Guava?</div>
+                <div><Link to='https://github.com/amcpeek/guava/wiki'>Features</Link></div>
+                <div><Link to='https://github.com/amcpeek/guava'>Resources</Link></div>
                 <div>
-                <div>{project.id}.</div>
-                <div>Name: {project.name}:</div>
-                <div>Description: {project.description}</div>
-                <br/>
-
+                    <a
+                    href='https://www.linkedin.com/in/annika-mcpeek/'>
+                    <i className="fa-brands fa-linkedin"/>
+                    </a>
+                    &nbsp; &nbsp; &nbsp;
+                    <a
+                    href='https://github.com/amcpeek/'>
+                    <i className="fa-brands fa-github"/>
+                    </a>
                 </div>
-                </Link>
-            )
+                <div><Link to={`/projects/create`}>Create Project</Link></div>
+                <div><button>Get Started</button></div>
+            </div>
+            <div className='border-red'>
+                            <div className='main-left border-yellow col main-left'>
+
+                                <div>
+                                    <h1>Are silos making teamwork <br/> more painful?</h1>
+                                    <h4>Guava helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
+                                    <h4>Join one of the many teams working on projects on Guava</h4>
+                                </div>
 
 
-        }))
-        }
+                                <div className='border-blue col main-left-proj'>
+                                    {allProjects && (allProjects.map(project => {
+                                        return (
+                                            <Link key={project.id} to={`/projects/${project.id}`}>
+                                            <div>
+                                            <div>{project.id}.</div>
+                                            <h2>{project.name}:</h2>
+                                            <h5>{project.description}</h5>
+                                            <br/>
+
+                                            </div>
+                                            </Link>
+                                            )
+
+
+                                        }))
+                                        }
+                                </div>
+                            </div>
+           <div className='border-blue main-gray-box'>
+
+                <img className='main-img-1'
+                src='https://assets.asana.biz/transform/5e1c89aa-e1af-44f5-8902-f692c819c3b2/home-hero-1a'
+                alt='home1'
+                />
+                <img className='main-img-2'
+                src='https://assets.asana.biz/transform/efb32754-4aa7-4fd8-ba6f-2d019316dd4a/home-hero-1b'
+                alt='home2'
+                />
+                {/* <div className='main-gray-box'></div> */}
+            </div>
+            </div>
+
         </div>
     )
 

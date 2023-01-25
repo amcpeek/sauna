@@ -6,7 +6,7 @@ def seed_projects():
     project2=Project(ownerId=1, name='Applying for the State funding to create a STEM lab at Hoover Elementary',
     description='The state of California has allocated funds to STEM labs in low income schools, but in order to receive it we need to create and implement a detailed plan of how we will effectively use the funds')
     project3=Project(ownerId=2, name='Piloting a new remote literacy tutoring project',
-    description='Partner with an external tutor provider company to have their tutors working with Oakland students using our companys curriculum')
+    description="Partner with an external tutor provider company to have their tutors working with Oakland students using our company's curriculum")
     project4=Project(ownerId=2, name='Hire, onboard, and train a team of implementation specialist',
     description='Work with HR to create a hiring, onboarding, and continual coaching process.')
     db.session.add(project1)

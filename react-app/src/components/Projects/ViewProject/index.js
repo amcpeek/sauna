@@ -22,11 +22,26 @@ const ViewProject = () => {
     let oneProject = useSelector(state => {return state.project[id]})
 
     return (
-        <div>the view project page!
-        {oneProject &&
-            <div>{oneProject.name} <br/>
-            {oneProject.description}</div>
-        }
+        <div>Single Project:
+            <br/>
+            <br/>
+        {oneProject && (
+            <div>
+                Name: {oneProject.name}
+                <br/>
+                <br/>
+            Description: {oneProject.description}
+            <br/>
+            <br/>
+            {oneProject.tasks.map(task => {
+    return (
+        <div>
+        <div>{task.id}. {task.name}</div>
+        <br/>
+       </div>
+    )})}
+                </div>
+       )}
         </div>
     )
 

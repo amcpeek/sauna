@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchAllProjects } from '../../../store/project'
@@ -24,17 +24,21 @@ const ViewAllProjects = () => {
 
     return (
         <div>
-            <div>welcome and see all the projects!</div>
+            <div>All Projects & Home</div>
 
+            <br/>
             <br/>
         {allProjects && (allProjects.map(project => {
             return (
+                <Link to={`/projects/${project.id}`}>
                 <div>
-                <div>{project.name}:</div>
-                <div>{project.description}</div>
+                <div>{project.id}.</div>
+                <div>Name: {project.name}:</div>
+                <div>Description: {project.description}</div>
                 <br/>
 
                 </div>
+                </Link>
             )
 
 

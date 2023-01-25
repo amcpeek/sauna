@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import Project
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import Project, db, user
+from app.forms import project_form #it wants it to be project_form, but that is not correct
+from .auth_routes import validation_errors_to_error_messages
 
 project_routes = Blueprint('projects', __name__)
 
@@ -24,6 +26,28 @@ def projectById(id):
     """
     project = Project.query.get(id)
     return project.to_dict_full()
+
+#P4 create
+# @project_routes.route('', methods=['POST'])
+# @login_required
+# def create():
+#     form = project_form()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     currentId=current_user.get_id()
+
+#     if form.validate_on_submit():
+#         new_project=Project(ownerId=currentId)
+#         form.populate_obj(new_project)
+#         db.session.add(new_project)
+#         db.session.commit()
+#         return new_project.to_dict_full(),201
+
+#     return {
+#         'message':'Validation Error',
+#         "errors":validation_errors_to_error_messages(form.errors),
+#         'statusCode': 400
+#         },400
+#     pass
 
 #P1 get all
 #P2 get one

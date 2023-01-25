@@ -1,7 +1,7 @@
 //action types
 const READ_PROJECTS = 'projects/READ_PROJECTS' //p1
 const READ_SINGLE_PROJECT = 'projects/READ_SINGLE_PROJECT' //p2
-const READ_BY_USER_ID = 'projects/READ_BY_USER_ID' //p3
+// const READ_BY_USER_ID = 'projects/READ_BY_USER_ID' //p3
 const CREATE_PROJECT = 'projects/CREATE_PROJECT' //p4
 const UPDATE_PROJECT = 'projects/UPDATE_PROJECT' //p5
 const DELETE_PROJECT = 'projects/DELETE_PROJECT' //p6
@@ -19,10 +19,10 @@ const getOne = (project) => ({
 }
 )
 
-const getById = ({Projects}) => ({
-    type: READ_BY_USER_ID,
-    Projects
-})
+// const getById = ({Projects}) => ({
+//     type: READ_BY_USER_ID,
+//     Projects
+// })
 
 const create = (project) => ({
     type: CREATE_PROJECT,

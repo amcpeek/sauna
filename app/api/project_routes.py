@@ -8,7 +8,6 @@ project_routes = Blueprint('projects', __name__)
 
 #P1 get all
 @project_routes.route('')
-@login_required
 def allProjects():
     """
     Query for all users and returns them in a list of project dictionaries
@@ -18,7 +17,6 @@ def allProjects():
 
 #P2 get one
 @project_routes.route('/<int:id>')
-@login_required
 def projectById(id):
     # print('$$$$$$$$$$$$$$$$$$$$$can I even print this', Project[id].to_dict())
     """
@@ -28,26 +26,85 @@ def projectById(id):
     return project.to_dict_full()
 
 #P4 create
-# @project_routes.route('', methods=['POST'])
-# @login_required
-# def create():
-#     form = ProjectForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     currentId=current_user.get_id()
+@project_routes.route('', methods=['POST'])
+@login_required
+def create():
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    currentId=current_user.get_id()
 
-#     if form.validate_on_submit():
-#         new_project=Project(ownerId=currentId)
-#         form.populate_obj(new_project)
-#         db.session.add(new_project)
-#         db.session.commit()
-#         return new_project.to_dict_full(),201
+    if form.validate_on_submit():
+        new_project=Project(ownerId=currentId)
+        form.populate_obj(new_project)
+        db.session.add(new_project)
+        db.session.commit()
+        return new_project.to_dict_full(),201
 
-#     return {
-#         'message':'Validation Error',
-#         "errors":validation_errors_to_error_messages(form.errors),
-#         'statusCode': 400
-#         },400
-#     pass
+    return {
+        'message':'Validation Error',
+        "errors":validation_errors_to_error_messages(form.errors),
+        'statusCode': 400
+        },400
+
+#P5 edit
+@project_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def edit(id):
+    form = ProjectForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    oneProject = Project.query.get(id)
+    if not oneProject:
+        return {
+            'message':'HTTP Error',
+            'errors':["Project couldn't be found"],
+            'statusCode': 404
+        }, 404
+    currentId=current_user.get_id()
+    if int(oneProject.ownerId) != int(currentId):
+        return {
+          'message':'Forbidden Error',
+          'errors': ['The project is not owned by the current user'],
+          'statusCode': 403
+          },403
+
+    if form.validate_on_submit():
+        form.populate_obj(oneProject)
+        db.session.add(oneProject)
+        db.session.commit()
+        return oneProject.to_dict_full()
+
+    return {
+        'message':'Validation Error',
+        "errors":validation_errors_to_error_messages(form.errors),
+        'statusCode': 400
+        },400
+
+#P6 delete
+@project_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_project(id):
+    oneProject = Project.query.get(id)
+    if not oneProject:
+        return {
+            'message':'HTTP Error',
+            "errors":["Project couldn't be found"],
+            'statusCode': 404
+            },404
+
+    currentId=current_user.get_id()
+    if int(oneProject.ownerId) != int(currentId):
+        return {
+          'message':'Forbidden Error',
+          'errors': ['The project is not owned by the current user'],
+          'statusCode': 403
+          },403
+
+    db.session.delete(oneProject)
+    db.session.commit()
+    return {
+        "message": "Successfully deleted",
+        'statusCode': 200
+        },200
 
 #P1 get all
 #P2 get one

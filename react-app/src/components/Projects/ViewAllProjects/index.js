@@ -24,7 +24,8 @@ const ViewAllProjects = () => {
 
     return (
         <div>
-            <div>All Projects & Home</div>
+            <div>All Projects & Home Page</div>
+            <Link to={`/projects/create`}>Create Project</Link>
 
             <br/>
             <br/>

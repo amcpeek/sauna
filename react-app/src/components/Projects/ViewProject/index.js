@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchOneProject } from '../../../store/project'
@@ -33,6 +33,8 @@ const ViewProject = () => {
             Description: {oneProject.description}
             <br/>
             <br/>
+            Associated tasks:
+            <br/>
             {oneProject.tasks.map(task => {
     return (
         <div>
@@ -42,6 +44,7 @@ const ViewProject = () => {
     )})}
                 </div>
        )}
+       <Link to={`/projects/${id}/edit`}>Edit Project</Link>
         </div>
     )
 

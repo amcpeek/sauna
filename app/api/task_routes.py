@@ -1,20 +1,24 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
-from app.models import Task
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
+from app.models import Task, db, Project, User
+from app.forms import TaskForm
+from .auth_routes import validation_errors_to_error_messages, authenticate
+# from app.api.auth_routes import authenticate #same thing
 
-task_routes = Blueprint('tasks', __name__)
+task_routes = Blueprint('tasks', __name__, url_prefix="/api")
 
 # T1 get all, backend only
-@task_routes.route('/')
+@task_routes.route('/tasks/')
 @login_required
 def allTasks():
     """
     Query for all users and returns them in a list of task dictionaries
     """
     return {'tasks': [task.to_dict() for task in Task.query.all()]}
+    # return {'testing':'test'}
 
 #T2 get by task id
-@task_routes.route('/<int:id>')
+@task_routes.route('/tasks/<int:id>')
 @login_required
 def taskById(id):
     """
@@ -22,6 +26,64 @@ def taskById(id):
     """
     task = Task.query.get(id)
     return task.to_dict()
+
+#T3 create by project id
+@task_routes.route('/projects/<int:projectId>/tasks', methods=["POST"])
+@login_required
+def create_task(projectId):
+    form = TaskForm()
+    # Authorization
+    form['csrf_token'].data = request.cookies['csrf_token']
+    project = Project.query.get(projectId)
+    # print('KIWI', project, projectId)
+
+    if not project:
+        return {
+           'message':'HTTP Error',
+           "errors":["Project couldn't be found"],
+           'statusCode': 404
+           },404
+
+    #Current user is project creator authentication
+    #need to change this so anyone can make a task
+    if authenticate()['id'] == project.ownerId:
+        if form.validate_on_submit():
+            new_task = Task()
+            #print('BANANA', new_reward)
+            form.populate_obj(new_task)
+            # assign projectId
+            new_task.projectId = projectId
+
+            db.session.add(new_task)
+            db.session.commit()
+            return new_task.to_dict()
+
+        if form.errors:
+            # print('Mango: what are form.errors', form.errors)
+            return {
+                "message": "Validation Error",
+                "errors":validation_errors_to_error_messages(form.errors),
+                "statusCode": 400,
+            }, 400
+
+    #current user is not project owner
+    else:
+        return {
+            "message": "Forbidden Error",
+            'errors': ['The project does not belong to the current user'],
+            "statusCode": 403
+        }, 403
+
+
+
+
+
+
+
+
+
+
+
 
 #T1 get all, backend only
 #T2 get by task id

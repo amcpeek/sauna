@@ -1,6 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .user import User
-from .project import Project
+# from .project import Project
 
 
 class Task(db.Model):

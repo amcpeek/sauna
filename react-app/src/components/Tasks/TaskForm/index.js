@@ -4,10 +4,11 @@ import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../../store/task";
 import { fetchOneProject } from "../../../store/project"
 
-const TaskForm=({task, formType, projectId}) => {
+const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
     let initName, initDescription, initStageId
     const history=useHistory()
     const dispatch = useDispatch()
+    console.log('is tasks getting to the task form for edit?', task)
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -19,7 +20,7 @@ const TaskForm=({task, formType, projectId}) => {
 
     // const oneProject = useSelector(state => {return state.projects[projectId]})
 
-    if(formType==="Edit Type"){
+    if(formType==="Edit Task"){
         initDescription=task.description;
         initName=task.name
         initStageId=task.stageId
@@ -65,11 +66,12 @@ const TaskForm=({task, formType, projectId}) => {
         else if(formType==="Edit Task"){
                 dispatch(fetchUpdateTask(tempTask))
                 .then(history.push(`/projects/${projectId}`))
-                .catch(async (err)=>{
-                  const errObj=await err.json();
-                  errors.push(errObj.message)
-                  setValidationErrors(errors)
-                });
+                // .catch(async (err)=>{
+                //   const errObj=await err.json();
+                //   errors.push(errObj.message)
+                //   setValidationErrors(errors)
+                // });
+                .catch((error) => console.log(error))
             }
     }
 

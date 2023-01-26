@@ -26,13 +26,19 @@ const ViewProject = () => {
        findProjectTest()
     }, [dispatch])
 
+    const showTaskFunc = (task) => {
+        showTask? setShowTask(false): setShowTask(true)
+        setSelectedTask(task)
+
+    }
+
     let oneProject = useSelector(state => {return state.project[id]})
 
     if(oneProject) {
         const toDo = oneProject.tasks.filter(task => task.stageId == 1)
         const inProg = oneProject.tasks.filter(task => task.stageId == 2)
         const complete = oneProject.tasks.filter(task => task.stageId == 3)
-        console.log('todo', toDo)
+       // console.log('todo', toDo)
         return (
             <div className='border-blue col'>
                 <div className='border-yellow'>
@@ -50,11 +56,10 @@ const ViewProject = () => {
 
                 <div className='border-green'>
                     <div className='border-blue col width-20-per'>
-                        <h2>To Do <button onClick={() => (setShowAddTask1(true))}>+</button></h2>
+                        <h2>To Do <button onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}>+</button></h2>
                         {toDo.map(task=> {
                             return (
-                                <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
-                                    setSelectedTask(task)) }>
+                                <button className="border-yellow" key={task.id} onClick={() => (showTaskFunc(task))}>
                                     {task.id}. {task.name}
                                 </button>
                             )
@@ -64,19 +69,22 @@ const ViewProject = () => {
                         >
                             {showAddTask1 &&
                             <button className="arrow-button width-100-per">
-                        <CreateTask/>
+                        <CreateTask setShowAddTask1={setShowAddTask1}/>
+                        {/* this prop thing isnt working yet, doesnt seem to be doing anything actually */}
                         </button>
                             }
 
                         </div>
 
                     </div>
+
+
+
                     <div className='border-blue col width-20-per'>
-                        <h2>In Progress <button onClick={() => (setShowAddTask2(true))}>+</button></h2>
+                        <h2>In Progress <button onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}>+</button></h2>
                         {inProg.map(task=> {
                             return (
-                                <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
-                                    setSelectedTask(task)) }>
+                                <button className="border-yellow" key={task.id} onClick={() => (showTaskFunc(task)) }>
                                     {task.id}. {task.name}
                                 </button>
                             )
@@ -93,11 +101,10 @@ const ViewProject = () => {
                         </div>
                     </div>
                     <div className='border-blue col width-20-per'>
-                        <h2>Complete <button onClick={() => (setShowAddTask3(true))}>+</button></h2>
+                        <h2>Complete <button onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}>+</button></h2>
                         {complete.map(task=> {
                             return (
-                                <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
-                                    setSelectedTask(task)) }>
+                                <button className="border-yellow" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
                                     {task.id}. {task.name}
                                 </button>
                             )

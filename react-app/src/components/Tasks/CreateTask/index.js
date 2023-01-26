@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import TaskForm from "../TaskForm";
 import { useParams } from "react-router-dom";
 
-const CreateTask=()=>{
+const CreateTask=(setShowAddTask1)=>{
 
     const {id}=useParams()
     const dispatch = useDispatch()
@@ -36,7 +36,7 @@ const CreateTask=()=>{
         console.log('are we getting to the create page?')
 
                 return (
-                    <TaskForm task={task} formType="Create Task" projectId={id}/>
+                    <TaskForm task={task} formType="Create Task" projectId={id} setShowAddTask1={setShowAddTask1}/>
                 )
             // }
 

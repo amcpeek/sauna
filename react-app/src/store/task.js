@@ -71,9 +71,9 @@ export const fetchUpdateTask = (task) => async dispatch => {
         body: JSON.stringify(task)
     })
     if(response.ok){
-        const editTask = await response.json()
-        dispatch(editTask(editTask))
-        return editTask
+        const updatedTask = await response.json()
+        dispatch(editTask(updatedTask))
+        return updatedTask
     }
     if(response.status>=400) throw response
 }

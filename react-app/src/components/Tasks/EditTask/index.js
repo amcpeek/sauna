@@ -8,23 +8,26 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const EditTask=({selectedTask})=>{
-    console.log('what is selectedTask', selectedTask, 1)
+    console.log('In EditTask, selectedTask', selectedTask.id)
 
      const {projectId}=useParams()
     const dispatch = useDispatch()
 
     const findProjectTest = async () => {
         const allProjects = await dispatch(fetchAllProjects())
-        const oneTask = await dispatch(fetchOneTask(1))
+        const oneTask = await dispatch(fetchOneTask(selectedTask.id))
       }
 
     useEffect(() => {
         findProjectTest()
-     }, [dispatch])
+     }, [dispatch, selectedTask])
 
-    const tempTask = useSelector(state=>state.task[1])
+
+
+    const tempTask = useSelector(state=>state.task[selectedTask.id])
 
     if(tempTask) {
+        console.log('can we get tempTask? tempTask.projectId', tempTask.projectId)
         const task={
             id:tempTask.id,
             name:tempTask.name,
@@ -35,12 +38,15 @@ const EditTask=({selectedTask})=>{
         return (
             <TaskForm task={task} formType="Edit Task" projectId={tempTask.projectId}/>
         )
-    }
-
-    return (
-        <div>The feature has not available because you are not logged in
+    } else {
+        return (
+            <div>The feature has not available because you are not logged in
             </div>
-    )
+
+        )
+
+
+    }
 }
 
 export default EditTask

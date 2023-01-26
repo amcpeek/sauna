@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import ViewProject from '../src/components/Projects/ViewProject/index'
 import ViewAllProjects from './components/Projects/ViewAllProjects/index';
 import ProjectEntry from './components/Projects';
+import ViewTask from './components/Tasks/ViewTask/index'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -51,6 +52,9 @@ function App() {
         </Route> */}
         <Route path='/projects/:id'exact={true} >
           <ViewProject/>
+        </Route>
+        <Route path='/projects/:projectId/tasks/:taskId'exact={true} >
+          <ViewTask/>
         </Route>
 
         <ProtectedRoute path={['/','/projects']} exact={true} >

@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import ViewProject from '../src/components/Projects/ViewProject/index'
 import ViewAllProjects from './components/Projects/ViewAllProjects/index';
 import ProjectEntry from './components/Projects';
+import TaskEntry from './components/Tasks';
 import ViewTask from './components/Tasks/ViewTask/index'
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path={['/projects/create','/projects/:id/edit']} >
+          <ProjectEntry />
+        </ProtectedRoute>
+        <ProtectedRoute path={['/projects/:projectId/tasks/create','/tasks/:taskId/edit']} >
           <ProjectEntry />
         </ProtectedRoute>
         {/* <Route path='/projects'exact={true} >

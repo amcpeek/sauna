@@ -44,36 +44,106 @@ def create_task(projectId):
            'statusCode': 404
            },404
 
-    #Current user is project creator authentication
+    #Current user is project owner authentication
     #need to change this so anyone can make a task
-    if authenticate()['id'] == project.ownerId:
-        if form.validate_on_submit():
-            new_task = Task()
-            #print('BANANA', new_reward)
-            form.populate_obj(new_task)
-            # assign projectId
-            new_task.projectId = projectId
+    # if authenticate()['id'] == project.ownerId:
+    if form.validate_on_submit():
+        new_task = Task()
+        #print('BANANA', new_task)
+        form.populate_obj(new_task)
+        # assign projectId
+        new_task.projectId = projectId
 
-            db.session.add(new_task)
-            db.session.commit()
-            return new_task.to_dict()
+        db.session.add(new_task)
+        db.session.commit()
+        return new_task.to_dict()
 
-        if form.errors:
-            # print('Mango: what are form.errors', form.errors)
-            return {
-                "message": "Validation Error",
-                "errors":validation_errors_to_error_messages(form.errors),
-                "statusCode": 400,
-            }, 400
+    if form.errors:
+        # print('Mango: what are form.errors', form.errors)
+        return {
+            "message": "Validation Error",
+            "errors":validation_errors_to_error_messages(form.errors),
+            "statusCode": 400,
+        }, 400
 
     #current user is not project owner
+    # else:
+    #     return {
+    #         "message": "Forbidden Error",
+    #         'errors': ['The project does not belong to the current user'],
+    #         "statusCode": 403
+    #     }, 403
+
+
+#T4 update
+@task_routes.route('/tasks/<int:id>', methods=["PUT"])
+@login_required
+def update_task(id):
+    form = TaskForm()
+    task = Task.query.get(id)
+
+    if not task:
+        return {
+            'message':'HTTP Error',
+            "errors":["Task couldn't be found"],
+            'statusCode': 404
+            },404
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # project = Project.query.get(task.projectId)
+
+    #currently allowing anyone to update
+    # if authenticate()['id'] == project.ownerId:
+    if form.validate_on_submit():
+        form.populate_obj(task)
+        db.session.add(task)
+        db.session.commit()
+        return task.to_dict()
+
+    if form.errors:
+        return {
+            "message": "Validation error",
+            "errors":validation_errors_to_error_messages(form.errors),
+            "statusCode": 400
+        }, 400
+
+    # else:
+    #     return {
+    #         "message": "Forbidden Error",
+    #         'errors': ['The project is not belongs to the current user'],
+    #         "statusCode": 403
+    #     }, 403
+
+#5 delete #can only delete tasks if you own the project
+@task_routes.route('/tasks/<int:id>', methods=["DELETE"])
+@login_required
+def delete_task(id):
+    task = Task.query.get(id)
+
+    if not task:
+        return {
+            'message':'HTTP Error',
+            "errors":["Task couldn't be found"],
+            'statusCode': 404
+            },404
+
+    project = Project.query.get(task.projectId)
+
+    print("task.projectId", task.projectId, 'ownerId', int(authenticate()['id']), 'int(project.ownerId)', int(project.ownerId))
+    if int(authenticate()['id']) == int(project.ownerId):
+        db.session.delete(task)
+        db.session.commit()
+        return {
+            "message": "Successfully deleted",
+            "statusCode": 200
+        }, 200
+
     else:
         return {
             "message": "Forbidden Error",
-            'errors': ['The project does not belong to the current user'],
+            'errors': ['Only the owner of the project can delete associated tasks'],
             "statusCode": 403
         }, 403
-
 
 
 

@@ -3,6 +3,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchOneProject } from '../../../store/project'
 import ViewTask from '../../Tasks/ViewTask';
+import CreateTask from '../../Tasks/CreateTask';
+import EditTask from '../../Tasks/EditTask';
 
 
 const ViewProject = () => {
@@ -11,6 +13,9 @@ const ViewProject = () => {
     const history = useHistory()
     const [selectedTask, setSelectedTask] = useState(1)
     const [showTask, setShowTask] = useState(false)
+    const [showAddTask1, setShowAddTask1] = useState(false)
+    const [showAddTask2, setShowAddTask2] = useState(false)
+    const [showAddTask3, setShowAddTask3] = useState(false)
 
 
     const findProjectTest = async () => {
@@ -45,7 +50,7 @@ const ViewProject = () => {
 
                 <div className='border-green'>
                     <div className='border-blue col width-20-per'>
-                        <h2>To Do</h2>
+                        <h2>To Do <button onClick={() => (setShowAddTask1(true))}>+</button></h2>
                         {toDo.map(task=> {
                             return (
                                 <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
@@ -54,10 +59,20 @@ const ViewProject = () => {
                                 </button>
                             )
                         })}
+                        <div  className="border-red jc-end"
+                        // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
+                        >
+                            {showAddTask1 &&
+                            <button className="arrow-button width-100-per">
+                        <CreateTask/>
+                        </button>
+                            }
+
+                        </div>
 
                     </div>
                     <div className='border-blue col width-20-per'>
-                        <h2>In Progress</h2>
+                        <h2>In Progress <button onClick={() => (setShowAddTask2(true))}>+</button></h2>
                         {inProg.map(task=> {
                             return (
                                 <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
@@ -66,10 +81,19 @@ const ViewProject = () => {
                                 </button>
                             )
                         })}
+                        <div  className="border-red jc-end"
+                        // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
+                        >
+                            {showAddTask2 &&
+                            <button className="arrow-button width-100-per">
+                        <CreateTask/>
+                        </button>
+                            }
 
+                        </div>
                     </div>
                     <div className='border-blue col width-20-per'>
-                        <h2>Complete</h2>
+                        <h2>Complete <button onClick={() => (setShowAddTask3(true))}>+</button></h2>
                         {complete.map(task=> {
                             return (
                                 <button className="border-yellow" key={task.id} onClick={() => (setShowTask(true),
@@ -78,12 +102,24 @@ const ViewProject = () => {
                                 </button>
                             )
                         })}
+                        <div  className="border-red jc-end"
+                        // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
+                        >
+                            {showAddTask3 &&
+                            <button className="arrow-button width-100-per">
+                        <CreateTask/>
+                        </button>
+                            }
+
+                        </div>
 
                     </div>
                     <div className='border-blue col width-40-per'>
                         <div  className="border-red jc-end" style={!showTask ? { transform: 'translateX(+100%)' } : {}}>
-                            <button className="arrow-button width-100-per" onClick={() => setShowTask(false)}>
+                            <button className="arrow-button width-100-per" >
+                            {/* onClick={() => setShowTask(false)}  add back in later*/}
                             <ViewTask selectedTask={selectedTask}/>
+                            <EditTask selectedTask={selectedTask}/>
                             </button>
                         </div>
 

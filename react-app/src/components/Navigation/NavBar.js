@@ -25,30 +25,42 @@ const NavBar = () => {
 
   return (
     <nav>
-      <div className='jc-sb border-orange'>
-            <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
-                <div>Why Guava?</div>
-                <div><a href='https://github.com/amcpeek/guava/wiki'>Features</a></div>
-                <div><a href='https://github.com/amcpeek/guava'>Resources</a></div>
-                <div>
-                    <a
-                    href='https://www.linkedin.com/in/annika-mcpeek/'>
-                    <i className="fa-brands fa-linkedin"/>
-                    </a>
-                    &nbsp; &nbsp; &nbsp;
-                    <a
-                    href='https://github.com/amcpeek/'>
-                    <i className="fa-brands fa-github"/>
-                    </a>
-                </div>
-                <div className='row'>
-                {user && <button onClick={() => setShowModal(true)} className='circle bg-green'>+</button>}
+       <div className='jc-sb lr-margin'>
+              <div className='row'>
+                      <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
+                      &nbsp; &nbsp; &nbsp;
+                      <div className='do-not-interact'>Why Sauna?</div>
+                      &nbsp; &nbsp; &nbsp;
+                      <div ><a href='https://github.com/amcpeek/sauna/wiki' className='no-und'>Features</a></div>
+                      &nbsp; &nbsp; &nbsp;
+                      <div><a href='https://github.com/amcpeek/sauna' className='no-und'>Resources</a></div>
+              </div>
 
-                <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
 
-                {/* <div><Link to={`/projects/create`}>Create Project</Link></div> */}
-                <div> <ProfileButton user={user}/></div>
-                </div>
+              <div className='row'>
+                  <div>
+                      <a
+                      href='https://www.linkedin.com/in/annika-mcpeek/'>
+                      <i className="fa-brands fa-linkedin"/>
+                      </a>
+                      &nbsp; &nbsp; &nbsp;
+                      <a
+                      href='https://github.com/amcpeek/'>
+                      <i className="fa-brands fa-github"/>
+                      </a>
+                      &nbsp; &nbsp; &nbsp;
+                  </div>
+                  <div className='row ai-c'>
+                      {user && <button onClick={() => setShowModal(true)} className='just-text-button bg-white'><i className="fa-solid fa-plus"></i></button>}
+                      &nbsp; &nbsp; &nbsp;
+
+                      <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
+
+                      {/* <div><Link to={`/projects/create`}>Create Project</Link></div> */}
+                      <div> <ProfileButton user={user}/></div>
+                  </div>
+              </div>
+
             </div>
 
       {/* <ul>

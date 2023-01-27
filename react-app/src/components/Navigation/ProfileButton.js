@@ -45,11 +45,11 @@ function ProfileButton({ user }) {
 
   return (
     <div className='dropdownNav2'>
-      <button onClick={openMenu} className='dropButtonNav'>
+      <button onClick={openMenu} className='dropButtonNav circle bg-white pad-1 font-small bg-white thin-bor'>
       {/* id="LoginButton" */}
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
-      {!user? <div>Get Started</div>: <div>{(user.username).slice(0,1)} {((user.username).slice(1,2)).toUpperCase()}</div>}
+      {!user? <div>Get Started</div>: <div className=''>{(user.username).slice(0,1)} {((user.username).slice(1,2)).toUpperCase()}</div>}
 
       </button>
       {showMenu && user && (
@@ -57,7 +57,7 @@ function ProfileButton({ user }) {
         <div className="dropdownContentNav">
 
             {/* <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/">View Your Profile</NavLink></button> */}
-            <button className='dropDownNavButtons roundBottomFields' onClick={logout}>Log Out</button>
+            <button className='dropDownNavButtons roundBottomFields bg-white round-sq-05 thin-bor' onClick={logout}>Log Out</button>
         </div>
       )}
               <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
@@ -65,8 +65,8 @@ function ProfileButton({ user }) {
       {showMenu && !user && (
         <div className="dropdownContentNav">
           {/* <div className={'cursor'} onClick={() => {setShowModal(true)}}>WTF</div> */}
-          <button className='dropDownNavButtons roundTopFields' onClick={() => setShowLogInModal(true)}>Log In</button>
-          <button className='dropDownNavButtons roundBottomFields' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
+          <button className='bg-white circle thin-bor font-small' onClick={() => setShowLogInModal(true)}>Log In</button>
+          <button className=' bg-white circle thin-bor font-small' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
 
 
         </div>

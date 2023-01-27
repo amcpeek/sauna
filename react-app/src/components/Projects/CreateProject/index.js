@@ -11,7 +11,7 @@ const CreateProject=({showModal, setShowModal})=>{
     }
 
     return (
-        <div> does the create project page show too
+        <div> 
         <ProjectForm project={project} formType="Create Project"/>
         </div>
     )

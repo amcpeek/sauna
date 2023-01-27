@@ -1,4 +1,15 @@
-.flex {
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+ }
+
+
+
+.flex, .f {
     display:flex;
 }
 
@@ -47,9 +58,35 @@
     align-items: flex-start;
 }
 
+.no-bor {
+    border: none
+}
+
+.thin-bor {
+    border: .1em solid lightslategrey;
+}
+
 .bg-green {
     display:flex;
-    background-color: green;
+    background-color: lightgreen;
+}
+
+.bg-blue {
+    display:flex;
+    background-color: rgb(133, 133, 233);
+
+}
+
+.bg-light-gray {
+    display:flex;
+    background-color: rgb(244, 239, 239);
+
+}
+
+.bg-white {
+    display:flex;
+    background-color: white;
+
 }
 
 .color-purple {
@@ -85,12 +122,17 @@
 
 .circle {
     display:flex;
-    border-radius: 50%;
+    border-radius: 20em;
 }
 
 .round-sq {
     display:flex;
-    border-radius: 20%;
+    border-radius: 2em;
+}
+
+.round-sq-05 {
+    display:flex;
+    border-radius: .5em;
 }
 
 .all-padding {
@@ -103,6 +145,67 @@
     margin: 5em;
 }
 
+.all-margin-small {
+    display:flex;
+    margin: 1em;
+
+}
+
+.b-margin {
+    display:flex;
+    margin-bottom: 1em;
+
+}
+
+
+.lr-margin {
+    display:flex;
+    margin-left: 10em;
+    margin-right: 10em;
+
+}
+
+.lr-margin-small {
+    display:flex;
+    margin-left: 1em;
+    margin-right: 1em;
+
+
+}
+
+.tb-margin {
+    display:flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+.height-100-per {
+    display: flex;
+    min-height: 80em;
+    background-color: rgb(241, 245, 249)
+}
+
+.height-task {
+    display: flex;
+    height: 6em;
+
+}
+
+.pad-1 {
+    display: flex;
+    padding: .5em
+}
+
+.font-small {
+    font-size:xx-small;
+}
+
+.font-small-med {
+    font-size: small
+
+}
+
 .no-border {
     display:flex;
     border: none
@@ -111,6 +214,11 @@
 .cursor {
     cursor: pointer
  }
+
+.do-not-interact:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+  }
 
 .box {
 display:flex;
@@ -134,11 +242,55 @@ height: 10em;
 
 }
 
+.width-38em {
+    display: flex;
+    width: 38em;
+
+}
+
 .relative-right {
     position: relative;
     right: 5em;
+}
+
+.no-und {
+    text-decoration:none;
+    color: black;
 
 }
+
+
+.short-gray-line {
+    border-bottom: solid .1em lightgray;
+    width: 5em;
+
+}
+
+.long-gray-line {
+    border-bottom: solid .1em lightgray;
+    width: 100%;
+
+}
+
+.small-box {
+    display:flex;
+width: 2em;
+height: 2em;
+
+}
+
+
+.just-text-button {
+    border: none;
+    background-color: none
+}
+
+
+
+
+
+/* main only */
+
 
 .main-img-1 {
     width: 15em;
@@ -164,7 +316,7 @@ height: 10em;
     /* width: 30em;
     height: 50em; */
     width: 40%;
-    background-color: lightblue
+    background-color: lightgray
     }
 
 
@@ -176,9 +328,9 @@ height: 10em;
     width: 60%;
 }
 
-.small-box {
-    display:flex;
-width: 2em;
-height: 2em;
+
+.form-min-size {
+    min-width: 300px;
+    min-height: 300px;
 
 }

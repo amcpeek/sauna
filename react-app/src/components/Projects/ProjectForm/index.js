@@ -74,57 +74,47 @@ const ProjectForm=({project, formType})=> {
         return (
             // <div className="reward-main-container">
 
-              <div className="reward-form-container">
+              <div className="reward-form-container all-margin-small col">
               <div className="reward-form-title-sec">
               {/* <div className='projectform-title1'>{formType}</div> */}
-              <div className='reward-form-title2'>Describe your project to your team mates</div>
+              {/* <div className='reward-form-title2'></div> */}
               </div>
-              <div className='reward-form-title'><h2>{formType}</h2></div>
+              {/* <div className='reward-form-title'><h2>{formType}</h2></div> */}
               <form className='reward-form-form' onSubmit={handleSubmit}>
       {/* // */}
-                  <div className='reward-form-list-item'>
-                      <div className="title-context context">
-                    {/* <div className="reward-form-subtitle">Project Name</div> */}
-                    {/* <div className="reward-form-subtext">Write a clear, brief name</div> */}
-                  </div>
-                      <div>
+                  <div className='reward-form-list-item jc-sf col width-100-per'>
+
+
                       <label>
                       Name
                       </label>
                       <input
-                      className='input'
+                      className='input width-38em round-sq-05 thin-bor font-small-med'
                       placeholder='Preparing for launch of our new product'
                       type="text"
                       name="name"
                       onChange={(e) => setName(e.target.value)}
                       value={name}/>
-                      </div>
+
                   </div>
       {/* // */}
-                  <div className='reward-form-list-item'>
-                  <div className="title-context context">
-                    {/* <div className="reward-form-subtitle">Detailed Description</div> */}
-                    {/* <div className="reward-form-subtext">Please describe the project in detail.</div> */}
-                  </div>
-                      <div>
+                  <div className='reward-form-list-item jc-sf col width-100-per'>
+
                       <label>
                       Description
                       </label>
                       <textarea
                       // className='input'
-                      className='reward-form-textarea'
+                      className='reward-form-textarea width-38em round-sq-05 thin-bor font-small-med'
                       placeholder='Description here'
                       type="text"
                       name="Description"
                       onChange={(e) => setDescription(e.target.value)}
                       value={description}/>
-                      </div>
+
                   </div>
       {/* // */}
                   <div className='reward-form-error-sec'>
-                  <div className='error-title'>
-                  <h4>Validation Checking List</h4>
-                  </div>
                   {!!validationErrors.length && (
                   <div className='reward-form-error-table'>
                   <div className='reward-form-error'>
@@ -137,12 +127,12 @@ const ProjectForm=({project, formType})=> {
                   </div>
       {/* // */}
                   <div className="reward-form-button">
-                   <input type="submit" value={formType} className="reward-button" disabled={!!validationErrors.length}/>
+                   <input type="submit" value={formType} className="reward-button bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
                    </div>
                   </form>
                   {formType==="Edit Project" &&(
                       <div className="projectform-button">
-                    <button onClick={()=>deleteEvents(project.id)} className="reward-form-delete-button">Delete Reward</button>
+                    <button onClick={()=>deleteEvents(project.id)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete</button>
                     </div>
                       )}
               </div>

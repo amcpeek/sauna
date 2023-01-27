@@ -42,11 +42,11 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
   }
  //className was LogInForm
   return (
-    <div className="realModalOutside">
+    <div className="realModalOutside form-min-size jc-c ai-c">
     <div className="realModalContent">
     <div className='outerFormTop'>
     <div className='formTop'>
-    <button className="cancelButton" onClick={() => setShowLogInModal(false)}>X</button>
+    <button className="cancelButton bg-white just-text-button" onClick={() => setShowLogInModal(false)}>X</button>
     <h4>Login</h4>
     <div className='LogInErrors'>
         {errors.map((error, idx) => (
@@ -59,10 +59,10 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     <form onSubmit={handleSubmit} className="CreateSpotForm" >
 
 
-      <div>
+      <div className='b-margin'>
       <label >
         <input
-          className='roundTopFields'
+          className=' circle thin-bor bg-white'
           placeholder="Username or Email"
           type="text"
           value={email}
@@ -71,10 +71,10 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
         />
       </label>
       </div>
-      <div>
+      <div className='b-margin'>
       <label>
         <input
-          className='roundBottomFields'
+          className=' circle thin-bor bg-white'
           placeholder="password"
           type="password"
           value={password}
@@ -83,11 +83,11 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
         />
       </label>
       </div>
-      <div>
-        <button className='createButton' type="submit">Log In</button>
+      <div className='b-margin'>
+        <button className='createButton bg-white thin-bor circle' type="submit">Log In</button>
       </div>
-      <div>
-        <button className='createButton' onClick={logInDemoUser}>Login as Demo User</button>
+      <div className='b-margin'>
+        <button className='createButton bg-white thin-bor circle' onClick={logInDemoUser}>Login as Demo User</button>
       </div>
 
     </form>

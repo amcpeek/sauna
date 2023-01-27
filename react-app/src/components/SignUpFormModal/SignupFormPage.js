@@ -5,6 +5,8 @@ import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
+//THIS IS THE ONE ACTUALLY RUNNING ON THE SITE!!!!!!!!!
+
 function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -36,11 +38,11 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
 
   return (
     // <div className ="SignUpPage">
-    <div className="realModalOutside">
+    <div className="realModalOutside form-min-size jc-c ai-c">
     <div className="realModalContent">
     <div className='outerFormTop'>
     <div className='formTop'>
-    <button className="cancelButton" onClick={() => setShowSignUpModal(false)}>X</button>
+    <button className="cancelButton bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
@@ -76,9 +78,10 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div> */}
-      <div>
+      <div className='b-margin'>
       <label>
         <input
+          className=' circle thin-bor bg-white'
           placeholder="Email"
           type="text"
           value={email}
@@ -87,9 +90,10 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div>
-      <div>
+      <div className='b-margin'>
       <label>
         <input
+          className=' circle thin-bor bg-white'
           placeholder="Username"
           type="text"
           value={username}
@@ -98,9 +102,10 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div>
-      <div>
+      <div className='b-margin'>
       <label>
         <input
+          className=' circle thin-bor bg-white'
           placeholder="Password"
           type="password"
           value={password}
@@ -109,10 +114,10 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div>
-      <div>
+      <div className='b-margin'>
       <label>
         <input
-          className='roundBottomFields'
+          className='roundBottomFields circle thin-bor bg-white'
           placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
@@ -122,7 +127,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </label>
       </div>
       <div>
-      <button className='createButton' type="submit">Sign Up</button>
+      <button className='createButton circle thin-bor bg-white' type="submit">Sign Up</button>
       {/* <button><NavLink to='/'>Cancel</NavLink></button> */}
       </div>
     </form>

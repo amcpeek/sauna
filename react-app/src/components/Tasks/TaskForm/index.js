@@ -50,7 +50,7 @@ const TaskForm=({task, formType, projectId,
           return;
         }
         const errors =[];
-        if(name.length<=0){errors.push("Name required");}
+        if(name.length<=0){errors.push("Task Name required");}
         else if(name.length>=50){errors.push("name must be less than 50 characters")}
         // if(description.length<=0){errors.push("Description required");}
         if(description.length>=255){errors.push("Description must be less than 255 characters")}
@@ -124,20 +124,20 @@ const TaskForm=({task, formType, projectId,
 
 
     return (
-        <div className="reward-form-container jc-st col ai-st">
+        <div className="reward-form-container jc-st col ai-st bg-white width-100-per">
         <div className="reward-form-title-sec">
         </div>
         <div className='reward-form-title'><h2>{formType}</h2></div>
-        <form className='reward-form-form jc-st col ai-st' onSubmit={handleSubmit}>
-            <button onClick={()=>closeBox()}>X</button>
+        <form className='reward-form-form jc-st col ai-st width-100-per' onSubmit={handleSubmit}>
+            <button className='just-text-button bg-white' onClick={()=>closeBox()}>X</button>
 {/* // */}
-            <div className='reward-form-list-item'>
+            <div className='reward-form-list-item width-100-per'>
                 <div>
                 {/* <label>
                 Title
                 </label> */}
                 <input
-                className='input'
+                className='input round-sq-05 thin-bor width-38em'
                 placeholder='Your task'
                 type="text"
                 name="Name"
@@ -155,7 +155,7 @@ const TaskForm=({task, formType, projectId,
                 </label> */}
                 <textarea
                 // className='input'
-                className='reward-form-textarea'
+                className='reward-form-textarea width-38em round-sq-05 thin-bor'
                 placeholder='Your Description'
                 type="text"
                 name="Description"
@@ -198,12 +198,12 @@ const TaskForm=({task, formType, projectId,
             </div>
 {/* // */}
             <div className="reward-form-button">
-             <input type="submit" value={formType} className="reward-button" disabled={!!validationErrors.length}/>
+             <input type="submit" value={formType} className="reward-button bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
              </div>
             </form>
             {formType==="Edit Task" &&(
                 <div className="projectform-button">
-              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button">Delete Task</button>
+              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete Task</button>
               </div>
                 )}
 

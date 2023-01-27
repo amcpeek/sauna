@@ -1,4 +1,4 @@
-# Guava
+# Sauna
 ## an Asana Clone by Annika McPeek
 
 ## Link to live site:

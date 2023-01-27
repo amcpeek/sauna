@@ -27,23 +27,23 @@ const ViewAllProjects = () => {
 
     return (
         <div>
-            <div className='border-red'>
-                            <div className='main-left border-yellow col main-left'>
+            <div className='f'>
+                            <div className='main-left col main-left lr-margin'>
 
                                 <div>
                                     <h1>Are silos making teamwork <br/> more painful?</h1>
-                                    <h4>Guava helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
-                                    <h4>Join one of the many teams working on projects on Guava</h4>
+                                    <h4>Sauna helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
+                                    <h4>Join one of the many teams working on projects on Sauna</h4>
                                 </div>
 
 
-                                <div className='border-blue col main-left-proj'>
+                                <div className='col main-left-proj'>
                                     {allProjects && (allProjects.map(project => {
                                         return (
-                                            <Link key={project.id} to={`/projects/${project.id}`}>
+                                            <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                                             <div>
-                                            <div>{project.id}.</div>
-                                            <h2>{project.name}:</h2>
+                                                <div className='short-gray-line'></div>
+                                            <h3>{project.name}:</h3>
                                             <h5>{project.description}</h5>
                                             <br/>
 
@@ -56,7 +56,7 @@ const ViewAllProjects = () => {
                                         }
                                 </div>
                             </div>
-           <div className='border-blue main-gray-box'>
+           <div className='main-gray-box'>
 
                 <img className='main-img-1'
                 src='https://assets.asana.biz/transform/5e1c89aa-e1af-44f5-8902-f692c819c3b2/home-hero-1a'

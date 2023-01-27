@@ -6,10 +6,12 @@ import { useHistory, Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import { authenticate } from '../../store/session';
+import CreateProjectModal from '../Projects/CreateProject/CreateProjectModal';
 
 
 const NavBar = () => {
   const dispatch = useDispatch()
+  const [showModal, setShowModal] = useState(false);
 
   const findProjectTest = async () => {
     const returnUser = await dispatch(authenticate())
@@ -26,8 +28,8 @@ const NavBar = () => {
       <div className='jc-sb border-orange'>
             <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                 <div>Why Guava?</div>
-                <div><Link to='https://github.com/amcpeek/guava/wiki'>Features</Link></div>
-                <div><Link to='https://github.com/amcpeek/guava'>Resources</Link></div>
+                <div><a href='https://github.com/amcpeek/guava/wiki'>Features</a></div>
+                <div><a href='https://github.com/amcpeek/guava'>Resources</a></div>
                 <div>
                     <a
                     href='https://www.linkedin.com/in/annika-mcpeek/'>
@@ -39,9 +41,14 @@ const NavBar = () => {
                     <i className="fa-brands fa-github"/>
                     </a>
                 </div>
-                <div><Link to={`/projects/create`}>Create Project</Link></div>
+                <div className='row'>
+                {user && <button onClick={() => setShowModal(true)} className='circle bg-green'>+</button>}
+
+                <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
+
+                {/* <div><Link to={`/projects/create`}>Create Project</Link></div> */}
                 <div> <ProfileButton user={user}/></div>
-                <div><button>Get Started</button></div>
+                </div>
             </div>
 
       {/* <ul>

@@ -6,6 +6,7 @@ import { getAllTasksByProjectId } from '../../../store/task'
 import ViewTask from '../../Tasks/ViewTask';
 import CreateTask from '../../Tasks/CreateTask';
 import EditTask from '../../Tasks/EditTask';
+import EditProjectModal from '../EditProject/EditProjectModal';
 
 
 const ViewProject = () => {
@@ -17,6 +18,7 @@ const ViewProject = () => {
     const [showAddTask1, setShowAddTask1] = useState(false)
     const [showAddTask2, setShowAddTask2] = useState(false)
     const [showAddTask3, setShowAddTask3] = useState(false)
+    const [showModal, setShowModal] = useState(false);
 
     console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
 
@@ -59,7 +61,17 @@ const ViewProject = () => {
                     <div className='bg-green small-box round-sq'> AM</div> */}
                     <div><h2>{oneProject.name}</h2></div>
                     <div>{oneProject.description}</div>
-                    <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div>
+                    {/* <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div> */}
+                    <div>
+                        <button onClick={() => setShowModal(true)} className='circle bg-green'>
+                        <i className="fa-regular fa-pen-to-square"></i>
+                        </button>
+                        </div>
+
+                <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
+
+
+
                 </div>
 
                 <div className='border-red'>

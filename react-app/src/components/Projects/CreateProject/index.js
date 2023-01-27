@@ -3,7 +3,7 @@ import { fetchCreateProject } from "../../../store/project";
 import ProjectForm from "../ProjectForm";
 
 
-const CreateProject=()=>{
+const CreateProject=({showModal, setShowModal})=>{
 
     const project={
         name:"",
@@ -11,7 +11,9 @@ const CreateProject=()=>{
     }
 
     return (
+        <div> does the create project page show too
         <ProjectForm project={project} formType="Create Project"/>
+        </div>
     )
 }
 

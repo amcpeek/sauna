@@ -49,10 +49,13 @@ function ProfileButton({ user }) {
       {/* id="LoginButton" */}
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
-      ProfileButton
+      {!user? <div>Get Started</div>: <div>{(user.username).slice(0,1)} {((user.username).slice(1,2)).toUpperCase()}</div>}
+
       </button>
       {showMenu && user && (
+
         <div className="dropdownContentNav">
+
             {/* <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/">View Your Profile</NavLink></button> */}
             <button className='dropDownNavButtons roundBottomFields' onClick={logout}>Log Out</button>
         </div>

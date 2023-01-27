@@ -75,9 +75,10 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
             }
     }
 
-    const deleteEvents= (id)=>{
+    const deleteEvents= (task)=>{
+        task.projectId = projectId
         const errors=[]
-        dispatch(fetchDeleteTask(id))
+        dispatch(fetchDeleteTask(task))
         .then(history.push(`/projects/${projectId}`))
         .catch(async (err)=>{
           const errObj=await err;
@@ -163,7 +164,7 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
             </form>
             {formType==="Edit Task" &&(
                 <div className="projectform-button">
-              <button onClick={()=>deleteEvents(task.id)} className="reward-form-delete-button">Delete Task</button>
+              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button">Delete Task</button>
               </div>
                 )}
 

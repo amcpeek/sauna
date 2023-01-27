@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const EditTask=({selectedTask})=>{
-    console.log('In EditTask, selectedTask', selectedTask.id)
+    //console.log('In EditTask, selectedTask', selectedTask.id)
 
      const {projectId}=useParams()
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ const EditTask=({selectedTask})=>{
     const tempTask = useSelector(state=>state.task[selectedTask.id])
 
     if(tempTask) {
-        console.log('can we get tempTask? tempTask.projectId', tempTask.projectId)
+       // console.log('can we get tempTask? tempTask.projectId', tempTask.projectId)
         const task={
             id:tempTask.id,
             name:tempTask.name,

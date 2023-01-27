@@ -32,5 +32,14 @@ class Project(db.Model):
         'name': self.name,
         'description': self.description,
         'owner':User.query.get(self.ownerId).to_dict(),
+      }
+
+    def to_dict_with_tasks(self):
+      return {
+               'id': self.id,
+        'ownerId':self.ownerId,
+        'name': self.name,
+        'description': self.description,
+        'owner':User.query.get(self.ownerId).to_dict(),
         "tasks":[task.to_dict() for task in Task.query.all() if int(task.projectId)==int(self.id)]
       }

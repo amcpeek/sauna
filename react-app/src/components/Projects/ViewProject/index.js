@@ -2,6 +2,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchOneProject } from '../../../store/project'
+import { getAllTasksByProjectId } from '../../../store/task'
 import ViewTask from '../../Tasks/ViewTask';
 import CreateTask from '../../Tasks/CreateTask';
 import EditTask from '../../Tasks/EditTask';
@@ -20,12 +21,14 @@ const ViewProject = () => {
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(id))
+        const returnTasks = await dispatch(getAllTasksByProjectId(id))
     }
 
     useEffect(() => {
        findProjectTest()
     }, [dispatch])
 
+    //edit
     const showTaskFunc = (task) => {
         showTask? setShowTask(false): setShowTask(true)
         setSelectedTask(task)
@@ -33,18 +36,22 @@ const ViewProject = () => {
     }
 
     let oneProject = useSelector(state => {return state.project[id]})
+    let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
 
-    if(oneProject) {
-        const toDo = oneProject.tasks.filter(task => task.stageId == 1)
-        const inProg = oneProject.tasks.filter(task => task.stageId == 2)
-        const complete = oneProject.tasks.filter(task => task.stageId == 3)
-       // console.log('todo', toDo)
+
+    if(allTasksByProg) {
+        //console.log('allTasksByProg', Object.values(allTasksByProg[id]))
+        const arr = Object.values(allTasksByProg[id])
+        const toDo = arr.filter(task => task.stageId == 1)
+        const inProg = arr.filter(task => task.stageId == 2)
+        const complete = arr.filter(task => task.stageId == 3)
         return (
             <div className='border-blue col'>
-                <div className='border-yellow'>
+                <div className='border-yellow col'>
                     <div><i className="fa-solid fa-house-chimney"></i></div>
                     <div className='bg-green small-box round-sq'> AM</div>
                     <div>{oneProject.name}</div>
+                    <div>{oneProject.description}</div>
                     <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div>
                 </div>
 

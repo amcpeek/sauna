@@ -4,6 +4,7 @@
 //T4 edit by task id
 //T5 delete by task id
 //T6 get by user id (add in future version)
+//T7 get by project id
 
 
 //action types
@@ -11,7 +12,7 @@ const READ_SINGLE_TASK = 'tasks/READ_SINGLE_TASK'
 const CREATE_TASK = 'tasks/CREATE_TASK'
 const DELETE_TASK = 'tasks/DELETE_TASK'
 const UPDATE_TASK = 'tasks/UPDATE_TASK'
-
+const READ_TASKS_BY_PROJECT_ID = 'tasks/READ_TASKS_BY_PROJECT_ID'
 //action creators
 //T2
 const getTask = (task) => ({
@@ -29,15 +30,21 @@ const editTask = (task) => ({
     task
 })
 //T5
-const deleteTask = (id) => ({
+const deleteTask = (task) => ({
     type: DELETE_TASK,
-    id
+    task
+})
+
+//T7
+const getByProject = ({Tasks}) => ({
+    type: READ_TASKS_BY_PROJECT_ID,
+    Tasks
 })
 
 //thunks
 //T2
-export const fetchOneTask = (Id) => async dispatch => {
-    const response = await fetch(`/api/tasks/${Id}`)
+export const fetchOneTask = (id) => async dispatch => {
+    const response = await fetch(`/api/tasks/${id}`)
     if(response.ok){
         const singleTask = await response.json()
         dispatch(getTask(singleTask))
@@ -78,15 +85,26 @@ export const fetchUpdateTask = (task) => async dispatch => {
     if(response.status>=400) throw response
 }
 //T5
-export const fetchDeleteTask = (id) => async dispatch => {
-    const response = await fetch(`/api/tasks/${id}`, {
+export const fetchDeleteTask = (task) => async dispatch => {
+    const response = await fetch(`/api/tasks/${task.id}`, {
         method: 'DELETE',
     })
     if(response.ok){
-        dispatch(deleteTask(id))
+        dispatch(deleteTask(task))
         return response
     }
     if(response.status>=400) throw response
+}
+
+//T7
+export const getAllTasksByProjectId = (projectId) => async dispatch => {
+    const response = await fetch(`/api/projects/${projectId}/tasks`)
+    if(response.ok){
+
+        const taskList = await response.json()
+        //console.log('taskList', taskList)
+        dispatch(getByProject(taskList))
+    }
 }
 
 //reducer
@@ -96,36 +114,43 @@ const initialState = {}
 const tasksReducer = (state = initialState, action) => {
     let newState;
     switch(action.type){
-        // case READ_TASKS:
-        //     newState={...state}
-        //     action.Tasks.forEach(task => {
-        //         newState[task.id] = task
-        //     })
-        //     return newState
+        case READ_TASKS_BY_PROJECT_ID:
+            newState = { ...state, tasksByProjectId: {...state} }
 
-        case READ_SINGLE_TASK:
-            const oneState = {...state}
-            oneState[action.task.id] = action.task
-            return oneState
+            const nextLevel = {}
+            if(!action.Tasks.length) {
+                return {...state}
+            }
+            action.Tasks.forEach(task => {
+                nextLevel[task.id] = task
+            })
+            return {
+                ...state,
+                tasksByProjectId: { [action.Tasks[0].projectId]: nextLevel }
+            }
 
-        case CREATE_TASK:
+        case READ_SINGLE_TASK: //this needs to be rewritten
             newState = {...state}
             newState[action.task.id] = action.task
+            return newState
+
+        case CREATE_TASK:
+            newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
+            newState.tasksByProjectId[action.task.projectId] = {...state.tasksByProjectId[action.task.projectId], [action.task.id]: action.task}
             return newState
 
         case UPDATE_TASK:
-            newState = {...state}
-            newState[action.task.id] = action.task
+            newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
+            newState.tasksByProjectId[action.task.projectId] = {...state.tasksByProjectId[action.task.projectId], [action.task.id]: action.task}
             return newState
 
         case DELETE_TASK:
-            newState = {...state}
-            delete newState[action.id]
+            newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
+            delete newState.tasksByProjectId[action.task.projectId][action.task.id]
             return newState
 
         default:
             return state
-
     }
 }
 

@@ -1,10 +1,26 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useHistory, Link } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import LogoutButton from '../auth/LogoutButton';
+import ProfileButton from './ProfileButton';
+import { authenticate } from '../../store/session';
+
 
 const NavBar = () => {
+  const dispatch = useDispatch()
+
+  const findProjectTest = async () => {
+    const returnUser = await dispatch(authenticate())
+  }
+
+  let user = useSelector(state => {return state.session.user})
+
+  useEffect(() => {
+    findProjectTest()
+ }, [dispatch])
+
   return (
     <nav>
       <div className='jc-sb border-orange'>
@@ -24,10 +40,11 @@ const NavBar = () => {
                     </a>
                 </div>
                 <div><Link to={`/projects/create`}>Create Project</Link></div>
+                <div> <ProfileButton user={user}/></div>
                 <div><button>Get Started</button></div>
             </div>
 
-      <ul>
+      {/* <ul>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
@@ -51,7 +68,7 @@ const NavBar = () => {
         <li>
           <LogoutButton />
         </li>
-      </ul>
+      </ul> */}
     </nav>
   );
 }

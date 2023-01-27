@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+.LogInForm {
+    /* font-family: 'Open Sans'; */
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 400px;
+    width: 400px;
+    align-self: center;
+
+
+}
+
+.LogInForm label {
+    display: flex;
+    justify-content: center;
+}
+
+.LogInForm button {
+    background-color: white;
+    width: 150px;
+    /* display: flex; */
+    /* justify-content: flex-end; */
+    box-shadow:  1px 1px 2px 2px lightgrey;
+    border-radius: 18px;
+    border-color: white;
+    border-style: solid;
+    color: rgb(148, 148, 148);
+
+}
+
+.LogInForm div {
+     display: flex;
+     justify-content: center;
+
+}
+
+.LogInErrors {
+    color: rgb(244, 47, 80);
+}
+
+
+
+.LogInForm > * > input {
+
+    margin-left: 30px;
+
+}
+
+/* .LoginForm > * > button {
+
+} */

@@ -5,6 +5,7 @@ import { fetchAllProjects } from '../../../store/project'
 import './viewAllProjects.css'
 
 const ViewAllProjects = () => {
+    console.log('can you see anything of the view all projects page')
     const dispatch = useDispatch()
     const history = useHistory()
     //https://assets.asana.biz/transform/5e1c89aa-e1af-44f5-8902-f692c819c3b2/home-hero-1a

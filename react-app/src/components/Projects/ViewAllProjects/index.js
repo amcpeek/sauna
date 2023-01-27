@@ -26,25 +26,6 @@ const ViewAllProjects = () => {
 
     return (
         <div>
-            <div className='jc-sb border-orange'>
-                <div><i className="fa-solid fa-house-chimney"></i></div>
-                <div>Why Guava?</div>
-                <div><Link to='https://github.com/amcpeek/guava/wiki'>Features</Link></div>
-                <div><Link to='https://github.com/amcpeek/guava'>Resources</Link></div>
-                <div>
-                    <a
-                    href='https://www.linkedin.com/in/annika-mcpeek/'>
-                    <i className="fa-brands fa-linkedin"/>
-                    </a>
-                    &nbsp; &nbsp; &nbsp;
-                    <a
-                    href='https://github.com/amcpeek/'>
-                    <i className="fa-brands fa-github"/>
-                    </a>
-                </div>
-                <div><Link to={`/projects/create`}>Create Project</Link></div>
-                <div><button>Get Started</button></div>
-            </div>
             <div className='border-red'>
                             <div className='main-left border-yellow col main-left'>
 

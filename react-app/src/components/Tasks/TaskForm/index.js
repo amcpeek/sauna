@@ -11,10 +11,7 @@ const TaskForm=({task, formType, projectId,
     let initName, initDescription, initStageId
     const history=useHistory()
     const dispatch = useDispatch()
-    //console.log('is tasks getting to the task form for edit?', task)
-    //console.log('showAddTask1 in TaskForm',  setShowAddTask1, setShowAddTask2, setShowAddTask3)
     const allStages = ['To Do', 'InProgress', 'Complete']
-
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -25,7 +22,6 @@ const TaskForm=({task, formType, projectId,
      }, [dispatch])
 
     // const oneProject = useSelector(state => {return state.projects[projectId]})
-
     if(formType==="Edit Task"){
         initDescription=task.description;
         initName=task.name
@@ -67,7 +63,7 @@ const TaskForm=({task, formType, projectId,
         const errors=[]
 
         if(formType==="Create Task"){
-            //the working version
+            //another way
             // console.log('fetch, project', tempReward, projectId)
             // dispatch(fetchCreateTask(tempTask, projectId))
             // .then(()=>{history.push(`/projects/${projectId}`)})
@@ -76,7 +72,6 @@ const TaskForm=({task, formType, projectId,
             //   errors.push(errObj.message)
             //   setValidationErrors(errors)
             // });
-            //the non working version
             const response = await dispatch(fetchCreateTask(tempTask, projectId))
 
             if(response.errors) {
@@ -93,16 +88,6 @@ const TaskForm=({task, formType, projectId,
             }
             }
         else if(formType==="Edit Task"){
-
-                // dispatch(fetchUpdateTask(tempTask))
-                // .then(history.push(`/projects/${projectId}`))
-                // // .catch(async (err)=>{
-                // //   const errObj=await err.json();
-                // //   errors.push(errObj.message)
-                // //   setValidationErrors(errors)
-                // // });
-                // .catch((error) => console.log(error))
-
                 const response = await dispatch(fetchUpdateTask(tempTask))
                 if(response.errors) {
                     setValidationErrors(Object.values(response.errors))
@@ -110,11 +95,7 @@ const TaskForm=({task, formType, projectId,
                     if(showTask) {
                         setShowTask(false)
                     }
-
                 }
-
-
-
             }
     }
 
@@ -143,11 +124,11 @@ const TaskForm=({task, formType, projectId,
 
 
     return (
-        <div className="reward-form-container">
+        <div className="reward-form-container jc-st col ai-st">
         <div className="reward-form-title-sec">
         </div>
         <div className='reward-form-title'><h2>{formType}</h2></div>
-        <form className='reward-form-form' onSubmit={handleSubmit}>
+        <form className='reward-form-form jc-st col ai-st' onSubmit={handleSubmit}>
             <button onClick={()=>closeBox()}>X</button>
 {/* // */}
             <div className='reward-form-list-item'>
@@ -166,7 +147,7 @@ const TaskForm=({task, formType, projectId,
             </div>
 {/* // */}
 {formType==="Edit Task" &&(
-    <div>
+    <div className="jc-sf col">
             <div className='reward-form-list-item'>
                 <div>
                 {/* <label>
@@ -183,41 +164,20 @@ const TaskForm=({task, formType, projectId,
                 </div>
             </div>
 {/* // */}
-
-      <div className='reward-form-list-item'>
-      <div>
-          <label>
-          Stage
-          </label>
-                       {/* <select
-                        placeholder='Stage'
-                        onChange={(e) => setStageId(e.target.value)}
-                        <option value='1'>To Do</option>
-
-
-                        {/* value={allStages[0]}
-                        >
-                            {allStages.map(stage => (
-                                <option key={stage} value={stage}> {stage}</option>
-                            ))}
-                        </select> */}
-
-
-
-
-          <input
-          className='input'
-          placeholder='stage'
-          type="number"
-          name="stage"
-          min='1'
-          max='3'
-          onChange={(e) => setStageId(e.target.value)}
-          value={stageId}/>
-          </div>
+            <div className='reward-form-list-item'>
+                <div className="jc-sf col">
+            <select
+                type='number'
+                onChange={(e) => setStageId(e.target.value) }
+                value={stageId}
+                >
+                <option value={1} >To Do</option>
+                <option value={2} >In Progress</option>
+                <option value={3} >Complete</option>
+            </select>
+            </div>
+            </div>
       </div>
-      </div>
-
 )}
 
 {/* // */}

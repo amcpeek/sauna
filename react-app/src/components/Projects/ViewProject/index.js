@@ -40,19 +40,24 @@ const ViewProject = () => {
     let oneProject = useSelector(state => {return state.project[id]})
     let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
 
+    let arr = []
 
-    if(allTasksByProg) {
+    if(allTasksByProg && allTasksByProg[id]) {
+        arr = Object.values(allTasksByProg[id])
+    }
+
+
+    if(oneProject) {
         //console.log('allTasksByProg', Object.values(allTasksByProg[id]))
-        const arr = Object.values(allTasksByProg[id])
         const toDo = arr.filter(task => task.stageId == 1)
         const inProg = arr.filter(task => task.stageId == 2)
         const complete = arr.filter(task => task.stageId == 3)
         return (
             <div className='border-blue col'>
                 <div className='border-yellow col'>
-                    <div><i className="fa-solid fa-house-chimney"></i></div>
-                    <div className='bg-green small-box round-sq'> AM</div>
-                    <div>{oneProject.name}</div>
+                    {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
+                    <div className='bg-green small-box round-sq'> AM</div> */}
+                    <div><h2>{oneProject.name}</h2></div>
                     <div>{oneProject.description}</div>
                     <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div>
                 </div>
@@ -131,8 +136,8 @@ const ViewProject = () => {
 
                     </div>
                     <div className='border-blue col width-40-per'>
-                        <div  className="border-red jc-end" style={!showTask ? { transform: 'translateX(+100%)' } : {}}>
-                            <button className="arrow-button width-100-per" >
+                        <div  className="border-red jc-end" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
+                            <button className="arrow-button width-100-per col " >
                             {/* onClick={() => setShowTask(false)}  add back in later*/}
                             <ViewTask selectedTask={selectedTask}/>
                             <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>

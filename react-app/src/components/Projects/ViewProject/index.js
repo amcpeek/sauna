@@ -18,6 +18,8 @@ const ViewProject = () => {
     const [showAddTask2, setShowAddTask2] = useState(false)
     const [showAddTask3, setShowAddTask3] = useState(false)
 
+    console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
+
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(id))
@@ -76,7 +78,7 @@ const ViewProject = () => {
                         >
                             {showAddTask1 &&
                             <button className="arrow-button width-100-per">
-                        <CreateTask setShowAddTask1={setShowAddTask1}/>
+                        <CreateTask setShowAddTask1={setShowAddTask1} showAddTask1={showAddTask1}/>
                         {/* this prop thing isnt working yet, doesnt seem to be doing anything actually */}
                         </button>
                             }
@@ -101,7 +103,7 @@ const ViewProject = () => {
                         >
                             {showAddTask2 &&
                             <button className="arrow-button width-100-per">
-                        <CreateTask/>
+                        <CreateTask setShowAddTask2={setShowAddTask2} showAddTask2={showAddTask2}/>
                         </button>
                             }
 
@@ -121,7 +123,7 @@ const ViewProject = () => {
                         >
                             {showAddTask3 &&
                             <button className="arrow-button width-100-per">
-                        <CreateTask/>
+                        <CreateTask setShowAddTask3={setShowAddTask3} showAddTask3={showAddTask3}/>
                         </button>
                             }
 
@@ -133,7 +135,7 @@ const ViewProject = () => {
                             <button className="arrow-button width-100-per" >
                             {/* onClick={() => setShowTask(false)}  add back in later*/}
                             <ViewTask selectedTask={selectedTask}/>
-                            <EditTask selectedTask={selectedTask}/>
+                            <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>
                             </button>
                         </div>
 

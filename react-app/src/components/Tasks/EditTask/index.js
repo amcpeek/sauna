@@ -7,7 +7,7 @@ import TaskForm from "../TaskForm";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-const EditTask=({selectedTask})=>{
+const EditTask=({selectedTask, showTask, setShowTask})=>{
     //console.log('In EditTask, selectedTask', selectedTask.id)
 
      const {projectId}=useParams()
@@ -36,7 +36,7 @@ const EditTask=({selectedTask})=>{
         }
         console.log('is task correct', task)
         return (
-            <TaskForm task={task} formType="Edit Task" projectId={tempTask.projectId}/>
+            <TaskForm task={task} formType="Edit Task" projectId={tempTask.projectId} showTask={showTask} setShowTask={setShowTask}/>
         )
     } else {
         return (

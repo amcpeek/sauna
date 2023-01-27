@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import TaskForm from "../TaskForm";
 import { useParams } from "react-router-dom";
 
-const CreateTask=(setShowAddTask1)=>{
+const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3 })=>{
 
     const {id}=useParams()
     const dispatch = useDispatch()
@@ -13,7 +13,8 @@ const CreateTask=(setShowAddTask1)=>{
     const allProjects = useSelector(state => {return state.project})
     // console.log(user)
     // console.log(allProjects)
-    console.log('what is projectId in the create  task', id)
+    //console.log('what is projectId in the create  task', id)
+    console.log('showAddTask1 in CreateTask',  setShowAddTask1)
 
 
     const findProjectTest = async () => {
@@ -36,7 +37,14 @@ const CreateTask=(setShowAddTask1)=>{
         console.log('are we getting to the create page?')
 
                 return (
-                    <TaskForm task={task} formType="Create Task" projectId={id} setShowAddTask1={setShowAddTask1}/>
+                    <TaskForm task={task} formType="Create Task" projectId={id}
+                    setShowAddTask1={setShowAddTask1}
+                    setShowAddTask2={setShowAddTask2}
+                    setShowAddTask3={setShowAddTask3}
+                    showAddTask1={showAddTask1}
+                    showAddTask2={showAddTask2}
+                    showAddTask3={showAddTask3}
+                    />
                 )
             // }
 

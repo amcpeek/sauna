@@ -4,11 +4,17 @@ import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../../store/task";
 import { fetchOneProject } from "../../../store/project"
 
-const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
+const TaskForm=({task, formType, projectId,
+    setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3,
+    showTask, setShowTask
+    }) => {
     let initName, initDescription, initStageId
     const history=useHistory()
     const dispatch = useDispatch()
-    console.log('is tasks getting to the task form for edit?', task)
+    //console.log('is tasks getting to the task form for edit?', task)
+    //console.log('showAddTask1 in TaskForm',  setShowAddTask1, setShowAddTask2, setShowAddTask3)
+    const allStages = ['To Do', 'InProgress', 'Complete']
+
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -27,7 +33,14 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
     } else {
         initDescription=''
         initName=''
-        initStageId=1
+        if(showAddTask1) {
+            initStageId=1
+        } else if (showAddTask2) {
+            initStageId=2
+        } else if (showAddTask3) {
+            initStageId=3
+        }
+
     }
 
     const [description, setDescription] = useState(initDescription)
@@ -41,37 +54,67 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
           return;
         }
         const errors =[];
-        if(name.length<=0){errors.push("Task's name field is required");}
-        else if(name.length>=50){errors.push("Task's name must be less than 50 characters")}
-        if(description.length<=0){errors.push("Task's description field is required");}
-        else if(description.length>=255){errors.push("Task's description must be less than 255 characters")}
+        if(name.length<=0){errors.push("Name required");}
+        else if(name.length>=50){errors.push("name must be less than 50 characters")}
+        // if(description.length<=0){errors.push("Description required");}
+        if(description.length>=255){errors.push("Description must be less than 255 characters")}
         setValidationErrors(errors);
     }, [name, description, stageId])
 
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         const tempTask = { ...task, name, description, stageId};
         const errors=[]
 
         if(formType==="Create Task"){
+            //the working version
             // console.log('fetch, project', tempReward, projectId)
-            dispatch(fetchCreateTask(tempTask, projectId))
-            .then(()=>{history.push(`/projects/${projectId}`)})
-            .catch(async (err)=>{
-              const errObj=await err.json();
-              errors.push(errObj.message)
-              setValidationErrors(errors)
-            });
+            // dispatch(fetchCreateTask(tempTask, projectId))
+            // .then(()=>{history.push(`/projects/${projectId}`)})
+            // .catch(async (err)=>{
+            //   const errObj=await err.json();
+            //   errors.push(errObj.message)
+            //   setValidationErrors(errors)
+            // });
+            //the non working version
+            const response = await dispatch(fetchCreateTask(tempTask, projectId))
+
+            if(response.errors) {
+                setValidationErrors(Object.values(response.errors))
+            } else{
+                console.log('in the else statement', setShowAddTask1)
+                if(showAddTask1) {
+                    setShowAddTask1(false)
+                } else if (showAddTask2) {
+                    setShowAddTask2(false)
+                } else if (showAddTask3) {
+                    setShowAddTask3(false)
+                }
+            }
             }
         else if(formType==="Edit Task"){
-                dispatch(fetchUpdateTask(tempTask))
-                .then(history.push(`/projects/${projectId}`))
-                // .catch(async (err)=>{
-                //   const errObj=await err.json();
-                //   errors.push(errObj.message)
-                //   setValidationErrors(errors)
-                // });
-                .catch((error) => console.log(error))
+
+                // dispatch(fetchUpdateTask(tempTask))
+                // .then(history.push(`/projects/${projectId}`))
+                // // .catch(async (err)=>{
+                // //   const errObj=await err.json();
+                // //   errors.push(errObj.message)
+                // //   setValidationErrors(errors)
+                // // });
+                // .catch((error) => console.log(error))
+
+                const response = await dispatch(fetchUpdateTask(tempTask))
+                if(response.errors) {
+                    setValidationErrors(Object.values(response.errors))
+                } else{
+                    if(showTask) {
+                        setShowTask(false)
+                    }
+
+                }
+
+
+
             }
     }
 
@@ -79,7 +122,7 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
         task.projectId = projectId
         const errors=[]
         dispatch(fetchDeleteTask(task))
-        .then(history.push(`/projects/${projectId}`))
+        .then(setShowTask(false))
         .catch(async (err)=>{
           const errObj=await err;
           errors.push(errObj.message)
@@ -88,6 +131,16 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
         });
         }
 
+    const closeBox= () => {
+        if(showAddTask1) {
+            setShowAddTask1(false)
+        } else if (showAddTask2) {
+            setShowAddTask2(false)
+        } else if (showAddTask3) {
+            setShowAddTask3(false)
+        }
+    }
+
 
     return (
         <div className="reward-form-container">
@@ -95,12 +148,13 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
         </div>
         <div className='reward-form-title'><h2>{formType}</h2></div>
         <form className='reward-form-form' onSubmit={handleSubmit}>
+            <button onClick={()=>closeBox()}>X</button>
 {/* // */}
             <div className='reward-form-list-item'>
                 <div>
-                <label>
+                {/* <label>
                 Title
-                </label>
+                </label> */}
                 <input
                 className='input'
                 placeholder='Your task'
@@ -111,11 +165,13 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
                 </div>
             </div>
 {/* // */}
+{formType==="Edit Task" &&(
+    <div>
             <div className='reward-form-list-item'>
                 <div>
-                <label>
+                {/* <label>
                 Description
-                </label>
+                </label> */}
                 <textarea
                 // className='input'
                 className='reward-form-textarea'
@@ -127,25 +183,48 @@ const TaskForm=({task, formType, projectId, setShowAddTask1}) => {
                 </div>
             </div>
 {/* // */}
-            <div className='reward-form-list-item'>
-            <div>
-                <label>
-                Stage
-                </label>
-                <input
-                className='input'
-                placeholder='stage'
-                type="number"
-                name="stage"
-                min='1'
-                max='3'
-                onChange={(e) => setStageId(e.target.value)}
-                value={stageId}/>
-                </div>
-            </div>
+
+      <div className='reward-form-list-item'>
+      <div>
+          <label>
+          Stage
+          </label>
+                       {/* <select
+                        placeholder='Stage'
+                        onChange={(e) => setStageId(e.target.value)}
+                        <option value='1'>To Do</option>
+
+
+                        {/* value={allStages[0]}
+                        >
+                            {allStages.map(stage => (
+                                <option key={stage} value={stage}> {stage}</option>
+                            ))}
+                        </select> */}
+
+
+
+
+          <input
+          className='input'
+          placeholder='stage'
+          type="number"
+          name="stage"
+          min='1'
+          max='3'
+          onChange={(e) => setStageId(e.target.value)}
+          value={stageId}/>
+          </div>
+      </div>
+      </div>
+
+)}
+
+{/* // */}
+
             <div className='reward-form-error-sec'>
             <div className='error-title'>
-            <h4>Validation Checking List</h4>
+            {/* <h4>Validation Checking List</h4> */}
             </div>
             {!!validationErrors.length && (
             <div className='reward-form-error-table'>

@@ -59,28 +59,28 @@
 
 .border-blue {
     display:flex;
-    border: solid blue .5em;
+    border: solid blue .2em;
 }
 
 .border-green {
     display:flex;
-    border: solid rgb(10, 106, 10) .5em;
+    border: solid green .2em;
 }
 
 
 .border-yellow {
     display:flex;
-    border: solid yellow .5em;
+    border: solid yellow .2em;
 }
 
 .border-orange {
     display:flex;
-    border: solid orange .5em;
+    border: solid orange .2em;
 }
 
 .border-red {
     display:flex;
-    border: solid red .5em;
+    border: solid red .2em;
 }
 
 .circle {

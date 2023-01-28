@@ -33,7 +33,7 @@ const ViewAllProjects = () => {
                                 <div>
                                     <h1>Are silos making teamwork <br/> more painful?</h1>
                                     <h4>Sauna helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
-                                    <h4>Join one of the many teams working on projects on Sauna</h4>
+                                    <h4>Join one of the many teams working on projects on Sauna <br/> Click on a project listed below </h4>
                                 </div>
 
 
@@ -43,7 +43,7 @@ const ViewAllProjects = () => {
                                             <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                                             <div>
                                                 <div className='short-gray-line'></div>
-                                            <h3>{project.name}:</h3>
+                                            <h3 className='text-blue'>{project.name}:</h3>
                                             <h5>{project.description}</h5>
                                             <br/>
 

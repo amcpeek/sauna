@@ -7,6 +7,10 @@ textarea {
     font-size: inherit;
  }
 
+ .text-blue {
+    color: rgb(117, 117, 175);
+ }
+
 
 
 .flex, .f {

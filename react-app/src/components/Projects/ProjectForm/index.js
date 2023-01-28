@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { fetchCreateProject,fetchUpdateProject,fetchDeleteProject } from "../../../store/project";
+import { fetchCreateProject,fetchUpdateProject,fetchDeleteProject,  fetchOneProject } from "../../../store/project";
 
-const ProjectForm=({project, formType})=> {
+const ProjectForm=({project, formType, showModal, setShowModal})=> {
     let initName, initDescription
     const history = useHistory()
     const dispatch = useDispatch()
@@ -41,8 +41,12 @@ const ProjectForm=({project, formType})=> {
         const errors = []
 
         if(formType==='Create Project'){
-            dispatch(fetchCreateProject(tempProject))
-            .then(()=>history.push('/projects')) //change this later
+            const returnedProject = dispatch(fetchCreateProject(tempProject))
+            .then((project) => {
+                history.push(`/projects/${project.id}`)
+                console.log('returned project', project)
+                dispatch( fetchOneProject(project.id)).then(setShowModal(false))
+                }) //should redirect to your projects page
             .catch(async (err)=> {
                 const errObj = await err.json()
                 errors.push(errObj.message)
@@ -51,7 +55,12 @@ const ProjectForm=({project, formType})=> {
         }
         else if(formType==='Edit Project') {
             dispatch(fetchUpdateProject(tempProject))
-            .then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
+            //.then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
+            .then((project) => {
+                history.push(`/projects/${project.id}`)
+                console.log('returned project', project)
+                dispatch( fetchOneProject(project.id)).then(setShowModal(false))
+                 })
             .catch(async (err)=>{
                 const errObj=await err.json();
                 errors.push(errObj.message)

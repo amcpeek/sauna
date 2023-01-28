@@ -18,18 +18,19 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
     const [name, setName] = useState(initName)
     const [description, setDescription] = useState(initDescription)
-    const [validationErrors, setValidationErrors] = useState([])
+    const [validationErrors, setValidationErrors] = useState(['this', 'should', 'work'])
+    console.log('validationErrors', validationErrors, validationErrors.length)
 
     useEffect(() => {
-        if(!name&&!description) {
-            setValidationErrors([])
-            return
-        }
+        // if(!name&&!description) {
+        //     setValidationErrors([])
+        //     return
+        // }
         const errors = []
-        if(name.length<=0){errors.push("Project name is required")}
-        else if(name.length>=50){errors.push("Project name must be less than 50 characters")}
-        if(description.length<=0){errors.push("Project description is required")}
-        else if(description.length>=255){errors.push("Project description must be less than 255 characters")}
+        if(name.length<=0){errors.push("Title required")}
+        else if(name.length>=50){errors.push("Title must be less than 50 characters")}
+        if(description.length<=0){errors.push("Description required")}
+        else if(description.length>=255){errors.push("Description must be less than 255 characters")}
         setValidationErrors(errors);
 
     }, [name, description])
@@ -44,7 +45,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
             const returnedProject = dispatch(fetchCreateProject(tempProject))
             .then((project) => {
                 history.push(`/projects/${project.id}`)
-                console.log('returned project', project)
+               // console.log('returned project', project)
                 dispatch( fetchOneProject(project.id)).then(setShowModal(false))
                 }) //should redirect to your projects page
             .catch(async (err)=> {
@@ -58,7 +59,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
             //.then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
             .then((project) => {
                 history.push(`/projects/${project.id}`)
-                console.log('returned project', project)
+              //  console.log('returned project', project)
                 dispatch( fetchOneProject(project.id)).then(setShowModal(false))
                  })
             .catch(async (err)=>{
@@ -83,13 +84,14 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
         return (
             // <div className="reward-main-container">
 
-              <div className="reward-form-container all-margin-small col">
+              <div className="reward-form-container all-margin-small col width-20em">
               <div className="reward-form-title-sec">
               {/* <div className='projectform-title1'>{formType}</div> */}
               {/* <div className='reward-form-title2'></div> */}
               </div>
               {/* <div className='reward-form-title'><h2>{formType}</h2></div> */}
               <form className='reward-form-form' onSubmit={handleSubmit}>
+              <button className='just-text-button bg-white' onClick={()=>setShowModal(false)}>X</button>
       {/* // */}
                   <div className='reward-form-list-item jc-sf col width-100-per'>
 
@@ -98,8 +100,8 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                       Name
                       </label>
                       <input
-                      className='input width-38em round-sq-05 thin-bor font-small-med'
-                      placeholder='Preparing for launch of our new product'
+                      className='input width-100-per round-sq-05 thin-bor font-small-med'
+                      placeholder='Preparing for launch of our new product...'
                       type="text"
                       name="name"
                       onChange={(e) => setName(e.target.value)}
@@ -114,8 +116,8 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                       </label>
                       <textarea
                       // className='input'
-                      className='reward-form-textarea width-38em round-sq-05 thin-bor font-small-med'
-                      placeholder='Description here'
+                      className='reward-form-textarea width-100-per round-sq-05 thin-bor font-small-med'
+                      placeholder='New product will launch this summer...'
                       type="text"
                       name="Description"
                       onChange={(e) => setDescription(e.target.value)}

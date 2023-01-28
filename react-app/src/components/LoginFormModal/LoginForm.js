@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import './LoginForm.css'
 
 function LoginForm({showLogInModal, setShowLogInModal}) {
-    console.log('getting to LoginFormModal/LoginForm', showLogInModal)
+   // console.log('getting to LoginFormModal/LoginForm', showLogInModal)
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -4,7 +4,7 @@ import { Modal } from '../../context/Modal'
 import LoginForm from './LoginForm'
 
 function LoginFormModal({showLogInModal, setShowLogInModal}) {
-    console.log('getting to LoginFormModal.index', showLogInModal)
+   // console.log('getting to LoginFormModal.index', showLogInModal)
 
 
   return (

@@ -93,6 +93,11 @@ textarea {
 
 }
 
+.bg-whole-page {
+    height: 75vh;
+    width: 100vw;
+}
+
 .color-purple {
     display:flex;
     color: purple;
@@ -240,10 +245,20 @@ height: 10em;
     width: 40%;
 }
 
+.width-80-per {
+    display: flex;
+    width: 80%;
+}
+
+
 .width-100-per {
     display: flex;
     width: 100%;
+}
 
+.width-150-per {
+    display: flex;
+    width: 150%;
 }
 
 .width-38em {
@@ -251,6 +266,13 @@ height: 10em;
     width: 38em;
 
 }
+
+.width-20em {
+    display: flex;
+    width: 20em;
+
+}
+
 
 .relative-right {
     position: relative;

@@ -1,1 +1,420 @@
-/* TODO Add site wide styles */
+/* whole site */
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+ }
+
+
+ /* flex */
+
+
+
+
+.flex, .f {
+    display:flex;
+}
+
+.row {
+    display:flex;
+    flex-direction: row;
+}
+
+.col {
+    display:flex;
+    flex-direction: column
+}
+
+.jc-c {
+    display:flex;
+    justify-content: center;
+}
+
+.jc-sb {
+    display:flex;
+    justify-content: space-between
+}
+
+.jc-sa {
+    display:flex;
+    justify-content: space-around
+}
+
+.jc-st {
+    display:flex;
+    justify-content: flex-start;
+}
+
+.jc-end {
+    display:flex;
+    justify-content: flex-end;
+}
+
+.ai-c {
+    display:flex;
+    align-items: center;
+}
+
+.ai-st{
+    display:flex;
+    align-items: flex-start;
+}
+
+
+/* border, background, color */
+
+.just-text-button {
+    border: none;
+    background-color: none
+}
+
+
+.no-bor {
+    border: none
+}
+
+.thin-bor {
+    border: .1em solid lightslategrey;
+}
+
+.text-blue {
+    color: rgb(117, 117, 175);
+ }
+
+.bg-green {
+    display:flex;
+    background-color: lightgreen;
+}
+
+.bg-blue {
+    display:flex;
+    background-color: rgb(133, 133, 233);
+
+}
+
+.bg-light-gray {
+    display:flex;
+    background-color: #C9E2FB
+
+}
+
+.bg-white {
+    display:flex;
+    background-color: white;
+
+}
+
+.bg-whole-page {
+    height: 75vh;
+    width: 100vw;
+}
+
+.color-purple {
+    display:flex;
+    color: purple;
+}
+
+.border-blue {
+    display:flex;
+    border: solid blue .2em;
+}
+
+.border-green {
+    display:flex;
+    border: solid green .2em;
+}
+
+
+.border-yellow {
+    display:flex;
+    border: solid yellow .2em;
+}
+
+.border-orange {
+    display:flex;
+    border: solid orange .2em;
+}
+
+.border-red {
+    display:flex;
+    border: solid red .2em;
+}
+
+.circle {
+    display:flex;
+    border-radius: 20em;
+}
+
+.round-sq {
+    display:flex;
+    border-radius: 2em;
+}
+
+.round-sq-05 {
+    display:flex;
+    border-radius: .5em;
+}
+
+/* margin, padding */
+
+.all-padding {
+    display:flex;
+    padding: 5em;
+}
+
+.all-margin {
+    display:flex;
+    margin: 5em;
+}
+
+.all-margin-small {
+    display:flex;
+    margin: 1em;
+
+}
+
+.b-margin {
+    display:flex;
+    margin-bottom: 1em;
+
+}
+
+
+.lr-margin {
+    display:flex;
+    margin-left: 10em;
+    margin-right: 10em;
+
+}
+
+.lr-margin-small {
+    display:flex;
+    margin-left: 1em;
+    margin-right: 1em;
+
+
+}
+
+.tb-margin {
+    display:flex;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+}
+
+.pad-1 {
+    display: flex;
+    padding: .5em
+}
+
+/* width, height */
+
+.height-100-per {
+    display: flex;
+    min-height: 80em;
+    background-color: rgb(241, 245, 249)
+}
+
+.height-task {
+    display: flex;
+    height: 6em;
+}
+
+
+.box {
+    display:flex;
+    width: 10em;
+    height: 10em;
+    }
+
+.width-20-per {
+    display: flex;
+    width: 20%;
+}
+
+.width-40-per {
+    display: flex;
+    width: 40%;
+}
+
+.width-80-per {
+    display: flex;
+    width: 80%;
+}
+
+
+.width-100-per {
+    display: flex;
+    width: 100%;
+}
+
+.width-150-per {
+    display: flex;
+    width: 150%;
+}
+
+.width-38em {
+    display: flex;
+    width: 38em;
+
+}
+
+.width-20em {
+    display: flex;
+    width: 20em;
+
+}
+
+
+/* font */
+
+.font-small {
+    font-size:xx-small;
+}
+
+.font-small-med {
+    font-size: small
+
+}
+
+.no-border {
+    display:flex;
+    border: none
+}
+
+/* curser,  hover */
+
+.cursor {
+    cursor: pointer
+ }
+
+.do-not-interact:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+
+
+
+/* positioning  */
+
+.relative-right {
+    position: relative;
+    right: 5em;
+}
+
+
+
+/* lines */
+
+.no-und {
+    text-decoration:none;
+    color: black;
+
+}
+
+.short-gray-line {
+    border-bottom: solid .1em lightgray;
+    width: 5em;
+
+}
+
+.long-gray-line {
+    border-bottom: solid .1em lightgray;
+    width: 100%;
+
+}
+
+.small-box {
+    display:flex;
+width: 2em;
+height: 2em;
+
+}
+
+
+
+
+
+
+
+/* main only */
+
+
+.main-img-1 {
+    width: 15em;
+    height: 20em;
+    object-fit: cover;
+    position: relative;
+    top: 5em;
+    right: 5em;
+}
+
+.main-img-2 {
+    width: 15em;
+    height: 20em;
+    object-fit: cover;
+    position: relative;
+    top: 10em;
+    right: 5em;
+}
+
+
+.main-gray-box {
+    display: flex;
+    /* width: 30em;
+    height: 50em; */
+    width: 40%;
+    background-color: lightgray
+    }
+
+
+.main-left {
+    width: 60%;
+}
+
+.main-left-proj {
+    width: 60%;
+}
+
+
+.form-min-size {
+    min-width: 300px;
+    min-height: 300px;
+
+}
+
+
+
+/* Modal CSS */
+
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }
+
+   #modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  #modal-content {
+    position: absolute;
+    background-color:white;
+    border-radius: 10px;
+
+  }

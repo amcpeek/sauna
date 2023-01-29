@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from '../../../context/Modal'
-import CreateProject from '.';
+import { Modal } from '../../context/Modal'
+import CreateProject from './CreateProject';
 
 function CreateProjectModal({showModal, setShowModal}) {
 

@@ -1,12 +1,12 @@
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { fetchOneProject } from '../../../store/project'
-import { getAllTasksByProjectId } from '../../../store/task'
-import ViewTask from '../../Tasks/ViewTask';
-import CreateTask from '../../Tasks/CreateTask';
-import EditTask from '../../Tasks/EditTask';
-import EditProjectModal from '../EditProject/EditProjectModal';
+import { fetchOneProject } from '../../store/project'
+import { getAllTasksByProjectId } from '../../store/task'
+import ViewTask from '../Tasks/ViewTask';
+import CreateTask from '../Tasks/CreateTask';
+import EditTask from '../Tasks/EditTask';
+import EditProjectModal from './EditProjectModal';
 
 
 const ViewProject = () => {
@@ -81,7 +81,7 @@ const ViewProject = () => {
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
                 </div>
-                <div className='bg-light-gray bg-whole-page'>
+                <div className='bg-light-gray'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>

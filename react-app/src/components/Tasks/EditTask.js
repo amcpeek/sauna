@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from 'react'
-import { fetchCreateTask } from "../../../store/task";
-import { fetchAllProjects } from "../../../store/project";
-import { fetchOneTask } from '../../../store/task';
-import TaskForm from "../TaskForm";
+import { fetchCreateTask } from "../../store/task";
+import { fetchAllProjects } from "../../store/project";
+import { fetchOneTask } from '../../store/task';
+import TaskForm from "./TaskForm";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 

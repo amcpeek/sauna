@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+
 
 //THIS IS THE ONE ACTUALLY RUNNING ON THE SITE!!!!!!!!!
 
@@ -82,10 +82,10 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <label>
         <input
           className=' circle thin-bor bg-white'
-          placeholder="Email"
+          placeholder="First Name"
           type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
       </label>
@@ -94,14 +94,15 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <label>
         <input
           className=' circle thin-bor bg-white'
-          placeholder="Username"
+          placeholder="Email"
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
       </div>
+
       <div className='b-margin'>
       <label>
         <input

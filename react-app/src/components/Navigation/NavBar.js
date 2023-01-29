@@ -6,7 +6,7 @@ import { useHistory, Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import { authenticate } from '../../store/session';
-import CreateProjectModal from '../Projects/CreateProject/CreateProjectModal';
+import CreateProjectModal from '../Projects/CreateProjectModal';
 
 
 const NavBar = () => {

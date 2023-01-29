@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 
-import './LoginForm.css'
-
 function LoginForm({showLogInModal, setShowLogInModal}) {
    // console.log('getting to LoginFormModal/LoginForm', showLogInModal)
   const dispatch = useDispatch();
@@ -63,7 +61,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       <label >
         <input
           className=' circle thin-bor bg-white'
-          placeholder="Username or Email"
+          placeholder="Email"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import ProjectForm from "../ProjectForm";
+import ProjectForm from "./ProjectForm";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOneProject } from "../../../store/project";
+import { fetchOneProject } from "../../store/project";
 
 
 const EditProject=({showModal, setShowModal})=>{

@@ -1,8 +1,8 @@
-import { fetchCreateReward } from "../../../store/task";
-import { fetchOneProject } from '../../../store/project';
+import { fetchCreateReward } from "../../store/task";
+import { fetchOneProject } from '../../store/project';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react'
-import TaskForm from "../TaskForm";
+import TaskForm from "./TaskForm";
 import { useParams } from "react-router-dom";
 
 const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3 })=>{

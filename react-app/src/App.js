@@ -5,14 +5,14 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/Navigation/NavBar'
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
+import UsersList from './components/auth/UsersList';
+import User from './components/auth/User';
 import { authenticate } from './store/session';
-import ViewProject from '../src/components/Projects/ViewProject/index'
-import ViewAllProjects from './components/Projects/ViewAllProjects/index';
-import ProjectEntry from './components/Projects';
-import TaskEntry from './components/Tasks';
-import ViewTask from './components/Tasks/ViewTask/index'
+import ViewProject from './components/Projects/ViewProject'
+import ViewAllProjects from './components/Projects/ViewAllProjects';
+import ProjectEntry from './components/Projects/ProjectEntry';
+import TaskEntry from './components/Tasks/TaskEntry'
+import ViewTask from './components/Tasks/ViewTask'
 
 function App() {
   const [loaded, setLoaded] = useState(false);

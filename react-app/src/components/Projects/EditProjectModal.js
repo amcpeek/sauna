@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from '../../../context/Modal'
-import EditProject from '.';
+import { Modal } from '../../context/Modal'
+import EditProject from './EditProject';
 
 function EditProjectModal({showModal, setShowModal}) {
 

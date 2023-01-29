@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../../store/task";
-import { fetchOneProject } from "../../../store/project"
+import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../store/task";
+import { fetchOneProject } from "../../store/project"
 
 const TaskForm=({task, formType, projectId,
     setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3,

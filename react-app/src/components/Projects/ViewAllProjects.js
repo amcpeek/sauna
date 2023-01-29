@@ -1,8 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { fetchAllProjects } from '../../../store/project'
-import './viewAllProjects.css'
+import { fetchAllProjects } from '../../store/project'
 
 const ViewAllProjects = () => {
    // console.log('can you see anything of the view all projects page')
@@ -33,7 +32,8 @@ const ViewAllProjects = () => {
                                 <div>
                                     <h1>Are silos making teamwork <br/> more painful?</h1>
                                     <h4>Sauna helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
-                                    <h4>Join one of the many teams working on projects on Sauna <br/> Click on a project listed below </h4>
+                                    <h4>Join one of the many teams working on projects on Sauna </h4>
+                                    <h2>Click on a project listed below: </h2>
                                 </div>
 
 
@@ -42,9 +42,16 @@ const ViewAllProjects = () => {
                                         return (
                                             <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                                             <div>
+
                                                 <div className='short-gray-line'></div>
-                                            <h3 className='text-blue'>{project.name}:</h3>
+
+                                            <h3 className='text-blue'> <i className="fa-solid fa-user-plus"></i> {project.name}:</h3>
+                                            <div className='col'>
+                                            {/* <p>Team Lead: {project.owner.username}</p> */}
                                             <h5>{project.description}</h5>
+
+                                            </div>
+
                                             <br/>
 
                                             </div>

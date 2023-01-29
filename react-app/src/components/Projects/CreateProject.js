@@ -1,6 +1,6 @@
 import React from "react";
-import { fetchCreateProject } from "../../../store/project";
-import ProjectForm from "../ProjectForm";
+import { fetchCreateProject } from "../../store/project";
+import ProjectForm from "./ProjectForm";
 
 
 const CreateProject=({showModal, setShowModal})=>{

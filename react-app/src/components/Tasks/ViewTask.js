@@ -1,7 +1,7 @@
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { fetchOneTask } from '../../../store/task'
+import { fetchOneTask } from '../../store/task'
 
 
 const ViewTask = ({selectedTask}) => {

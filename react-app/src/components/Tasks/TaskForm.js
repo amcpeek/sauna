@@ -129,16 +129,16 @@ const TaskForm=({task, formType, projectId,
 
 
     return (
-        <div className="reward-form-container jc-st col ai-st bg-white width-100-per">
-        <div className="reward-form-title-sec">
+        <div className="jc-st col ai-st bg-white width-100-per">
+        <div className="">
         </div>
-        <div className='reward-form-title'><h2>{formType}</h2></div>
-        <form className='reward-form-form jc-st col ai-st width-100-per' onSubmit={handleSubmit}>
+        <div className=''><h2>{formType}</h2></div>
+        <form className=' jc-st col ai-st width-100-per' onSubmit={handleSubmit}>
             <button className='just-text-button bg-white' onClick={()=>closeBox()}>X</button>
 {/* // */}
-            <div className='reward-form-list-item width-100-per'>
+            <div className='width-100-per'>
                 <input
-                className='input round-sq-05 thin-bor width-100-per'
+                className='round-sq-05 thin-bor width-100-per'
                 placeholder='Your task'
                 type="text"
                 name="Name"
@@ -175,28 +175,28 @@ const TaskForm=({task, formType, projectId,
 
 {/* // */}
 
-            <div className='reward-form-error-sec'>
-            <div className='error-title'>
+            <div className=''>
+            <div className=''>
             {/* <h4>Validation Checking List</h4> */}
             </div>
             {!!validationErrors.length && (
-            <div className='reward-form-error-table'>
-            <div className='reward-form-error'>
+            <div className=''>
+            <div className=''>
              {validationErrors.map((error) => (
-            <div key={error} className="reward-form-error-text">{error}</div>
+            <div key={error} className="">{error}</div>
                        ))}
             </div>
             </div>
              )}
             </div>
 {/* // */}
-            <div className="reward-form-button">
-             <input type="submit" value={formType} className="reward-button bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
+            <div className="">
+             <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
              </div>
             </form>
             {formType==="Edit Task" &&(
-                <div className="projectform-button">
-              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete</button>
+                <div className="">
+              <button onClick={()=>deleteEvents(task)} className="bg-white round-sq-05 thin-bor">Delete</button>
               </div>
                 )}
 

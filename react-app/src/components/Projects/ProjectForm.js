@@ -84,23 +84,23 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
         return (
             // <div className="reward-main-container">
 
-              <div className="reward-form-container all-margin-small col width-20em">
-              <div className="reward-form-title-sec">
+              <div className=" all-margin-small col width-20em">
+              <div className="">
               {/* <div className='projectform-title1'>{formType}</div> */}
               {/* <div className='reward-form-title2'></div> */}
               </div>
               {/* <div className='reward-form-title'><h2>{formType}</h2></div> */}
-              <form className='reward-form-form' onSubmit={handleSubmit}>
+              <form className='' onSubmit={handleSubmit}>
               <button className='just-text-button bg-white' onClick={()=>setShowModal(false)}>X</button>
       {/* // */}
-                  <div className='reward-form-list-item jc-sf col width-100-per'>
+                  <div className='jc-sf col width-100-per'>
 
 
                       <label>
                       Name
                       </label>
                       <input
-                      className='input width-100-per round-sq-05 thin-bor font-small-med'
+                      className='width-100-per round-sq-05 thin-bor font-small-med'
                       placeholder='Preparing for launch of our new product...'
                       type="text"
                       name="name"
@@ -109,14 +109,14 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
                   </div>
       {/* // */}
-                  <div className='reward-form-list-item jc-sf col width-100-per'>
+                  <div className=' jc-sf col width-100-per'>
 
                       <label>
                       Description
                       </label>
                       <textarea
                       // className='input'
-                      className='reward-form-textarea width-100-per round-sq-05 thin-bor font-small-med'
+                      className=' width-100-per round-sq-05 thin-bor font-small-med'
                       placeholder='New product will launch this summer...'
                       type="text"
                       name="Description"
@@ -125,25 +125,25 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
                   </div>
       {/* // */}
-                  <div className='reward-form-error-sec'>
+                  <div className=''>
                   {!!validationErrors.length && (
-                  <div className='reward-form-error-table'>
-                  <div className='reward-form-error'>
+                  <div className=''>
+                  <div className=''>
                    {validationErrors.map((error) => (
-                  <div key={error} className="reward-form-error-text">{error}</div>
+                  <div key={error} className="">{error}</div>
                              ))}
                   </div>
                   </div>
                    )}
                   </div>
       {/* // */}
-                  <div className="reward-form-button">
-                   <input type="submit" value={formType} className="reward-button bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
+                  <div className="">
+                   <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
                    </div>
                   </form>
                   {formType==="Edit Project" &&(
-                      <div className="projectform-button">
-                    <button onClick={()=>deleteEvents(project.id)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete</button>
+                      <div className="">
+                    <button onClick={()=>deleteEvents(project.id)} className="bg-white round-sq-05 thin-bor">Delete</button>
                     </div>
                       )}
               </div>

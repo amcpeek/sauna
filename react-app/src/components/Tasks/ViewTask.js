@@ -9,15 +9,6 @@ const ViewTask = ({selectedTask}) => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    // const findProjectTest = async () => {
-    //      const returnProject = await dispatch(fetchOneProject(id))
-    // }
-
-    // useEffect(() => {
-    //    findProjectTest()
-    // }, [dispatch])
-
-
     return (
         <div className='width-100-per jc-st'>
         {selectedTask &&

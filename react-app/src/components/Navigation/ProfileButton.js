@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { NavLink, useHistory } from "react-router-dom";
-import LoginFormModal from '../LoginFormModal/index'
-import SignUpFormModal from '../SignUpFormModal'
+import LoginFormModal from '../auth/LoginFormModal'
+import SignUpFormModal from '../auth/SignUpFormModal'
 
 //should have 2 conditions:
 //1: login & signup

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useHistory, Link } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
+import LogoutButton from '../auth/XLogoutButton';
 import ProfileButton from './ProfileButton';
 import { authenticate } from '../../store/session';
 import CreateProjectModal from '../Projects/CreateProjectModal';

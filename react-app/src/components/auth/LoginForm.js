@@ -1,66 +1,97 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
+// frontend/src/components/LoginFormModal/LoginForm.js
+import React, { useState } from "react";
+import * as sessionActions from "../../store/session";
+import { useDispatch } from "react-redux";
 
-const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+function LoginForm({showLogInModal, setShowLogInModal}) {
+   // console.log('getting to LoginFormModal/LoginForm', showLogInModal)
   const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
-  const onLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    setErrors([]);
+    return dispatch(sessionActions.login( email, password ))
+     .then( () =>setShowLogInModal(false))
+     .catch( async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+
+      })
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
 
-  if (user) {
-    return <Redirect to='/' />;
+  const logInDemoUser = (e) => {
+    const email = 'demo@aa.io'
+    const password = 'password'
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login( email, password ))
+    .then(() => {setShowLogInModal(false)})
+    .catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+    )
   }
-
+ //className was LogInForm
   return (
-    <form onSubmit={onLogin}>
-       Login form (EXTRA)
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+    <div className="realModalOutside form-min-size jc-c ai-c">
+    <div className="realModalContent">
+    <div className='outerFormTop'>
+    <div className='formTop'>
+    <button className="cancelButton bg-white just-text-button" onClick={() => setShowLogInModal(false)}>X</button>
+    <h4>Login</h4>
+    <div className='LogInErrors'>
+        {errors.map((error, idx) => (
+          <div key={idx}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+
+    </div>
+    </div>
+    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+
+
+      <div className='b-margin'>
+      <label >
         <input
-          name='email'
-          type='text'
-          placeholder='Email'
+          className=' circle thin-bor bg-white'
+          placeholder="Email"
+          type="text"
           value={email}
-          onChange={updateEmail}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
+      </label>
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='b-margin'>
+      <label>
         <input
-          name='password'
-          type='password'
-          placeholder='Password'
+          className=' circle thin-bor bg-white'
+          placeholder="password"
+          type="password"
           value={password}
-          onChange={updatePassword}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
-        <button type='submit'>Login</button>
+      </label>
       </div>
+      <div className='b-margin'>
+        <button className='createButton bg-white thin-bor circle' type="submit">Log In</button>
+      </div>
+      <div className='b-margin'>
+        <button className='createButton bg-white thin-bor circle' onClick={logInDemoUser}>Login as Demo User</button>
+      </div>
+
     </form>
+    </div>
+    </div>
   );
-};
+}
 
 export default LoginForm;

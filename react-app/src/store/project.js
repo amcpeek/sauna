@@ -75,6 +75,7 @@ export const fetchCreateProject = (project) => async dispatch => {
     if(response.ok){
         const newProject = await response.json()
         dispatch(create(newProject))
+       // console.log('this is working', newProject)
         return newProject
     }
     if(response.status>=400) throw response

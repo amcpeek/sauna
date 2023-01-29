@@ -5,7 +5,7 @@ import { fetchAllProjects } from '../../../store/project'
 import './viewAllProjects.css'
 
 const ViewAllProjects = () => {
-    console.log('can you see anything of the view all projects page')
+   // console.log('can you see anything of the view all projects page')
     const dispatch = useDispatch()
     const history = useHistory()
     //https://assets.asana.biz/transform/5e1c89aa-e1af-44f5-8902-f692c819c3b2/home-hero-1a
@@ -33,7 +33,7 @@ const ViewAllProjects = () => {
                                 <div>
                                     <h1>Are silos making teamwork <br/> more painful?</h1>
                                     <h4>Sauna helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
-                                    <h4>Join one of the many teams working on projects on Sauna</h4>
+                                    <h4>Join one of the many teams working on projects on Sauna <br/> Click on a project listed below </h4>
                                 </div>
 
 
@@ -43,7 +43,7 @@ const ViewAllProjects = () => {
                                             <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                                             <div>
                                                 <div className='short-gray-line'></div>
-                                            <h3>{project.name}:</h3>
+                                            <h3 className='text-blue'>{project.name}:</h3>
                                             <h5>{project.description}</h5>
                                             <br/>
 

@@ -11,8 +11,8 @@ const CreateProject=({showModal, setShowModal})=>{
     }
 
     return (
-        <div> 
-        <ProjectForm project={project} formType="Create Project"/>
+        <div>
+        <ProjectForm project={project} formType="Create Project" showModal={showModal} setShowModal={setShowModal}/>
         </div>
     )
 }

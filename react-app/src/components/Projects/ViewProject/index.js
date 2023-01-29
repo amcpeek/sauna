@@ -20,7 +20,7 @@ const ViewProject = () => {
     const [showAddTask3, setShowAddTask3] = useState(false)
     const [showModal, setShowModal] = useState(false);
 
-    console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
+    //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
 
 
     const findProjectTest = async () => {
@@ -81,7 +81,7 @@ const ViewProject = () => {
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
                 </div>
-                <div className='bg-light-gray height-100-per'>
+                <div className='bg-light-gray bg-whole-page'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>

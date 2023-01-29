@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProject } from "../../../store/project";
 
 
-const EditProject=()=>{
+const EditProject=({showModal, setShowModal})=>{
     const dispatch = useDispatch()
     const {id}=useParams();
     const findProjectTest = async () => {
@@ -28,7 +28,7 @@ const EditProject=()=>{
     }
 
     return (
-        <ProjectForm project={project} formType="Edit Project"/>
+        <ProjectForm project={project} formType="Edit Project" showModal={showModal} setShowModal={setShowModal}/>
 
     )
 }

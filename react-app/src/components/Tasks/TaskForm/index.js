@@ -11,7 +11,9 @@ const TaskForm=({task, formType, projectId,
     let initName, initDescription, initStageId
     const history=useHistory()
     const dispatch = useDispatch()
-    const allStages = ['To Do', 'InProgress', 'Complete']
+
+
+
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -44,14 +46,17 @@ const TaskForm=({task, formType, projectId,
     const [stageId, setStageId] = useState(initStageId)
     const [validationErrors, setValidationErrors] = useState([])
 
+    //console.log('what is in validation errors array when nothing has been entered', validationErrors, "name", name, 'description', description, 'stageId', stageId)
+
     useEffect(() => {
-        if (!name&&!description&&!stageId) {
-          setValidationErrors([]);
-          return;
-        }
+       // console.log('when is the task use effect run', "name", name, 'description', description, 'stageId', stageId)
+        // if (!name&&!description&&!stageId) {
+        //   setValidationErrors([]);
+        //   return;
+        // }
         const errors =[];
-        if(name.length<=0){errors.push("Task Name required");}
-        else if(name.length>=50){errors.push("name must be less than 50 characters")}
+        if(name.length<=0){errors.push("Title required");}
+        else if(name.length>=50){errors.push("Title must be less than 50 characters")}
         // if(description.length<=0){errors.push("Description required");}
         if(description.length>=255){errors.push("Description must be less than 255 characters")}
         setValidationErrors(errors);
@@ -77,7 +82,7 @@ const TaskForm=({task, formType, projectId,
             if(response.errors) {
                 setValidationErrors(Object.values(response.errors))
             } else{
-                console.log('in the else statement', setShowAddTask1)
+              //  console.log('in the else statement', setShowAddTask1)
                 if(showAddTask1) {
                     setShowAddTask1(false)
                 } else if (showAddTask2) {
@@ -132,40 +137,29 @@ const TaskForm=({task, formType, projectId,
             <button className='just-text-button bg-white' onClick={()=>closeBox()}>X</button>
 {/* // */}
             <div className='reward-form-list-item width-100-per'>
-                <div>
-                {/* <label>
-                Title
-                </label> */}
                 <input
-                className='input round-sq-05 thin-bor width-38em'
+                className='input round-sq-05 thin-bor width-100-per'
                 placeholder='Your task'
                 type="text"
                 name="Name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}/>
-                </div>
             </div>
 {/* // */}
 {formType==="Edit Task" &&(
-    <div className="jc-sf col">
-            <div className='reward-form-list-item'>
-                <div>
-                {/* <label>
-                Description
-                </label> */}
+    <div className="jc-sf col width-100-per">
+            <div className='jc-sf col'>
                 <textarea
-                // className='input'
-                className='reward-form-textarea width-38em round-sq-05 thin-bor'
+                className='width-100-per round-sq-05 thin-bor'
                 placeholder='Your Description'
                 type="text"
                 name="Description"
                 onChange={(e) => setDescription(e.target.value)}
-                value={description}/>
-                </div>
+                value={description}
+                ></textarea>
             </div>
 {/* // */}
-            <div className='reward-form-list-item'>
-                <div className="jc-sf col">
+            <div className='jc-sf col width-100-per'>
             <select
                 type='number'
                 onChange={(e) => setStageId(e.target.value) }
@@ -175,7 +169,6 @@ const TaskForm=({task, formType, projectId,
                 <option value={2} >In Progress</option>
                 <option value={3} >Complete</option>
             </select>
-            </div>
             </div>
       </div>
 )}
@@ -203,7 +196,7 @@ const TaskForm=({task, formType, projectId,
             </form>
             {formType==="Edit Task" &&(
                 <div className="projectform-button">
-              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete Task</button>
+              <button onClick={()=>deleteEvents(task)} className="reward-form-delete-button bg-white round-sq-05 thin-bor">Delete</button>
               </div>
                 )}
 

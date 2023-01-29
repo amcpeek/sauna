@@ -14,7 +14,7 @@ const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTas
     // console.log(user)
     // console.log(allProjects)
     //console.log('what is projectId in the create  task', id)
-    console.log('showAddTask1 in CreateTask',  setShowAddTask1)
+    //console.log('showAddTask1 in CreateTask',  setShowAddTask1)
 
 
     const findProjectTest = async () => {
@@ -33,8 +33,8 @@ const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTas
 
 
     if (allProjects && user) {
-        console.log('user', user, "allProjects", allProjects)
-        console.log('are we getting to the create page?')
+       // console.log('user', user, "allProjects", allProjects)
+      //  console.log('are we getting to the create page?')
 
                 return (
                     <TaskForm task={task} formType="Create Task" projectId={id}

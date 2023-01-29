@@ -44,7 +44,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     <div className="realModalContent">
     <div className='outerFormTop'>
     <div className='formTop'>
-    <button className="cancelButton bg-white just-text-button" onClick={() => setShowLogInModal(false)}>X</button>
+    <button className="bg-white just-text-button" onClick={() => setShowLogInModal(false)}>X</button>
     <h4>Login</h4>
     <div className='LogInErrors'>
         {errors.map((error, idx) => (
@@ -60,7 +60,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       <div className='b-margin'>
       <label >
         <input
-          className=' circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="Email"
           type="text"
           value={email}
@@ -72,7 +72,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       <div className='b-margin'>
       <label>
         <input
-          className=' circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="password"
           type="password"
           value={password}
@@ -82,10 +82,10 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
       </label>
       </div>
       <div className='b-margin'>
-        <button className='createButton bg-white thin-bor circle' type="submit">Log In</button>
+        <button className='bg-white thin-bor circle' type="submit">Log In</button>
       </div>
       <div className='b-margin'>
-        <button className='createButton bg-white thin-bor circle' onClick={logInDemoUser}>Login as Demo User</button>
+        <button className='bg-white thin-bor circle' onClick={logInDemoUser}>Login as Demo User</button>
       </div>
 
     </form>

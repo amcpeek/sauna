@@ -42,7 +42,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     <div className="realModalContent">
     <div className='outerFormTop'>
     <div className='formTop'>
-    <button className="cancelButton bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
+    <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
       <div className='LogInErrors'>
         <ul className='ulNoBullets'>
@@ -53,7 +53,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     </div>
     </div>
 
-    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+    <form onSubmit={handleSubmit} className="C" >
 
       {/* <div>
       <label>
@@ -81,7 +81,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <div className='b-margin'>
       <label>
         <input
-          className=' circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="First Name"
           type="text"
           value={username}
@@ -93,7 +93,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <div className='b-margin'>
       <label>
         <input
-          className=' circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="Email"
           type="text"
           value={email}
@@ -106,7 +106,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <div className='b-margin'>
       <label>
         <input
-          className=' circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="Password"
           type="password"
           value={password}
@@ -118,7 +118,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       <div className='b-margin'>
       <label>
         <input
-          className='roundBottomFields circle thin-bor bg-white'
+          className='circle thin-bor bg-white'
           placeholder="Confirm Password"
           type="password"
           value={confirmPassword}
@@ -128,7 +128,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </label>
       </div>
       <div>
-      <button className='createButton circle thin-bor bg-white' type="submit">Sign Up</button>
+      <button className='circle thin-bor bg-white' type="submit">Sign Up</button>
       {/* <button><NavLink to='/'>Cancel</NavLink></button> */}
       </div>
     </form>

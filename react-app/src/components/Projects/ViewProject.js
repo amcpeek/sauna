@@ -81,7 +81,7 @@ const ViewProject = () => {
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
                 </div>
-                <div className='bg-light-gray'>
+                <div className='bg-light-gray round-sq-05'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>
@@ -97,7 +97,7 @@ const ViewProject = () => {
                         // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
                         >
                             {showAddTask1 &&
-                            <button className=" width-100-per bg-white just-text-button round-sq-05">
+                            <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
                         <CreateTask setShowAddTask1={setShowAddTask1} showAddTask1={showAddTask1}/>
                         {/* this prop thing isnt working yet, doesnt seem to be doing anything actually */}
                         </button>
@@ -122,7 +122,7 @@ const ViewProject = () => {
                         // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
                         >
                             {showAddTask2 &&
-                            <button className=" width-100-per bg-white just-text-button round-sq-05">
+                            <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
                         <CreateTask setShowAddTask2={setShowAddTask2} showAddTask2={showAddTask2}/>
                         </button>
                             }
@@ -142,7 +142,7 @@ const ViewProject = () => {
                         // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
                         >
                             {showAddTask3 &&
-                            <button className=" width-100-per bg-white just-text-button round-sq-05">
+                            <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
                         <CreateTask setShowAddTask3={setShowAddTask3} showAddTask3={showAddTask3}/>
                         </button>
                             }
@@ -151,9 +151,9 @@ const ViewProject = () => {
 
                     </div>
                     {showTask &&
-                     <div className='f col width-40-per bg-white'>
+                     <div className='f col width-40-per bg-white box-shadow round-sq-05'>
                      <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
-                         <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task" >
+                         <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
                          {/* onClick={() => setShowTask(false)}  add back in later*/}
                          <ViewTask selectedTask={selectedTask}/>
                          <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>

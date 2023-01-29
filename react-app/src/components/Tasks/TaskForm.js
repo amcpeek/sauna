@@ -25,6 +25,7 @@ const TaskForm=({task, formType, projectId,
 
     // const oneProject = useSelector(state => {return state.projects[projectId]})
     if(formType==="Edit Task"){
+        console.log('in edit task start what is task.stageId', task.stageId)
         initDescription=task.description;
         initName=task.name
         initStageId=task.stageId
@@ -129,7 +130,7 @@ const TaskForm=({task, formType, projectId,
 
 
     return (
-        <div className="jc-st col ai-st bg-white width-100-per">
+        <div className="jc-st col ai-st bg-white width-100-per ">
         <div className="">
         </div>
         <div className=''><h2>{formType}</h2></div>
@@ -142,6 +143,7 @@ const TaskForm=({task, formType, projectId,
                 placeholder='Your task'
                 type="text"
                 name="Name"
+                required
                 onChange={(e) => setName(e.target.value)}
                 value={name}/>
             </div>

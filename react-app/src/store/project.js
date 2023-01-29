@@ -94,6 +94,7 @@ export const fetchUpdateProject = (project) => async dispatch => {
         dispatch(edit(editProject))
         return editProject
     }
+    console.log('in the fetchUpdateProject what is the response', response)
     if(response.status>=400) throw response
 }
 

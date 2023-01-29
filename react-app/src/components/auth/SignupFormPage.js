@@ -24,12 +24,21 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-     // setShowSignUpModal(false)
+
       return dispatch(sessionActions.signUp(username, email, password ))
-      .then(() => {setShowSignUpModal(false)})
+      .then((res) => {
+        //not ideal solution to this issue, should be throwing an error
+        if(res) {
+          setErrors(res)
+        } else {
+          console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
+        setShowSignUpModal(false)
+        }
+      })
         .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+         // const data = await res.json();
+          //if (data && data.errors) setErrors(data.errors);
+          if(res && res.errors) setErrors(res)
         })
 
     }
@@ -37,52 +46,23 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
   };
 
   return (
-    // <div className ="SignUpPage">
-    <div className="realModalOutside form-min-size jc-c ai-c">
-    <div className="realModalContent">
-    <div className='outerFormTop'>
-    <div className='formTop'>
+    <div className=" jc-c ai-c col">
+    <div className=''>
     <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
-      <div className='LogInErrors'>
-        <ul className='ulNoBullets'>
+      <div className=''>
+        <ul className=''>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}
         </ul>
       </div>
-
-    </div>
     </div>
 
     <form onSubmit={handleSubmit} className="C" >
-
-      {/* <div>
-      <label>
-        <input
-          className="roundTopFields"
-          placeholder="First Name"
-          type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-      </label>
-      </div>
-      <div>
-      <label>
-        <input
-        placeholder="Last Name"
-          type="text"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-      </label>
-      </div> */}
       <div className='b-margin'>
       <label>
         <input
           className='circle thin-bor bg-white'
-          placeholder="First Name"
+          placeholder="Username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -102,7 +82,6 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div>
-
       <div className='b-margin'>
       <label>
         <input
@@ -127,12 +106,13 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         />
       </label>
       </div>
+
       <div>
       <button className='circle thin-bor bg-white' type="submit">Sign Up</button>
-      {/* <button><NavLink to='/'>Cancel</NavLink></button> */}
       </div>
+
     </form>
-    </div>
+
     </div>
 
   );

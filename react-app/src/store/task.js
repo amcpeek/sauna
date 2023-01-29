@@ -54,6 +54,7 @@ export const fetchOneTask = (id) => async dispatch => {
 //T3
 export const fetchCreateTask = (task, projectId) => async dispatch => {
 
+    console.log('createFetch', task, projectId)
     const response = await fetch(`/api/projects/${projectId}/tasks`, {
         method: 'POST',
         headers: {
@@ -62,8 +63,11 @@ export const fetchCreateTask = (task, projectId) => async dispatch => {
         body: JSON.stringify(task)
     })
     if(response.ok){
+
         const newTask = await response.json()
+        console.log('newtask', newTask)
         dispatch(createTask(newTask))
+
         return newTask
     }
     if(response.status>=400) throw response
@@ -136,7 +140,12 @@ const tasksReducer = (state = initialState, action) => {
 
         case CREATE_TASK:
             newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
+           if(!newState.tasksByProjectId[action.task.projectId]) {
+            newState.tasksByProjectId[action.task.projectId] = { [action.task.id]: action.task}
+           } else {
             newState.tasksByProjectId[action.task.projectId] = {...state.tasksByProjectId[action.task.projectId], [action.task.id]: action.task}
+           }
+
             return newState
 
         case UPDATE_TASK:

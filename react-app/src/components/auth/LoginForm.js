@@ -14,8 +14,24 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login( email, password ))
-     .then( () =>setShowLogInModal(false))
+     .then( (res) =>{
+
+      if(res) {
+        console.log("hopefully can tak out the password part", res)
+        const newThing = (res[0].split(':'))
+        console.log('new thing', newThing[1])
+        if(newThing) {
+          const newerThing = newThing[1]
+          setErrors([newerThing])
+        }
+
+      } else {
+        console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
+      setShowLogInModal(false)
+      }
+    })
      .catch( async (res) => {
+      console.log("is the log in error caught", res)
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
 
@@ -30,9 +46,12 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login( email, password ))
-    .then(() => {setShowLogInModal(false)})
+    .then((thenRes) => {
+      console.log('is the login error then-ed', thenRes)
+      setShowLogInModal(false)})
     .catch(
       async (res) => {
+        console.log("is the log in error caught", res)
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
@@ -40,10 +59,10 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
   }
  //className was LogInForm
   return (
-    <div className="realModalOutside form-min-size jc-c ai-c">
-    <div className="realModalContent">
-    <div className='outerFormTop'>
-    <div className='formTop'>
+    <div className=" jc-c ai-c">
+    <div className="t">
+    <div className=''>
+    <div className=''>
     <button className="bg-white just-text-button" onClick={() => setShowLogInModal(false)}>X</button>
     <h4>Login</h4>
     <div className='LogInErrors'>
@@ -54,7 +73,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
 
     </div>
     </div>
-    <form onSubmit={handleSubmit} className="CreateSpotForm" >
+    <form onSubmit={handleSubmit} className="" >
 
 
       <div className='b-margin'>

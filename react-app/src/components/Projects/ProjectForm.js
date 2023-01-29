@@ -18,7 +18,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
     const [name, setName] = useState(initName)
     const [description, setDescription] = useState(initDescription)
-    const [validationErrors, setValidationErrors] = useState(['this', 'should', 'work'])
+    const [validationErrors, setValidationErrors] = useState([])
     console.log('validationErrors', validationErrors, validationErrors.length)
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                 }) //should redirect to your projects page
             .catch(async (err)=> {
                 const errObj = await err.json()
-                errors.push(errObj.message)
+                errors.push(errObj.errors)
                 setValidationErrors(errors)
             })
         }
@@ -64,7 +64,8 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                  })
             .catch(async (err)=>{
                 const errObj=await err.json();
-                errors.push(errObj.message)
+                console.log('what is errObj.message', errObj.errors)
+                errors.push(errObj.errors)
                 setValidationErrors(errors)
 
               });
@@ -82,14 +83,13 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
         }
 
         return (
-            // <div className="reward-main-container">
+
 
               <div className=" all-margin-small col width-20em">
               <div className="">
-              {/* <div className='projectform-title1'>{formType}</div> */}
-              {/* <div className='reward-form-title2'></div> */}
+
               </div>
-              {/* <div className='reward-form-title'><h2>{formType}</h2></div> */}
+
               <form className='' onSubmit={handleSubmit}>
               <button className='just-text-button bg-white' onClick={()=>setShowModal(false)}>X</button>
       {/* // */}
@@ -104,6 +104,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                       placeholder='Preparing for launch of our new product...'
                       type="text"
                       name="name"
+                      required
                       onChange={(e) => setName(e.target.value)}
                       value={name}/>
 
@@ -120,6 +121,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                       placeholder='New product will launch this summer...'
                       type="text"
                       name="Description"
+                      required
                       onChange={(e) => setDescription(e.target.value)}
                       value={description}/>
 

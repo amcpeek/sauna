@@ -3,6 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchOneProject } from '../../store/project'
 import { getAllTasksByProjectId } from '../../store/task'
+import { authenticate } from '../../store/session';
 import ViewTask from '../Tasks/ViewTask';
 import CreateTask from '../Tasks/CreateTask';
 import EditTask from '../Tasks/EditTask';
@@ -26,6 +27,7 @@ const ViewProject = () => {
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(id))
         const returnTasks = await dispatch(getAllTasksByProjectId(id))
+        const returnUser = await dispatch(authenticate())
     }
 
     useEffect(() => {
@@ -41,6 +43,9 @@ const ViewProject = () => {
 
     let oneProject = useSelector(state => {return state.project[id]})
     let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
+    let user = useSelector(state => {return state.session.user})
+
+
 
     let arr = []
 
@@ -50,6 +55,7 @@ const ViewProject = () => {
 
 
     if(oneProject) {
+
         //console.log('allTasksByProg', Object.values(allTasksByProg[id]))
         const toDo = arr.filter(task => task.stageId == 1)
         const inProg = arr.filter(task => task.stageId == 2)
@@ -60,7 +66,9 @@ const ViewProject = () => {
                     {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                     <div className='bg-green small-box round-sq'> AM</div> */}
                     <div><h2>{oneProject.name}</h2></div>
-                    <div>{oneProject.description}</div>
+                    <div>
+                        Team Lead: {oneProject.owner.username} <br/>
+                        {oneProject.description}</div>
                     <div className='long-gray-line tb-margin'></div>
                     {/* <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div> */}
 
@@ -71,12 +79,18 @@ const ViewProject = () => {
 
                 </div>
                 <div className='f b-margin'>
-                    <div>
-                        <button onClick={() => setShowModal(true)} className='just-text-button bg-white'>
-                        <i className="fa-regular fa-pen-to-square bg-white"></i>
-                        </button>
-                        <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
-                    </div>
+                    {user &&  user.id == oneProject.ownerId &&
+                     <div>
+                     <button onClick={() => setShowModal(true)} className='just-text-button bg-white'>
+                     <i className="fa-regular fa-pen-to-square bg-white"></i>
+                     </button>
+                     <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
+                 </div>
+
+                    }
+
+
+
                     <button className='just-text-button do-not-interact bg-white'>Overview</button>
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>

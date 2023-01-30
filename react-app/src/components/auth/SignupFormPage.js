@@ -46,7 +46,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
   };
 
   return (
-    <div className=" jc-c ai-c col">
+    <div className="jc-c ai-c col all-margin-small">
     <div className=''>
     <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>

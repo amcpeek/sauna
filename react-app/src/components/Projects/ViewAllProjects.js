@@ -47,8 +47,8 @@ const ViewAllProjects = () => {
 
                                             <h3 className='text-blue'> <i className="fa-solid fa-user-plus"></i> {project.name}:</h3>
                                             <div className='col'>
-                                            {/* <p>Team Lead: {project.owner.username}</p> */}
-                                            <h5>{project.description}</h5>
+
+                                            <h5>Team Lead: {project.owner.username} <br/> {project.description}</h5>
 
                                             </div>
 

@@ -45,7 +45,7 @@ function ProfileButton({ user }) {
 
   return (
     <div className='dropdownNav2'>
-      <button onClick={openMenu} className='dropButtonNav circle bg-white pad-1 font-small bg-white thin-bor'>
+      <button onClick={openMenu} className='dropButtonNav circle bg-white pad-1 font-small bg-white thin-bor z-2'>
       {/* id="LoginButton" */}
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
@@ -57,7 +57,7 @@ function ProfileButton({ user }) {
         <div className="dropdownContentNav">
 
             {/* <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/">View Your Profile</NavLink></button> */}
-            <button className='dropDownNavButtons roundBottomFields bg-white round-sq-05 thin-bor' onClick={logout}>Log Out</button>
+            <button className=' bg-white round-sq-05 thin-bor' onClick={logout}>Log Out</button>
         </div>
       )}
               <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>

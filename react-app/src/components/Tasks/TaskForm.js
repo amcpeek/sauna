@@ -12,9 +12,6 @@ const TaskForm=({task, formType, projectId,
     const history=useHistory()
     const dispatch = useDispatch()
 
-
-
-
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
       }
@@ -25,7 +22,6 @@ const TaskForm=({task, formType, projectId,
 
     // const oneProject = useSelector(state => {return state.projects[projectId]})
     if(formType==="Edit Task"){
-        console.log('in edit task start what is task.stageId', task.stageId)
         initDescription=task.description;
         initName=task.name
         initStageId=task.stageId
@@ -47,7 +43,13 @@ const TaskForm=({task, formType, projectId,
     const [stageId, setStageId] = useState(initStageId)
     const [validationErrors, setValidationErrors] = useState([])
 
-    //console.log('what is in validation errors array when nothing has been entered', validationErrors, "name", name, 'description', description, 'stageId', stageId)
+
+
+    useEffect(() => {
+        setDescription(initDescription)
+        setName(initName)
+        setStageId(initStageId)
+    }, [task])
 
     useEffect(() => {
        // console.log('when is the task use effect run', "name", name, 'description', description, 'stageId', stageId)
@@ -56,10 +58,11 @@ const TaskForm=({task, formType, projectId,
         //   return;
         // }
         const errors =[];
-        if(name.length<=0){errors.push("Title required");}
+        if(name.length<=0 || name == ' '){errors.push("Title required");}
         else if(name.length>=50){errors.push("Title must be less than 50 characters")}
         // if(description.length<=0){errors.push("Description required");}
         if(description.length>=255){errors.push("Description must be less than 255 characters")}
+
         setValidationErrors(errors);
     }, [name, description, stageId])
 
@@ -84,12 +87,15 @@ const TaskForm=({task, formType, projectId,
                 setValidationErrors(Object.values(response.errors))
             } else{
               //  console.log('in the else statement', setShowAddTask1)
+
                 if(showAddTask1) {
                     setShowAddTask1(false)
                 } else if (showAddTask2) {
                     setShowAddTask2(false)
                 } else if (showAddTask3) {
                     setShowAddTask3(false)
+                } else if (showTask) {
+                    setShowTask(false)
                 }
             }
             }
@@ -109,10 +115,12 @@ const TaskForm=({task, formType, projectId,
         task.projectId = projectId
         const errors=[]
         dispatch(fetchDeleteTask(task))
-        .then(setShowTask(false))
+        .then(() => setShowTask(false))
         .catch(async (err)=>{
-          const errObj=await err;
-          errors.push(errObj.message)
+            console.log('is it reaching the catch block')
+          const errObj=await err.json();
+          errors.push(errObj.errors)
+          console.log('what is it', errors)
           setValidationErrors(errors)
 
         });
@@ -125,6 +133,8 @@ const TaskForm=({task, formType, projectId,
             setShowAddTask2(false)
         } else if (showAddTask3) {
             setShowAddTask3(false)
+        } else if (showTask) {
+            setShowTask(false)
         }
     }
 

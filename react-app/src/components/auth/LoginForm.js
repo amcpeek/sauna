@@ -59,7 +59,7 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
   }
  //className was LogInForm
   return (
-    <div className=" jc-c ai-c">
+    <div className=" jc-c ai-c all-margin-small">
     <div className="t">
     <div className=''>
     <div className=''>

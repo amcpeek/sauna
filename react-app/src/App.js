@@ -12,6 +12,8 @@ import ProjectEntry from './components/Projects/ProjectEntry';
 import TaskEntry from './components/Tasks/TaskEntry'
 import ViewTask from './components/Tasks/ViewTask'
 import WhySauna from './components/Navigation/whySauna';
+import ProfilePage from './components/Navigation/ProfilePage';
+import PageNotFound from './components/Navigation/PageNotFound';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +61,12 @@ function App() {
         </Route>
         <Route path='/whySauna'>
           <WhySauna/>
+        </Route>
+        <ProtectedRoute path='/profile'>
+          <ProfilePage/>
+        </ProtectedRoute>
+        <Route >
+            <PageNotFound/>
         </Route>
       </Switch>
     </BrowserRouter>

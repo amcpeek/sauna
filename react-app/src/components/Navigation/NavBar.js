@@ -25,11 +25,11 @@ const NavBar = () => {
 
   return (
     <nav>
-       <div className='jc-sb lr-margin'>
+       <div className='jc-sb lr-margin vh-5 ai-c '>
               <div className='row'>
                       <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                       &nbsp; &nbsp; &nbsp;
-                      <div className='no-und'><Link to='/whySauna'>Why Sauna?</Link></div>
+                      <div ><Link to='/whySauna' className='no-und'>Why Sauna?</Link></div>
                       &nbsp; &nbsp; &nbsp;
                       <div ><a href='https://github.com/amcpeek/sauna/wiki' className='no-und'>Features</a></div>
                       &nbsp; &nbsp; &nbsp;
@@ -50,44 +50,27 @@ const NavBar = () => {
                       </a>
                       &nbsp; &nbsp; &nbsp;
                   </div>
-                  <div className='row ai-c'>
-                      {user && <button onClick={() => setShowModal(true)} className='just-text-button bg-white'><i className="fa-solid fa-plus"></i></button>}
-                      &nbsp; &nbsp; &nbsp;
+                  <div className='row ai-jc width-same'>
 
-                      <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
+                      {user &&
+                      <div className='ai-c'>
+                        <button onClick={() => setShowModal(true)} className='just-text-button bg-white cursor'><i className="fa-solid fa-plus"></i></button>
+                        <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
+                      </div>
+                      }
 
-                      {/* <div><Link to={`/projects/create`}>Create Project</Link></div> */}
-                      <div> <ProfileButton user={user}/></div>
+
+
+                      <div>
+                         <div> <ProfileButton user={user}/></div>
+
+                      </div>
                   </div>
               </div>
 
             </div>
 
-      {/* <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul> */}
+
     </nav>
   );
 }

@@ -62,7 +62,7 @@ const ViewProject = () => {
         const complete = arr.filter(task => task.stageId == 3)
         return (
             <div className='col'>
-                <div className='col'>
+                <div className='col vh-15 lr-margin-small'>
                     {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                     <div className='bg-green small-box round-sq'> AM</div> */}
                     <div><h2>{oneProject.name}</h2></div>
@@ -78,14 +78,14 @@ const ViewProject = () => {
 
 
                 </div>
-                <div className='f b-margin'>
+                <div className='f vh-5 lr-margin-small ai-c '>
                     {user &&  user.id == oneProject.ownerId &&
                      <div>
                      <button onClick={() => setShowModal(true)} className='just-text-button bg-white'>
-                     <i className="fa-regular fa-pen-to-square bg-white"></i>
+                     <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
                      </button>
                      <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
-                 </div>
+                     </div>
 
                     }
 
@@ -98,14 +98,14 @@ const ViewProject = () => {
 
 
 
-                <div className='bg-light-gray round-sq-05 b-padding-large'>
+                <div className='bg-light-gray round-sq-05 vw-100-vh-75'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>To Do <button className='just-text-button' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>To Do <button className='just-text-button cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus"></i></button></h2>
                         {toDo.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task" key={task.id} onClick={() => (showTaskFunc(task))}>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task))}>
                                     {task.name}
                                 </button>
                             )
@@ -130,7 +130,7 @@ const ViewProject = () => {
                         <h2>In Progress <button className='just-text-button' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button></h2>
                         {inProg.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task" key={task.id} onClick={() => (showTaskFunc(task)) }>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task)) }>
                                     {task.name}
                                 </button>
                             )
@@ -150,7 +150,7 @@ const ViewProject = () => {
                         <h2>Complete <button className='just-text-button' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button></h2>
                         {complete.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
                                     {task.name}
                                 </button>
                             )
@@ -204,7 +204,9 @@ const ViewProject = () => {
 
         )
     } else {
-        return null
+        return (
+            <div className='jc-c ai-c'>This project does not exist</div>
+        )
     }
 }
 

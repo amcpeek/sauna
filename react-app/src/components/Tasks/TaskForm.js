@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../store/task";
 import { fetchOneProject } from "../../store/project"
+import { authenticate } from '../../store/session';
 
 const TaskForm=({task, formType, projectId,
     setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3,
@@ -14,6 +15,7 @@ const TaskForm=({task, formType, projectId,
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
+        const returnUser = await dispatch(authenticate())
       }
 
       useEffect(() => {
@@ -42,6 +44,8 @@ const TaskForm=({task, formType, projectId,
     const [name, setName] = useState(initName)
     const [stageId, setStageId] = useState(initStageId)
     const [validationErrors, setValidationErrors] = useState([])
+    let user = useSelector(state => {return state.session.user})
+    let oneProject = useSelector(state => {return state.project[projectId]})
 
 
 
@@ -206,7 +210,7 @@ const TaskForm=({task, formType, projectId,
              <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
              </div>
             </form>
-            {formType==="Edit Task" &&(
+            {formType==="Edit Task" && user && oneProject && user.id == oneProject.ownerId && (
                 <div className="">
               <button onClick={()=>deleteEvents(task)} className="bg-white round-sq-05 thin-bor">Delete</button>
               </div>

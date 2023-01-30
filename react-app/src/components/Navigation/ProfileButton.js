@@ -44,29 +44,28 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <div className='dropdownNav2'>
-      <button onClick={openMenu} className='dropButtonNav circle bg-white pad-1 font-small bg-white thin-bor z-2'>
+    <div className=''>
+      <button onClick={openMenu} className=' just-text-button bg-white pad-1 z-2 cursor'>
       {/* id="LoginButton" */}
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
-      {!user? <div>Get Started</div>: <div className=''>{(user.username).slice(0,1)} {((user.username).slice(1,2)).toUpperCase()}</div>}
+      {!user? <div className='font-small-med' >Get Started</div>: <div className=''>{(user.username).slice(0,1).toUpperCase()} {((user.username).slice(1,2)).toUpperCase()}</div>}
 
       </button>
       {showMenu && user && (
 
         <div className="dropdownContentNav">
 
-            {/* <button className='dropDownNavButtons roundTopFields'><NavLink exact to="/">View Your Profile</NavLink></button> */}
-            <button className=' bg-white round-sq-05 thin-bor' onClick={logout}>Log Out</button>
+            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>View Your Profile</NavLink></button>
+            <button className='just-text-button bg-white cursor' onClick={logout}>Log Out</button>
         </div>
       )}
               <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
              <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal}/>
       {showMenu && !user && (
         <div className="dropdownContentNav">
-          {/* <div className={'cursor'} onClick={() => {setShowModal(true)}}>WTF</div> */}
-          <button className='bg-white circle thin-bor font-small' onClick={() => setShowLogInModal(true)}>Log In</button>
-          <button className=' bg-white circle thin-bor font-small' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
+          <button className='just-text-button bg-white cursor' onClick={() => setShowLogInModal(true)}>Log In</button>
+          <button className='just-text-button bg-white cursor' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
 
 
         </div>

@@ -31,7 +31,7 @@ const ViewAllProjects = () => {
 
                                 <div>
                                     <h1>Are silos making teamwork <br/> more painful?</h1>
-                                    <h4>Sauna helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
+                                    <h4>Sauna, an Asana clone,  helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
                                     <h4>Join one of the many teams working on projects on Sauna </h4>
                                     <h2>Click on a project listed below: </h2>
                                 </div>

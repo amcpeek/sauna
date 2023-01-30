@@ -95,7 +95,10 @@ const ViewProject = () => {
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
                 </div>
-                <div className='bg-light-gray round-sq-05'>
+
+
+
+                <div className='bg-light-gray round-sq-05 b-padding-large'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>

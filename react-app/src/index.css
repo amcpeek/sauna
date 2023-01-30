@@ -2,6 +2,7 @@
 
 html {
     font-family: 'Poppins', sans-serif;
+    /* background-color: green; */
 }
 
 textarea {
@@ -99,6 +100,7 @@ textarea {
 .bg-light-gray {
     display:flex;
     background-color: #C9E2FB
+    
 
 }
 
@@ -106,6 +108,10 @@ textarea {
     display:flex;
     background-color: white;
 
+}
+
+.bg-none {
+    background-color: none;
 }
 
 .bg-whole-page {
@@ -165,6 +171,11 @@ textarea {
 
 /* margin, padding */
 
+.margin-0 {
+    margin: 0px;
+
+}
+
 .all-padding {
     display:flex;
     padding: 5em;
@@ -185,6 +196,11 @@ textarea {
     display:flex;
     margin-bottom: 1em;
 
+}
+
+.b-padding-large {
+    display:flex;
+    padding-bottom: 30em;
 }
 
 
@@ -216,6 +232,16 @@ textarea {
 }
 
 /* width, height */
+
+.width-50em {
+    width: 30em;
+}
+
+
+.wh-100 {
+    width: 100%;
+    height: 100%;
+}
 
 .height-100-per {
     display: flex;
@@ -383,6 +409,22 @@ height: 2em;
 .main-left-proj {
     width: 60%;
 }
+
+
+/* whySauna */
+
+.why-sauna-img {
+    width: 100%;
+    height: 100%;
+}
+
+.overlap-img {
+    position: absolute;
+    top: 3em;
+    left: 2em;
+    color: black;
+}
+
 
 
 

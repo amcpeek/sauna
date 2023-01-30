@@ -29,7 +29,7 @@ const NavBar = () => {
               <div className='row'>
                       <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                       &nbsp; &nbsp; &nbsp;
-                      <div className='do-not-interact'>Why Sauna?</div>
+                      <div className='no-und'><Link to='/whySauna'>Why Sauna?</Link></div>
                       &nbsp; &nbsp; &nbsp;
                       <div ><a href='https://github.com/amcpeek/sauna/wiki' className='no-und'>Features</a></div>
                       &nbsp; &nbsp; &nbsp;

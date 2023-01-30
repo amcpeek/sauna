@@ -51,9 +51,9 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
       <div className=''>
-        <ul className=''>
+        <div className=''>
         {errors.map((error, idx) => <li key={idx}>{error}</li>  )}
-        </ul>
+        </div>
       </div>
     </div>
 

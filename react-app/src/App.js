@@ -11,6 +11,7 @@ import ViewAllProjects from './components/Projects/ViewAllProjects';
 import ProjectEntry from './components/Projects/ProjectEntry';
 import TaskEntry from './components/Tasks/TaskEntry'
 import ViewTask from './components/Tasks/ViewTask'
+import WhySauna from './components/Navigation/whySauna';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +56,9 @@ function App() {
 
         <Route path={['/','/projects']} exact={true} >
           <ViewAllProjects/>
+        </Route>
+        <Route path='/whySauna'>
+          <WhySauna/>
         </Route>
       </Switch>
     </BrowserRouter>

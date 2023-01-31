@@ -1,4 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .user import User
+from .task import Task
 
 
 class Project(db.Model):
@@ -11,11 +13,15 @@ class Project(db.Model):
     ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(4000), nullable=False)
+    teamId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("teams.id")))
+
 
     user = db.relationship("User", back_populates="projects")
     tasks = db.relationship("Task", back_populates="project", cascade="all, delete")
-    #now different bc team owns a project, like a reward owns a pledge
     team = db.relationship("Team", back_populates="projects")
+
+    #now different bc team owns a project, like a reward owns a pledge
+
 
 
     def to_dict(self):

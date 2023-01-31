@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .projects import seed_projects, undo_projects
 from .tasks import seed_tasks, undo_tasks
 
+
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -34,7 +35,7 @@ def seed():
 
 
 # Creates the `flask seed undo` command
-#this resets the whole db 
+#this resets the whole db
 @seed_commands.command('undo')
 def undo():
     undo_tasks()

@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     projects = db.relationship("Project", back_populates='user', cascade="all, delete")
+    memberships = db.relationship("Membership", back_populates='user')
+    teams = db.relationship("Team", back_populates='user')
 
 
     @property

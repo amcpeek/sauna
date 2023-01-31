@@ -3,16 +3,34 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    u1 = User(
+        username='Annika', email='annika@aa.io', password='passwordAnnika')
+    u2 = User(
+        username='Bob', email='bob@aa.io', password='passwordBob')
+    u3 = User(
+        username='Colleen', email='colleen@aa.io', password='passwordColleen')
+    u4 = User(
+        username='David', email='david@aa.io', password='passwordDavid')
+    u5 = User(
+        username='Erik', email='erik@aa.io', password='passwordErik')
+    u6 = User(
+        username='Fredrik', email='fredrik@aa.io', password='passwordFredrik')
+    u7 = User(
+        username='Grace', email='grace@aa.io', password='passwordGrace')
+    u8 = User(
+        username='Henrik', email='henrik@aa.io', password='passwordHenrik')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+
+    db.session.add(u1)
+    db.session.add(u2)
+    db.session.add(u3)
+    db.session.add(u4)
+    db.session.add(u5)
+    db.session.add(u6)
+    db.session.add(u7)
+    db.session.add(u8)
+
+
     db.session.commit()
 
 

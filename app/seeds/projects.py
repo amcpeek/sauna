@@ -1,18 +1,14 @@
 from app.models import db, Project, environment, SCHEMA
 
 def seed_projects():
-    project1=Project(ownerId=1,name='Select new science curriculum',
-    description='Review 4 curriculums with teachers and the board')
-    project2=Project(ownerId=1, name='Applying for the State funding',
-    description='Work with Oakland STEM schools to write a grant for additional funding')
-    project3=Project(ownerId=2, name='Piloting new remote literacy tutoring',
-    description="Partner with an external tutor provider company and Oakland school district")
-    project4=Project(ownerId=2, name='Hire and onboard implementation team members',
-    description='Work with HR to create a hiring, onboarding, and continual coaching process.')
-    db.session.add(project1)
-    db.session.add(project2)
-    db.session.add(project3)
-    db.session.add(project4)
+    p1=Project(ownerId=1, name='P1 of T1: Document Renewal Process', description='each sub team has created their own processes and we need to collaborate to unite them')
+
+
+
+    db.session.add(p1)
+    db.session.add(p2)
+    db.session.add(p3)
+    db.session.add(p4)
     db.session.commit()
 
 def undo_projects():
@@ -30,3 +26,16 @@ def undo_projects():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
+
+
+
+#seed data with sci dept
+    # project1=Project(ownerId=1,name='Select new science curriculum',
+    # description='Review 4 curriculums with teachers and the board')
+    # project2=Project(ownerId=1, name='Applying for the State funding',
+    # description='Work with Oakland STEM schools to write a grant for additional funding')
+#v1 implementation team data
+    # project3=Project(ownerId=2, name='Piloting new remote literacy tutoring',
+    # description="Partner with an external tutor provider company and Oakland school district")
+    # project4=Project(ownerId=2, name='Hire and onboard implementation team members',
+    # description='Work with HR to create a hiring, onboarding, and continual coaching process.')

@@ -2,7 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .projects import seed_projects, undo_projects
 from .tasks import seed_tasks, undo_tasks
-# from .teams import seed_teams, undo_teams
+from .teams import seed_teams, undo_teams
 
 
 
@@ -24,7 +24,7 @@ def seed():
         #this is because the build command in Render needs to do the undo and the redo on the free tier
         undo_tasks()
         undo_projects()
-        # undo_teams()
+        undo_teams()
         undo_users()
     #not needed can do flask seed undo to hit this
     # undo_tasks()
@@ -32,7 +32,7 @@ def seed():
     # undo_users()
 
     seed_users()
-    # seed_teams()
+    seed_teams()
     seed_projects()
     seed_tasks()
     # Add other seed functions here
@@ -44,7 +44,7 @@ def seed():
 def undo():
     undo_tasks()
     undo_projects()
-    # undo_teams()
+    undo_teams()
     undo_users()
 
     # Add other undo functions here

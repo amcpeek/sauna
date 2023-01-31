@@ -14,8 +14,10 @@ class Task(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(2000), nullable=False)
     stageId = db.Column(db.Integer)
+    # assigneeId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 
     project = db.relationship("Project", back_populates="tasks")
+    # user = db.relationship("User", back_populates='task')
    # comment = db.relationship("Comment", back_populates="task", cascade="all, delete")
 
 
@@ -26,5 +28,6 @@ class Task(db.Model):
             'projectId':self.projectId,
             'name': self.name,
             'description': self.description,
-            'stageId': self.stageId
+            'stageId': self.stageId,
+            # 'assigneeId': self.assigneeId
         }

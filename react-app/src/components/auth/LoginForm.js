@@ -41,8 +41,8 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
 
 
   const logInDemoUser = (e) => {
-    const email = 'demo@aa.io'
-    const password = 'password'
+    const email = 'annika@aa.io'
+    const password = 'passwordAnnika'
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login( email, password ))

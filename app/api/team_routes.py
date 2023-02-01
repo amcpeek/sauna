@@ -4,6 +4,14 @@ from app.models import Project, db, user, Team, Membership
 from app.forms import TeamForm, MembershipForm
 from .auth_routes import validation_errors_to_error_messages
 
+#Tm1 get all
+#Tm2 get one
+#Tm3 current user
+#Tm4 create
+#Tm5 edit
+#Tm6 delete
+
+
 team_routes = Blueprint('teams', __name__)
 
 #Tm1 get all

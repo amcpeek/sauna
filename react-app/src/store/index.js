@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import session from './session'
 import project from './project'
 import task from './task'
+import team from './team'
+import membership from './membership'
 
 const rootReducer = combineReducers({
   session,
   project,
-  task
+  task,
+  team,
+  membership
 });
 
 

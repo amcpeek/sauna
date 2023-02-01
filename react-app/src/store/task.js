@@ -113,6 +113,8 @@ export const getAllTasksByProjectId = (projectId) => async dispatch => {
 
 //reducer
 
+// plan to add tasks by user id, so state shape make more sense
+
 const initialState = {}
 
 const tasksReducer = (state = initialState, action) => {

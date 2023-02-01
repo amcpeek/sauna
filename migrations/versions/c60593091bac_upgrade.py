@@ -26,7 +26,7 @@ def upgrade():
     op.create_foreign_key(None, 'tasks', 'users', ['assigneeId'], ['id'])
     # ### end Alembic commands ###
     if environment == "production":
-      op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+      op.execute(f"ALTER TABLE tasks SET SCHEMA {SCHEMA};")
 
 
 def downgrade():

@@ -29,5 +29,5 @@ class Task(db.Model):
             'name': self.name,
             'description': self.description,
             'stageId': self.stageId,
-            # 'assigneeId': self.assigneeId
+            'assigneeId': self.assigneeId
         }

@@ -1,8 +1,8 @@
-"""upgrade
+"""1
 
-Revision ID: bb7a7849e1cf
-Revises: 
-Create Date: 2023-01-31 15:54:39.864330
+Revision ID: b88679e83d26
+Revises:
+Create Date: 2023-01-31 11:00:32.836133
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'bb7a7849e1cf'
+revision = 'b88679e83d26'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,10 +37,10 @@ def upgrade():
     )
     op.create_table('memberships',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=True),
+    sa.Column('membershipId', sa.Integer(), nullable=True),
     sa.Column('teamId', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['membershipId'], ['users.id'], ),
     sa.ForeignKeyConstraint(['teamId'], ['teams.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('projects',
@@ -59,8 +59,6 @@ def upgrade():
     sa.Column('name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.String(length=2000), nullable=False),
     sa.Column('stageId', sa.Integer(), nullable=True),
-    sa.Column('assigneeId', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['assigneeId'], ['users.id'], ),
     sa.ForeignKeyConstraint(['projectId'], ['projects.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

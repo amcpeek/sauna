@@ -18,7 +18,6 @@ def allProjects():
 #P2 get one
 @project_routes.route('/<int:id>')
 def projectById(id):
-    # print('$$$$$$$$$$$$$$$$$$$$$can I even print this', Project[id].to_dict())
     """
     Query for a user by id and returns that user in a dictionary
     """

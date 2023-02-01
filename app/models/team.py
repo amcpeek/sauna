@@ -46,7 +46,7 @@ class Team(db.Model):
             'description': self.description,
             'owner':User.query.get(self.ownerId).to_dict(),
             'projects':[project.to_dict() for project in Project.query.all() if int(project.teamId)==int(self.id)],
-            'memberships':[membership.to_dict() for membership in Membership.query.all() if int(membership.teamId)==int(self.id)]
+            'memberships':[membership.to_dict_full() for membership in Membership.query.all() if int(membership.teamId)==int(self.id)]
 
         }
     # the 2 one-to-many relationships method:

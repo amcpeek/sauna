@@ -14,6 +14,9 @@ import ViewTask from './components/Tasks/ViewTask'
 import WhySauna from './components/Navigation/whySauna';
 import ProfilePage from './components/Navigation/ProfilePage';
 import PageNotFound from './components/Navigation/PageNotFound';
+import SplashPage from './components/Navigation/SplashPage'
+import ViewAllTeams from './components/Team/ViewAllTeams';
+import ViewTeam from './components/Team/ViewTeam'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,37 +37,48 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+
+        <Route path='/' exact={true}>
+          <SplashPage/>
+        </Route>
+        <ProtectedRoute path='/profile'>
+          <ProfilePage/>
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path={['/projects/create','/projects/:id/edit']} >
-          <ProjectEntry />
-        </ProtectedRoute>
-        <ProtectedRoute path={['/projects/:projectId/tasks/create','/tasks/:taskId/edit']} >
-          <ProjectEntry />
-        </ProtectedRoute>
-        {/* <Route path='/projects'exact={true} >
+        <Route path='/whySauna'>
+          <WhySauna/>
+        </Route>
+
+        <Route path='/projects'exact={true} >
           <ViewAllProjects/>
-        </Route> */}
+        </Route>
         <Route path='/projects/:id'exact={true} >
           <ViewProject/>
         </Route>
         <Route path='/projects/:projectId/tasks/:taskId'exact={true} >
           <ViewTask/>
         </Route>
-
-        <Route path={['/','/projects']} exact={true} >
-          <ViewAllProjects/>
-        </Route>
-        <Route path='/whySauna'>
-          <WhySauna/>
-        </Route>
-        <ProtectedRoute path='/profile'>
-          <ProfilePage/>
+        <ProtectedRoute path={['/projects/create','/projects/:id/edit']} >
+          <ProjectEntry />
         </ProtectedRoute>
+        <ProtectedRoute path={['/projects/:projectId/tasks/create','/tasks/:taskId/edit']} >
+          <ProjectEntry />
+        </ProtectedRoute>
+
+        <Route path='/teams' exact={true}>
+          <ViewAllTeams/>
+        </Route>
+        <Route path='/teams/:id' exact={true}>
+          <ViewTeam/>
+        </Route>
+
+
+
         <Route >
             <PageNotFound/>
         </Route>

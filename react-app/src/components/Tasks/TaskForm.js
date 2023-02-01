@@ -61,6 +61,7 @@ const TaskForm=({task, formType, projectId,
         //   setValidationErrors([]);
         //   return;
         // }
+        //if don't want this prior to press submit, can put in the handleSubmit, or just rely on backend validation 
         const errors =[];
         if(name.length<=0 || name == ' '){errors.push("Title required");}
         else if(name.length>=50){errors.push("Title must be less than 50 characters")}

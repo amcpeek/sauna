@@ -1,4 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .project import Project
+from .user import User
+from .membership import Membership
 
 
 class Team(db.Model):
@@ -23,6 +26,28 @@ class Team(db.Model):
             'ownerId': self.ownerId,
             'name': self.name,
             'description': self.description
+        }
+
+    def to_dict_full(self):
+        return {
+            'id': self.id,
+            'ownerId': self.ownerId,
+            'name': self.name,
+            'description': self.description,
+            'owner':User.query.get(self.ownerId).to_dict(),
+            'projects':[project.to_dict() for project in Project.query.all() if int(project.teamId)==int(self.id)]
+        }
+
+    def to_dict_with_memberships(self):
+        return {
+            'id': self.id,
+            'ownerId': self.ownerId,
+            'name': self.name,
+            'description': self.description,
+            'owner':User.query.get(self.ownerId).to_dict(),
+            'projects':[project.to_dict() for project in Project.query.all() if int(project.teamId)==int(self.id)],
+            'memberships':[membership.to_dict() for membership in Membership.query.all() if int(membership.teamId)==int(self.id)]
+
         }
     # the 2 one-to-many relationships method:
     # ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))

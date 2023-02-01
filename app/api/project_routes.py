@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Project, db, user
-from app.forms import ProjectForm #it wants it to be project_form, but that is not correct
+from app.forms import ProjectForm
 from .auth_routes import validation_errors_to_error_messages
 
 project_routes = Blueprint('projects', __name__)

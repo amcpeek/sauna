@@ -13,6 +13,7 @@ def allTeams():
     Query for all users and returns them in a list of team dictionaries
     """
     return {'Teams': [team.to_dict_with_memberships() for team in Team.query.all()]}
+
 #Tm2 get one
 @team_routes.route('/<int:id>')
 def teamById(id):
@@ -24,23 +25,23 @@ def teamById(id):
     return team.to_dict_with_memberships()
 
 
-#Tm3 get current users
-#DO NOT USE THIS ROUTE, JUST USER THE MEMBERSHIP ONE
+# Tm3 get current users
+# DO NOT USE THIS ROUTE, JUST USER THE MEMBERSHIP ONE
 # this has 3 levels of nested dictionaries, return later
-#instead on user table have get all teams
-# @team_routes.route("/current")
-# @login_required
-# def currents_teams():
-#     currentId=current_user.get_id()
-#     teams = [team.to_dict_with_memberships() for team in Team.query.all()]
-#     currentTeams = {}
-#     for team in teams:
-#         mem = team['memberships']
-#         for membership in mem:
-#             if int(membership['userId']) ==int(currentId):
-#                 new = team['id']
-#                 currentTeams[new]= team
-#     return currentTeams
+# instead on user table have get all teams
+@team_routes.route("/current")
+@login_required
+def currents_teams():
+    currentId=current_user.get_id()
+    teams = [team.to_dict_with_memberships() for team in Team.query.all()]
+    currentTeams = {}
+    for team in teams:
+        mem = team['memberships']
+        for membership in mem:
+            if int(membership['userId']) ==int(currentId):
+                new = team['id']
+                currentTeams[new]= team
+    return currentTeams
 
 
 #Tm4 create

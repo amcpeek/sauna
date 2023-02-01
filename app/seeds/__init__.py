@@ -25,8 +25,8 @@ def seed():
         #this is because the build command in Render needs to do the undo and the redo on the free tier
         undo_tasks()
         undo_projects()
-        undo_teams()
         undo_memberships()
+        undo_teams()
         undo_users()
     #not needed can do flask seed undo to hit this
     # undo_tasks()
@@ -34,8 +34,8 @@ def seed():
     # undo_users()
 
     seed_users()
-    seed_memberships()
     seed_teams()
+    seed_memberships()
     seed_projects()
     seed_tasks()
     # Add other seed functions here
@@ -47,8 +47,8 @@ def seed():
 def undo():
     undo_tasks()
     undo_projects()
-    undo_teams()
     undo_memberships()
+    undo_teams()
     undo_users()
 
     # Add other undo functions here

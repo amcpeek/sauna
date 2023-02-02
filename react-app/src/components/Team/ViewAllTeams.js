@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllTeams } from '../../store/team'
 import { authenticate } from '../../store/session';
 import CreateTeamModal from './CreateTeamModal';
+import { fetchCreateMembership } from '../../store/membership';
 
 
 const ViewAllTeams = () => {
@@ -23,6 +24,16 @@ const ViewAllTeams = () => {
     let user = useSelector(state => {return state.session.user})
     let allTeamsObj = useSelector(state => {return state.team})
     let allTeams = Object.values(allTeamsObj)
+
+    const handleCreateMembership = async (teamId) => {
+        await dispatch(fetchCreateMembership(teamId))
+          .then(history.push(`/teams`))
+          .catch(async (err) => {
+            alert(err)
+            console.log('5555555555', err)
+          })
+     }
+
 
     return (
         <div className='main-left col main-left lr-margin'>
@@ -50,7 +61,7 @@ const ViewAllTeams = () => {
                         <h5>Team Lead: {team.owner.username}
                         <br/>
                         {team.description}</h5>
-                        <button>Join Team</button>
+                        <button onClick={() => handleCreateMembership(team.id)}>Join Team</button>
                         <br/>
                         <div className='short-gray-line'></div>
 

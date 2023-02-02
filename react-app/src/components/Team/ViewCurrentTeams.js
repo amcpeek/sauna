@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllTeams } from '../../store/team'
 import { authenticate } from '../../store/session';
 import EditTeamModal from './EditTeamModal';
+import {fetchDeleteMembership} from '../../store/membership'
 
 //note shows currently if member
 
@@ -43,14 +44,12 @@ const ProfilePage = () => {
         }
     }
 
-    const handleSubmit = (x) => {
-        // e.preventDefault()
-        setShowModal(true)
-        setSentTeamId(x)
-        console.log('teamId', sentTeamId)
 
-    }
 
+    const handleRemoveMembership = async (teamId) => {
+        await dispatch(fetchDeleteMembership(teamId))
+          history.push('/profile')
+     }
 
 
 
@@ -75,10 +74,8 @@ const ProfilePage = () => {
                             <div className='f vh-5 lr-margin-small ai-c'>
                             <button onClick={() => (setShowModal(true), setSentTeamId(team.id)) } className='just-text-button bg-white'>
                             <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
-                            
                             </button>
                             <EditTeamModal showModal={showModal} setShowModal={setShowModal} sentTeamId={sentTeamId}/>
-                            <button>Leave Team</button>
                             </div>
                         )}
                         </div>
@@ -100,7 +97,7 @@ const ProfilePage = () => {
                         <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
                         </div>
                         </Link>
-                        <button>Leave Team</button>
+                        <button onClick={() => handleRemoveMembership(team.id)}>Leave Team!</button>
                         </div>
                         )
                     }))
@@ -118,7 +115,7 @@ const ProfilePage = () => {
                     <h1>You are not currently part of any teams</h1>
                     {/* <button onClick={() => setShowModal(true)} className='thin-bor bg-white text-blue circle'>Create a project here</button>
                 <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/> */}
-                <button>join a team or create a team</button>
+                <Link to='/teams'>join a team or create a team</Link>
                 </div>
                 </div>
                 </div>

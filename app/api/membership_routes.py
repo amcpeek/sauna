@@ -47,7 +47,6 @@ def create_membership(teamId):
     form['csrf_token'].data = request.cookies['csrf_token']
     currentId=current_user.get_id()
     team = Team.query.get(teamId)
-    print('99999999999999', team)
 
     if not team:
         return {
@@ -87,31 +86,56 @@ def create_membership(teamId):
             "errors":validation_errors_to_error_messages(form.errors),
             "statusCode": 400,
         }, 400
+    print('44444444444444')
     return {
         "not sure how we got here"
     }
 
+
+
+
 #M5 membership delete
-@membership_routes.route('/memberships/<int:membershipId>', methods=['DELETE'])
+@membership_routes.route('/teams/<int:teamId>/memberships', methods=['DELETE'])
 @login_required
-def delete_membership(membershipId):
-    oneMembership = Membership.query.get(membershipId)
-    if not oneMembership:
+def delete_membership(teamId):
+
+    currentId=current_user.get_id()
+    #with team id and user id figure out membership id
+    team = Team.query.get(teamId)
+
+    if not team:
+        return {
+           'message':'HTTP Error',
+           "errors":["Team couldn't be found"],
+           'statusCode': 404
+           },404
+
+    # piece1 = Membership.query.filter(Membership.teamId==teamId).all()
+    # print('9999999999999999999999999999', piece1)
+    # piece2 = piece1.first(Membership.userId==currentId)
+    # print('777777777777777777777', piece2)
+
+    user_member_already=Membership.query.filter(Membership.teamId==teamId).filter(Membership.userId==currentId).all()
+
+    #find this member in that team
+    #oneMembership = Membership.query.get(membershipId)
+    if not user_member_already:
         return {
             'message':'HTTP Error',
             "errors":["Membership couldn't be found"],
             'statusCode': 404
             },404
 
-    currentId=current_user.get_id()
-    if int(oneMembership.userId) != int(currentId):
-        return {
-          'message':'Forbidden Error',
-          'errors': ['This user is not a member of this team'],
-          'statusCode': 403
-          },403
+    # currentId=current_user.get_id()
+    print('8888888888888888888888888888', user_member_already[0])
+    # if int(user_member_already.userId) != int(currentId):
+    #     return {
+    #       'message':'Forbidden Error',
+    #       'errors': ['This user is not a member of this team'],
+    #       'statusCode': 403
+    #       },403
 
-    db.session.delete(oneMembership)
+    db.session.delete(user_member_already[0])
     db.session.commit()
     return {
         "message": "Successfully deleted",

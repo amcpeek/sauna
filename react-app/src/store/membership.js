@@ -64,13 +64,14 @@ export const fetchOneMembership = (membershipId) => async dispatch => {
 
 //exclude fetch by user id
 
-export const fetchCreateMembership = (membership) => async dispatch => {
-    const response = await fetch(`/api/memberships`, {
+export const fetchCreateMembership = (teamId) => async dispatch => {
+   // console.log('in Fetch Create Membership', teamId)
+    const response = await fetch(`/api/teams/${teamId}/memberships`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(membership)
+        body: JSON.stringify({})
     })
     if(response.ok){
         const newMembership = await response.json()
@@ -81,25 +82,25 @@ export const fetchCreateMembership = (membership) => async dispatch => {
     if(response.status>=400) throw response
 }
 
-export const fetchUpdateMembership = (membership) => async dispatch => {
-    const response = await fetch(`/api/memberships/${membership.id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(membership)
-    })
-    if(response.ok){
-        const editMembership = await response.json()
-        dispatch(edit(editMembership))
-        return editMembership
-    }
-    console.log('in the fetchUpdateMembership what is the response', response)
-    if(response.status>=400) throw response
-}
+// export const fetchUpdateMembership = (membership) => async dispatch => {
+//     const response = await fetch(`/api/memberships/${membership.id}`, {
+//         method: 'PUT',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(membership)
+//     })
+//     if(response.ok){
+//         const editMembership = await response.json()
+//         dispatch(edit(editMembership))
+//         return editMembership
+//     }
+//     console.log('in the fetchUpdateMembership what is the response', response)
+//     if(response.status>=400) throw response
+// }
 
 export const fetchDeleteMembership = (id) => async dispatch => {
-    const response = await fetch(`/api/memberships/${id}`, {
+    const response = await fetch(`/api/teams/${id}/memberships`, {
         method: 'DELETE',
     })
     if(response.ok){

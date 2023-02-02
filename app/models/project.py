@@ -12,7 +12,7 @@ class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ownerId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(4000), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
     teamId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("teams.id")))
 
 

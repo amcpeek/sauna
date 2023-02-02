@@ -11,7 +11,7 @@ import CreateProjectModal from '../Projects/CreateProjectModal';
 
 const NavBar = () => {
   const dispatch = useDispatch()
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
 
   const findProjectTest = async () => {
     const returnUser = await dispatch(authenticate())

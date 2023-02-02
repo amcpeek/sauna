@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTeam } from "../../store/team";
 
 
-const EditTeam=({showModal, setShowModal, sentTeamId})=>{
+const EditTeam=({showTModal, setShowTModal, sentTeamId})=>{
     console.log('are we getting to EditTeam.js', sentTeamId)
     const dispatch = useDispatch()
     // const {id}=useParams();
@@ -19,6 +19,7 @@ const EditTeam=({showModal, setShowModal, sentTeamId})=>{
     }, [dispatch])
 
     const tempTeam = useSelector(state=>state.team[sentTeamId])
+    console.log('s tempTeam working', tempTeam)
 
     if(!tempTeam) return null
 
@@ -30,7 +31,7 @@ const EditTeam=({showModal, setShowModal, sentTeamId})=>{
     }
 
     return (
-        <TeamForm team={team} formType="Edit Team" showModal={showModal} setShowModal={setShowModal}/>
+        <TeamForm team={team} formType="Edit Team" showTModal={showTModal} setShowTModal={setShowTModal}/>
 
     )
 }

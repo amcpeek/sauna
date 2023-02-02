@@ -1,9 +1,9 @@
 from app.models import db, Team, environment, SCHEMA
 
 def seed_teams():
-    t1 = Team(name='T1: Customer Success & Implementation', ownerId=1,
+    t1 = Team(name='Customer Success & Implementation', ownerId=1,
     description='Support customers implementing the process of at home remote tutoring and renewing contracts with districts')
-    t2 = Team(name='T2: Product & Engineering', ownerId=5,
+    t2 = Team(name='Product & Engineering', ownerId=5,
     description='Create the app used by customers and internal employees')
 
     db.session.add(t1)

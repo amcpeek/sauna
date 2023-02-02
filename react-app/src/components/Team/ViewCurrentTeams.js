@@ -11,7 +11,7 @@ import {fetchDeleteMembership} from '../../store/membership'
 const ProfilePage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [showModal, setShowModal] = useState(false);
+    const [showTModal, setShowTModal] = useState(false);
     const [sentTeamId, setSentTeamId] = useState(0)
 
     const findProjectTest = async () => {
@@ -48,82 +48,83 @@ const ProfilePage = () => {
 
     const handleRemoveMembership = async (teamId) => {
         await dispatch(fetchDeleteMembership(teamId))
+        await dispatch(fetchAllTeams())
           history.push('/profile')
      }
 
-
-
-    if(user && curUsersTeams.length) {
-        return (
-            <div className='jc-c row lr-margin'>
-
-                <div className='col main-left-proj lr-margin-small'>
-                <h2 className='text-blue tb-margin'>Team Owner:</h2>
-                {ownersTeams && (ownersTeams.map(team => {
-                    return (
-                        <div>
-                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-                            <div className='short-gray-line'></div>
-                        <h3 className='text-blue'>{team.name}:</h3>
-                        <div className='col'>
-                        <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
-                        </div>
-                        </Link>
-                        <br/>
-                        {team.owner.id == user.id && (
-                            <div className='f vh-5 lr-margin-small ai-c'>
-                            <button onClick={() => (setShowModal(true), setSentTeamId(team.id)) } className='just-text-button bg-white'>
-                            <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
-                            </button>
-                            <EditTeamModal showModal={showModal} setShowModal={setShowModal} sentTeamId={sentTeamId}/>
-                            </div>
-                        )}
-                        </div>
-                        )
-                    }))
-                    }
-            </div>
-
-
-            <div className='col main-left-proj lr-margin-small'>
-            <h2 className='text-blue tb-margin'>Team Member:</h2>
-                {curUsersTeams && (curUsersTeams.map(team => {
-                    return (
-                        <div>
-                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-                            <div className='short-gray-line'></div>
-                        <h3 className='text-blue'>{team.name}:</h3>
-                        <div className='col'>
-                        <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
-                        </div>
-                        </Link>
-                        <button onClick={() => handleRemoveMembership(team.id)}>Leave Team!</button>
-                        </div>
-                        )
-                    }))
-                    }
-            </div>
-        </div>
-
-        )
-    } else if (user && curUsersTeams) {
-        return (
-
-            <div className='f'>
+     if(user && ownersTeams && curUsersTeams) {
+        if(!ownersTeams.length && !curUsersTeams.length) {
+            return (
+                <div className='f'>
             <div className='main-left col main-left lr-margin'>
-                <div>
-                    <h1>You are not currently part of any teams</h1>
-                    {/* <button onClick={() => setShowModal(true)} className='thin-bor bg-white text-blue circle'>Create a project here</button>
-                <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/> */}
+                <h1>You are not currently part of any teams or own any teams</h1>
                 <Link to='/teams'>join a team or create a team</Link>
                 </div>
                 </div>
-                </div>
-        )
-    } else {
+
+            )
+
+
+        }
         return (
-                        <div>There are no projects</div>
-                    )
+            <div  className='jc-c row lr-margin'>
+                {user && ownersTeams.length > 0 && (
+                      <div className='col main-left-proj lr-margin-small'>
+                      <h2 className='text-blue tb-margin'>Team Owner:</h2>
+                      {ownersTeams && (ownersTeams.map(team => {
+                          return (
+                              <div>
+                              <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                                  <div className='short-gray-line'></div>
+                              <h3 className='text-blue'>{team.name}:</h3>
+                              <div className='col'>
+                              <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
+                              </div>
+                              </Link>
+                              <br/>
+                              {/* {team.owner.id == user.id && (
+                                  <div className='f vh-5 lr-margin-small ai-c'>
+                                  <button onClick={() => (setShowTModal(true), setSentTeamId(team.id)) } className='just-text-button bg-white'>Edit Team
+                                  <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
+                                  </button>
+                                  <EditTeamModal showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
+                                  </div>
+                              )} */}
+                              </div>
+                              )
+                          }))
+                          }
+                      </div>
+                )}
+                {user && curUsersTeams.length > 0  && (
+                     <div className='col main-left-proj lr-margin-small'>
+                     <h2 className='text-blue tb-margin'>Team Member:</h2>
+                         {curUsersTeams && (curUsersTeams.map(team => {
+                             return (
+                                 <div>
+                                 <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                                     <div className='short-gray-line'></div>
+                                 <h3 className='text-blue'>{team.name}:</h3>
+                                 <div className='col'>
+                                 <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
+                                 </div>
+                                 </Link>
+                                 <button onClick={() => handleRemoveMembership(team.id)}>Leave Team</button>
+                                 </div>
+                                 )
+                             }))
+                             }
+                     </div>
+
+                )}
+
+            </div>
+
+
+         )
+
+    } else {
+        return ( <div>There are no projects</div> )
     }
 }
 export default ProfilePage

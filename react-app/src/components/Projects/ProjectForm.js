@@ -31,9 +31,9 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
         // }
         const errors = []
         if(name.length<=0){errors.push("Title required")}
-        else if(name.length>=50){errors.push("Title must be less than 50 characters")}
+        else if(name.length>=60){errors.push("Title must be less than 60 characters")}
         if(description.length<=0){errors.push("Description required")}
-        else if(description.length>=255){errors.push("Description must be less than 255 characters")}
+        else if(description.length>=500){errors.push("Description must be less than 500 characters")}
         setValidationErrors(errors);
 
     }, [name, description])
@@ -100,7 +100,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
 
                       <label>
-                      Name
+                      Project Name
                       </label>
                       <input
                       className='width-100-per round-sq-05 thin-bor font-small-med'

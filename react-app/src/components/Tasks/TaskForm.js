@@ -61,12 +61,12 @@ const TaskForm=({task, formType, projectId,
         //   setValidationErrors([]);
         //   return;
         // }
-        //if don't want this prior to press submit, can put in the handleSubmit, or just rely on backend validation 
+        //if don't want this prior to press submit, can put in the handleSubmit, or just rely on backend validation
         const errors =[];
         if(name.length<=0 || name == ' '){errors.push("Title required");}
-        else if(name.length>=50){errors.push("Title must be less than 50 characters")}
+        else if(name.length>=60){errors.push("Title must be less than 60 characters")}
         // if(description.length<=0){errors.push("Description required");}
-        if(description.length>=255){errors.push("Description must be less than 255 characters")}
+        if(description.length>=500){errors.push("Description must be less than 500 characters")}
 
         setValidationErrors(errors);
     }, [name, description, stageId])

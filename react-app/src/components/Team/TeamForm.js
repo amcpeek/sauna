@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { fetchCreateTeam,fetchUpdateTeam,fetchDeleteTeam,  fetchOneTeam } from "../../store/team";
+import { fetchCreateTeam,fetchUpdateTeam,fetchDeleteTeam, fetchOneTeam, fetchAllTeams } from "../../store/team";
+import { fetchCreateMembership } from '../../store/membership';
 
-const TeamForm=({team, formType, showModal, setShowModal})=> {
+const TeamForm=({team, formType, showTModal, setShowTModal})=> {
     let initName, initDescription
     const history = useHistory()
     const dispatch = useDispatch()
+
+    console.log('in Team Form team', team)
 
     if(formType=='Edit Team'){
         initName=team.name
@@ -16,10 +19,13 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
         initDescription=''
     }
 
+    console.log('initName', initName)
+
     const [name, setName] = useState(initName)
     const [description, setDescription] = useState(initDescription)
     const [validationErrors, setValidationErrors] = useState([])
     console.log('validationErrors', validationErrors, validationErrors.length)
+    console.log('name description', name, description)
 
     useEffect(() => {
         // if(!name&&!description) {
@@ -28,12 +34,21 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
         // }
         const errors = []
         if(name.length<=0){errors.push("Title required")}
-        else if(name.length>=50){errors.push("Title must be less than 50 characters")}
+        else if(name.length>=60){errors.push("Title must be less than 60 characters")}
         if(description.length<=0){errors.push("Description required")}
-        else if(description.length>=255){errors.push("Description must be less than 255 characters")}
+        else if(description.length>=500){errors.push("Description must be less than 500 characters")}
         setValidationErrors(errors);
 
     }, [name, description])
+
+    const handleCreateMembership = async (teamId) => {
+        await dispatch(fetchCreateMembership(teamId))
+        .then(dispatch(fetchAllTeams()))
+        //   .then(history.push(`/profile`)) //this isn't working at all
+          .catch(async (err) => {
+           // console.log('5555555555', err)
+          })
+     }
 
 
     const handleSubmit = async (e) => {
@@ -41,12 +56,13 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
         const tempTeam = {...team, name, description}
         const errors = []
 
-        if(formType==='Create Team'){
+        if(formType==='Create Team'){ //WORKING
             const returnedTeam = dispatch(fetchCreateTeam(tempTeam))
             .then((team) => {
                 history.push(`/teams/${team.id}`)
                // console.log('returned team', team)
-                dispatch( fetchOneTeam(team.id)).then(setShowModal(false))
+                dispatch(handleCreateMembership(team.id))
+                dispatch( fetchOneTeam(team.id)).then(setShowTModal(false))
                 }) //should redirect to your teams page
             .catch(async (err)=> {
                 console.log('well what is err', err)
@@ -56,13 +72,14 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
                 setValidationErrors(err)
             })
         }
-        else if(formType==='Edit Team') {
+        else if(formType==='Edit Team') { //NOT CLOSING
             dispatch(fetchUpdateTeam(tempTeam))
             //.then(()=>history.push('/teams')) //this will be easy to change to teams/id, but get it working first
             .then((team) => {
                 history.push(`/teams/${team.id}`)
               //  console.log('returned team', team)
-                dispatch( fetchOneTeam(team.id)).then(setShowModal(false))
+
+                dispatch( fetchOneTeam(team.id)).then(setShowTModal(false))
                  })
             .catch(async (err)=>{
                 // const errObj=await err.json();
@@ -79,7 +96,8 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
         const errors=[]
         dispatch(fetchDeleteTeam(id))
         .then(()=>{
-            setShowModal(false)
+            setShowTModal(false)
+            //NOT WORKING = ERROR
             history.push('/profile')})
         .catch(async (err)=>{
           const errObj=await err.json();
@@ -97,13 +115,15 @@ const TeamForm=({team, formType, showModal, setShowModal})=> {
               </div>
 
               <form className='' onSubmit={handleSubmit}>
-              <button className='just-text-button bg-white' onClick={()=>setShowModal(false)}>X</button>
+              <button className='just-text-button bg-white' onClick={()=>setShowTModal(false)}>X</button>
+              {/* NOT WORKING = ERROR */}
       {/* // */}
                   <div className='jc-sf col width-100-per'>
 
 
                       <label>
-                      Name
+
+                      Team Name
                       </label>
                       <input
                       className='width-100-per round-sq-05 thin-bor font-small-med'

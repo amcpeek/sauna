@@ -27,9 +27,8 @@ const ViewAllTeams = () => {
 
     const handleCreateMembership = async (teamId) => {
         await dispatch(fetchCreateMembership(teamId))
-          .then(history.push(`/teams`))
+          .then(history.push(`/profile`)) //this isn't working at all
           .catch(async (err) => {
-            alert(err)
             console.log('5555555555', err)
           })
      }
@@ -50,27 +49,27 @@ const ViewAllTeams = () => {
                 <div>View All Teams</div>
                 {allTeams && (allTeams.map(team => {
                     return (
-                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                         <div>
+                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
 
 
 
-                        <h3 className='text-blue'> <i className="fa-solid fa-user-plus"></i> {team.name}:</h3>
+
+                        <h3 className='text-blue'>
+                        {/* <i className="fa-solid fa-user-plus"></i> */}
+                        {team.name}:</h3>
                         <div className='col'>
 
                         <h5>Team Lead: {team.owner.username}
                         <br/>
                         {team.description}</h5>
-                        <button onClick={() => handleCreateMembership(team.id)}>Join Team</button>
-                        <br/>
-                        <div className='short-gray-line'></div>
-
-                        </div>
-
-                        <br/>
-
                         </div>
                         </Link>
+
+                        {/* <button onClick={() => handleCreateMembership(team.id)}>Join Team</button> */}
+
+                        <div className='short-gray-line tb-margin'></div>
+                        </div>
                         )
 
 

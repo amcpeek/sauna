@@ -12,7 +12,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     projectId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")), nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(2000), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
     stageId = db.Column(db.Integer)
     assigneeId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
 

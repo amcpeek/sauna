@@ -24,7 +24,8 @@ const EditProject=({showModal, setShowModal})=>{
         id:tempProject.id,
         ownerId:tempProject.ownerId,
         name:tempProject.name,
-        description:tempProject.description
+        description:tempProject.description,
+        teamId:tempProject.teamId
     }
 
     return (

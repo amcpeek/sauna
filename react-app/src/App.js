@@ -12,7 +12,7 @@ import ProjectEntry from './components/Projects/ProjectEntry';
 import TaskEntry from './components/Tasks/TaskEntry'
 import ViewTask from './components/Tasks/ViewTask'
 import WhySauna from './components/Navigation/whySauna';
-import ProfilePage from './components/Navigation/ProfilePage';
+import ViewCurrentTeams from './components/Team/ViewCurrentTeams'
 import PageNotFound from './components/Navigation/PageNotFound';
 import SplashPage from './components/Navigation/SplashPage'
 import ViewAllTeams from './components/Team/ViewAllTeams';
@@ -42,7 +42,7 @@ function App() {
           <SplashPage/>
         </Route>
         <ProtectedRoute path='/profile'>
-          <ProfilePage/>
+          <ViewCurrentTeams/>
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>

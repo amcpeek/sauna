@@ -49,7 +49,11 @@ function ProfileButton({ user }) {
       {/* id="LoginButton" */}
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
-      {!user? <div className='font-small-med' >Get Started</div>: <div className=''>{(user.username).slice(0,1).toUpperCase()} {((user.username).slice(1,2)).toUpperCase()}</div>}
+      {!user?
+      <div className='font-small-med' >Get Started</div>:
+      // <div className=''>{(user.username).slice(0,1).toUpperCase()} {((user.username).slice(1,2)).toUpperCase()}</div>
+      <div><i className="fa-regular fa-user"></i></div>
+      }
 
       </button>
       {showMenu && user && (

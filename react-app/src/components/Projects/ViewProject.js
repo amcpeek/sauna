@@ -86,11 +86,7 @@ const ViewProject = () => {
                      </button>
                      <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
                      </div>
-
                     }
-
-
-
                     <button className='just-text-button do-not-interact bg-white'>Overview</button>
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>

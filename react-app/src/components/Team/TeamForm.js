@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
-import { fetchCreateProject,fetchUpdateProject,fetchDeleteProject,  fetchOneProject } from "../../store/project";
+import { fetchCreateTeam,fetchUpdateTeam,fetchDeleteTeam,  fetchOneTeam } from "../../store/team";
 
-const ProjectForm=({project, formType, showModal, setShowModal})=> {
-    const { id } = useParams()
-    let initName, initDescription, initTeamId
+const TeamForm=({team, formType, showModal, setShowModal})=> {
+    let initName, initDescription
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log('hhhhh', id)
 
-    if(formType=='Edit Project'){
-        initName=project.name
-        initDescription=project.description
-        initTeamId=project.teamId
+    if(formType=='Edit Team'){
+        initName=team.name
+        initDescription=team.description
     } else {
         initName=''
         initDescription=''
@@ -41,43 +38,49 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const tempProject = {...project, name, description, teamId:id}
+        const tempTeam = {...team, name, description}
         const errors = []
 
-        if(formType==='Create Project'){
-            const returnedProject = dispatch(fetchCreateProject(tempProject))
-            .then((project) => {
-                history.push(`/projects/${project.id}`)
-               // console.log('returned project', project)
-                dispatch( fetchOneProject(project.id)).then(setShowModal(false))
-                }) //should redirect to your projects page
+        if(formType==='Create Team'){
+            const returnedTeam = dispatch(fetchCreateTeam(tempTeam))
+            .then((team) => {
+                history.push(`/teams/${team.id}`)
+               // console.log('returned team', team)
+                dispatch( fetchOneTeam(team.id)).then(setShowModal(false))
+                }) //should redirect to your teams page
             .catch(async (err)=> {
-                const errObj = await err.json()
-                errors.push(errObj.errors)
-                setValidationErrors(errors)
+                console.log('well what is err', err)
+                // const errObj = await err.json()
+                // errors.push(errObj.errors)
+                // setValidationErrors(errors)
+                setValidationErrors(err)
             })
         }
-        else if(formType==='Edit Project') {
-            dispatch(fetchUpdateProject(tempProject))
-            //.then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
-            .then((project) => {
-                history.push(`/projects/${project.id}`)
-              //  console.log('returned project', project)
-                dispatch( fetchOneProject(project.id)).then(setShowModal(false))
+        else if(formType==='Edit Team') {
+            dispatch(fetchUpdateTeam(tempTeam))
+            //.then(()=>history.push('/teams')) //this will be easy to change to teams/id, but get it working first
+            .then((team) => {
+                history.push(`/teams/${team.id}`)
+              //  console.log('returned team', team)
+                dispatch( fetchOneTeam(team.id)).then(setShowModal(false))
                  })
             .catch(async (err)=>{
-                const errObj=await err.json();
-                console.log('what is errObj.message', errObj.errors)
-                errors.push(errObj.errors)
-                setValidationErrors(errors)
+                // const errObj=await err.json();
+                // console.log('what is errObj.message', errObj.errors)
+                // errors.push(errObj.errors)
+                // setValidationErrors(errors)
+                console.log('well what is err', err)
+                setValidationErrors(err)
 
               });
         }
     }
     const deleteEvents= (id)=>{
         const errors=[]
-        dispatch(fetchDeleteProject(id))
-        .then(()=>history.push('/projects'))
+        dispatch(fetchDeleteTeam(id))
+        .then(()=>{
+            setShowModal(false)
+            history.push('/profile')})
         .catch(async (err)=>{
           const errObj=await err.json();
           errors.push(errObj.message)
@@ -146,9 +149,9 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                    <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
                    </div>
                   </form>
-                  {formType==="Edit Project" &&(
+                  {formType==="Edit Team" &&(
                       <div className="">
-                    <button onClick={()=>deleteEvents(project.id)} className="bg-white round-sq-05 thin-bor">Delete</button>
+                    <button onClick={()=>deleteEvents(team.id)} className="bg-white round-sq-05 thin-bor">Delete</button>
                     </div>
                       )}
               </div>
@@ -162,4 +165,4 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 }
 
 
-export default ProjectForm
+export default TeamForm

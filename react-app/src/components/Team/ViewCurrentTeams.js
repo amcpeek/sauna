@@ -3,10 +3,15 @@ import { useDispatch, useSelector, useStore} from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { fetchAllTeams } from '../../store/team'
 import { authenticate } from '../../store/session';
+import EditTeamModal from './EditTeamModal';
+
+//note shows currently if member
 
 const ProfilePage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showModal, setShowModal] = useState(false);
+    const [sentTeamId, setSentTeamId] = useState(0)
 
     const findProjectTest = async () => {
         const returnTeams = await dispatch(fetchAllTeams())
@@ -21,6 +26,7 @@ const ProfilePage = () => {
     let allTeamsObj = useSelector(state => {return state.team})
     let allTeams = Object.values(allTeamsObj)
     let curUsersTeams = []
+    let ownersTeams = []
     if(user && allTeams) {
         for(let i in allTeams) {
             for (let j in allTeams[i].memberships) {
@@ -30,25 +36,72 @@ const ProfilePage = () => {
                      break
                 }
            }
+           if(allTeams[i].ownerId == user.id) {
+            ownersTeams.push(allTeams[i])
+           }
+
         }
     }
 
+    const handleSubmit = (x) => {
+        // e.preventDefault()
+        setShowModal(true)
+        setSentTeamId(x)
+        console.log('teamId', sentTeamId)
+
+    }
+
+
+
+
     if(user && curUsersTeams.length) {
         return (
-            <div className='main-left col main-left lr-margin'>
-            <div className='col main-left-proj'>
-                {curUsersTeams && (curUsersTeams.map(team => {
+            <div className='jc-c row lr-margin'>
+
+                <div className='col main-left-proj lr-margin-small'>
+                <h2 className='text-blue tb-margin'>Team Owner:</h2>
+                {ownersTeams && (ownersTeams.map(team => {
                     return (
-                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                         <div>
+                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                             <div className='short-gray-line'></div>
-                        <h3 className='text-blue'> <i className="fa-solid fa-user-plus"></i> {team.name}:</h3>
+                        <h3 className='text-blue'>{team.name}:</h3>
                         <div className='col'>
                         <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
                         </div>
+                        </Link>
                         <br/>
+                        {team.owner.id == user.id && (
+                            <div className='f vh-5 lr-margin-small ai-c'>
+                            <button onClick={() => (setShowModal(true), setSentTeamId(team.id)) } className='just-text-button bg-white'>
+                            <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
+                            
+                            </button>
+                            <EditTeamModal showModal={showModal} setShowModal={setShowModal} sentTeamId={sentTeamId}/>
+                            <button>Leave Team</button>
+                            </div>
+                        )}
+                        </div>
+                        )
+                    }))
+                    }
+            </div>
+
+
+            <div className='col main-left-proj lr-margin-small'>
+            <h2 className='text-blue tb-margin'>Team Member:</h2>
+                {curUsersTeams && (curUsersTeams.map(team => {
+                    return (
+                        <div>
+                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                            <div className='short-gray-line'></div>
+                        <h3 className='text-blue'>{team.name}:</h3>
+                        <div className='col'>
+                        <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
                         </div>
                         </Link>
+                        <button>Leave Team</button>
+                        </div>
                         )
                     }))
                     }

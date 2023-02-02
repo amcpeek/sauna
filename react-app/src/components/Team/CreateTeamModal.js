@@ -2,15 +2,15 @@ import React from 'react';
 import { Modal } from '../../context/Modal'
 import CreateTeam from './CreateTeam';
 
-function CreateTeamModal({showModal, setShowModal}) {
+function CreateTeamModal({showTModal, setShowTModal}) {
 
 
   return (
     <>
-      {/* <button className='dropButtonNav' onClick={() => setShowModal(true)}>Create New Team</button> */}
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <CreateTeam  showModal={showModal} setShowModal={setShowModal} />
+      {/* <button className='dropButtonNav' onClick={() => setShowTModal(true)}>Create New Team</button> */}
+      {showTModal && (
+        <Modal onClose={() => setShowTModal(false)}>
+          <CreateTeam  showTModal={showTModal} setShowTModal={setShowTModal} />
         </Modal>
       )}
     </>

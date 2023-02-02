@@ -3,7 +3,7 @@ import { fetchCreateTeam } from "../../store/team";
 import TeamForm from "./TeamForm";
 
 
-const CreateTeam=({showModal, setShowModal})=>{
+const CreateTeam=({showTModal, setShowTModal})=>{
 
     const team={
         name:"",
@@ -12,7 +12,7 @@ const CreateTeam=({showModal, setShowModal})=>{
 
     return (
         <div>
-        <TeamForm team={team} formType="Create Team" showModal={showModal} setShowModal={setShowModal}/>
+        <TeamForm team={team} formType="Create Team" showTModal={showTModal} setShowTModal={setShowTModal}/>
         </div>
     )
 }

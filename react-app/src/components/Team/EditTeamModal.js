@@ -8,10 +8,10 @@ function EditTeamModal({showTModal, setShowTModal, sentTeamId}) {
 
   return (
     <>
-      {/* <button className='dropButtonNav' onClick={() => setShowModal(true)}>Create New Team</button> */}
+      {/* <button className='dropButtonNav' onClick={() => setShowTModal(true)}>Create New Team</button> */}
       {showTModal && (
         <Modal onClose={() => setShowTModal(false)}>
-          <EditTeam  showModal={showTModal} setShowModal={setShowTModal} sentTeamId={sentTeamId}/>
+          <EditTeam  showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
         </Modal>
       )}
     </>

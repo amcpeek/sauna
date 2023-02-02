@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { fetchAllTeams } from '../../store/team'
 import { authenticate } from '../../store/session';
 import EditTeamModal from './EditTeamModal';
+import CreateTeamModal from './CreateTeamModal';
 import {fetchDeleteMembership} from '../../store/membership'
 
 //note shows currently if member
@@ -70,6 +71,12 @@ const ProfilePage = () => {
             <div  className='jc-c row lr-margin'>
                 {user && ownersTeams.length > 0 && (
                       <div className='col main-left-proj lr-margin-small'>
+                         <div className='ai-st  col'>
+                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
+                        <div className='short-gray-line tb-margin'></div>
+                      </div>
                       <h2 className='text-blue tb-margin'>Team Owner:</h2>
                       {ownersTeams && (ownersTeams.map(team => {
                           return (
@@ -132,7 +139,7 @@ export default ProfilePage
 //BELOW IS THE VERSION WHERE IT SHOWS THE CURRENT USERS PROJECTS
   // const dispatch = useDispatch()
     // const history = useHistory()
-    // const [showModal, setShowModal] = useState(false);
+    // const [showTModal, setShowTModal] = useState(false);
 
     // const findProjectTest = async () => {
     //     const returnProjects = await dispatch(fetchAllProjects())
@@ -197,8 +204,8 @@ export default ProfilePage
     //         <div className='main-left col main-left lr-margin'>
     //             <div>
     //                 <h1>You do not currently own any projects.</h1>
-    //                 <button onClick={() => setShowModal(true)} className='thin-bor bg-white text-blue circle'>Create a project here</button>
-    //             <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
+    //                 <button onClick={() => setShowTModal(true)} className='thin-bor bg-white text-blue circle'>Create a project here</button>
+    //             <CreateProjectModal showTModal={showTModal} setShowTModal={setShowTModal}/>
     //             </div>
     //             </div>
     //             </div>

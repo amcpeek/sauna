@@ -11,8 +11,8 @@ const ViewTeam = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
-    const [showPModal, setShowPModal] = useState(false);
-    const [showTModal, setShowTModal] = useState(false);
+    const [showModal, setShowModal] = useState(false); //for projects
+    const [showTModal, setShowTModal] = useState(false); //for teams
     const [sentTeamId, setSentTeamId] = useState(0)
 
     // console.log('IS THE ERROR HAPPENING AFTER GETTING TO VIEW TEAM PAGE?')
@@ -39,6 +39,8 @@ const ViewTeam = () => {
           })
      }
 
+
+
     if (oneTeamObj && oneTeamObj.memberships) {
 
     return (
@@ -64,10 +66,10 @@ const ViewTeam = () => {
                         })}
                         <br/>
                     </div>
-                    {user.id == oneTeamObj.owner.id && (
+                    {user && user.id == oneTeamObj.owner.id && (
                         <div className='f vh-5 lr-margin-small ai-c'>
                         <button onClick={() => (setShowTModal(true), setSentTeamId(oneTeamObj.id)) } className='just-text-button bg-white'>Edit Team
-                        <i className="fa-regular fa-pen-to-square bg-white cursor"></i> {oneTeamObj.id}
+                        <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
                         </button>
                         <EditTeamModal showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
                         </div>
@@ -81,8 +83,8 @@ const ViewTeam = () => {
                         {oneTeamObj.memberships.find(member => member.users[0].id == user.id)?
 
                         <div>You are a member of this team
-                           <button onClick={() => setShowPModal(true)} className='just-text-button thin-bor bg-white cursor tb-margin'>Create New Project</button>
-                        <CreateProjectModal showPModal={showPModal} setShowPModal={setShowPModal}/>
+                           <button onClick={() => setShowModal(true)} className='just-text-button thin-bor bg-white cursor tb-margin'>Create New Project</button>
+                        <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
                         </div>
                         :
                         <button onClick={() => handleCreateMembership(oneTeamObj.id)}>Join Team</button>

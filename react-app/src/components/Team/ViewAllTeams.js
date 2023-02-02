@@ -10,7 +10,7 @@ import { fetchCreateMembership } from '../../store/membership';
 const ViewAllTeams = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-    const [showModal, setShowModal] = useState(false);
+    const [showTModal, setShowTModal] = useState(false);
 
     const findProjectTest = async () => {
         const returnTeams = await dispatch(fetchAllTeams())
@@ -38,9 +38,9 @@ const ViewAllTeams = () => {
         <div className='main-left col main-left lr-margin'>
               {user &&
                       <div className='ai-st  col'>
-                        <button onClick={() => setShowModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
-                        <CreateTeamModal showModal={showModal} setShowModal={setShowModal}/>
-                        <Link className='no-und' to='/profile'>View Your Teams</Link>
+                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
                         <div className='short-gray-line tb-margin'></div>
                       </div>
                       }

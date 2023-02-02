@@ -7,10 +7,13 @@ import LogoutButton from '../auth/LogoutButton';
 import ProfileButton from './ProfileButton';
 import { authenticate } from '../../store/session';
 import CreateProjectModal from '../Projects/CreateProjectModal';
+import CreateTeamModal from '../Team/CreateTeamModal';
+import TeamsButton from './TeamsButton';
 
 
 const NavBar = () => {
   const dispatch = useDispatch()
+  const [showTModal, setShowTModal] = useState(false);
   // const [showModal, setShowModal] = useState(false);
 
   const findProjectTest = async () => {
@@ -25,12 +28,13 @@ const NavBar = () => {
 
   return (
     <nav>
+       <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
        <div className='jc-sb lr-margin vh-5 ai-c '>
               <div className='row'>
 
                       <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                       &nbsp; &nbsp; &nbsp;
-                      <div ><Link to='/teams' className='no-und'>Teams</Link></div>
+                      <div><TeamsButton user={user}/></div>
                       &nbsp; &nbsp; &nbsp;
                       <div ><Link to='/whySauna' className='no-und'>Why Sauna?</Link></div>
                       &nbsp; &nbsp; &nbsp;

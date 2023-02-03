@@ -79,12 +79,7 @@ const ProfilePage = () => {
             <div  className='jc-c row lr-margin'>
                 {user && ownersTeams.length > 0 && (
                       <div className='col main-left-proj lr-margin-small'>
-                         <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
-                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
-                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
-                        <div className='short-gray-line tb-margin'></div>
-                      </div>
+
                       <h2 className='text-blue tb-margin'>Team Owner:</h2>
                       {ownersTeams && (ownersTeams.map(team => {
                           return (
@@ -109,6 +104,12 @@ const ProfilePage = () => {
                               )
                           }))
                           }
+                           <div className='ai-st  col'>
+                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
+                        <div className='short-gray-line tb-margin'></div>
+                      </div>
                       </div>
                 )}
                 {user && curUsersTeams.length > 0  && (
@@ -149,6 +150,7 @@ const ProfilePage = () => {
                      }
 
                      </div>
+
                      </>
 
                 )}

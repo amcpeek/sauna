@@ -55,12 +55,12 @@ function TeamButton({ user }) {
             <button className='just-text-button bg-white cursor'><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>
 
             <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>Your Teams</NavLink></button>
-            {/* <button className='just-text-button bg-white cursor' onClick={() => setShowTModal(true)}>Create Team</button>
-            <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/> */}
+            <button className='just-text-button bg-white cursor' onClick={() => setShowTModal(true)}>Create Team</button>
+
         </div>
+
       )}
-              <LoginFormModal showLogInModal={showLogInModal} setShowLogInModal={setShowLogInModal}/>
-             <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal}/>
+      <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
       {showMenu && !user && (
         <div className="dropdownTeam">
           <button className='just-text-button bg-white cursor'><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>

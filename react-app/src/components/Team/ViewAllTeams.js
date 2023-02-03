@@ -36,14 +36,7 @@ const ViewAllTeams = () => {
 
     return (
         <div className='main-left col main-left lr-margin'>
-              {user &&
-                      <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
-                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
-                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
-                        <div className='short-gray-line tb-margin'></div>
-                      </div>
-                      }
+
 
             <div className='col main-left-proj'>
                 <div>View All Teams</div>
@@ -76,6 +69,14 @@ const ViewAllTeams = () => {
                     }))
                     }
             </div>
+            {user &&
+                      <div className='ai-st  col'>
+                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
+                        <div className='short-gray-line tb-margin'></div>
+                      </div>
+                      }
         </div>
     )
 

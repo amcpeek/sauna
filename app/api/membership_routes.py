@@ -86,7 +86,7 @@ def create_membership(teamId):
             "errors":validation_errors_to_error_messages(form.errors),
             "statusCode": 400,
         }, 400
-    print('44444444444444')
+    #print('44444444444444')
     return {
         "not sure how we got here"
     }
@@ -127,7 +127,7 @@ def delete_membership(teamId):
             },404
 
     # currentId=current_user.get_id()
-    print('8888888888888888888888888888', user_member_already[0])
+    #print('8888888888888888888888888888', user_member_already[0])
     # if int(user_member_already.userId) != int(currentId):
     #     return {
     #       'message':'Forbidden Error',

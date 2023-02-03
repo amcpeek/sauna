@@ -33,7 +33,7 @@ const TaskForm=({task, formType, projectId,
         initName=task.name
         initStageId=task.stageId
         initAssigneeId=task.assigneeId
-        console.log('initAssigneeId', initAssigneeId)
+       // console.log('initAssigneeId', initAssigneeId)
     } else {
         initDescription=''
         initName=''
@@ -83,7 +83,7 @@ const TaskForm=({task, formType, projectId,
         memberArray = oneTeam.memberships
         isMember = memberArray.find(member =>  member.users[0].id == user.id)
         if(isMember) {
-            console.log('isMember', isMember.id)
+            //console.log('isMember', isMember.id)
         }
     }
 
@@ -138,10 +138,10 @@ const TaskForm=({task, formType, projectId,
         dispatch(fetchDeleteTask(task))
         .then(() => setShowTask(false))
         .catch(async (err)=>{
-            console.log('is it reaching the catch block')
+            //console.log('is it reaching the catch block')
           const errObj=await err.json();
           errors.push(errObj.errors)
-          console.log('what is it', errors)
+         // console.log('what is it', errors)
           setValidationErrors(errors)
 
         });

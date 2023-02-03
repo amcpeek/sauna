@@ -19,23 +19,23 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
      .then( (res) =>{
 
       if(res) {
-        console.log("hopefully can tak out the password part", res)
+       // console.log("hopefully can tak out the password part", res)
         const newThing = (res[0].split(':'))
-        console.log('new thing', newThing[1])
+        //console.log('new thing', newThing[1])
         if(newThing) {
           const newerThing = newThing[1]
           setErrors([newerThing])
         }
 
       } else {
-        console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
+       // console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
         history.push('/profile')
 
       setShowLogInModal(false)
       }
     })
      .catch( async (res) => {
-      console.log("is the log in error caught", res)
+     // console.log("is the log in error caught", res)
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
 
@@ -51,12 +51,12 @@ function LoginForm({showLogInModal, setShowLogInModal}) {
     setErrors([]);
     return dispatch(sessionActions.login( email, password ))
     .then((thenRes) => {
-      console.log('is the login error then-ed', thenRes)
+     // console.log('is the login error then-ed', thenRes)
       history.push('/profile')
       setShowLogInModal(false)})
     .catch(
       async (res) => {
-        console.log("is the log in error caught", res)
+      // console.log("is the log in error caught", res)
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }

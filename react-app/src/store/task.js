@@ -52,11 +52,11 @@ const getByProject = ({Tasks}) => ({
 //T1
 export const fetchAllTasks = () => async dispatch => {
     const response = await fetch(`/api/tasks`);
-    console.log('are we getting to the fetch', response)
+   // console.log('are we getting to the fetch', response)
 
     if(response.ok){
         const tasksList = await response.json()
-        console.log('taskList', tasksList)
+        //console.log('taskList', tasksList)
         dispatch(getAll(tasksList))
     }
     if(response.status>=400) throw response
@@ -74,7 +74,7 @@ export const fetchOneTask = (id) => async dispatch => {
 //T3
 export const fetchCreateTask = (task, projectId) => async dispatch => {
 
-    console.log('createFetch', task, projectId)
+    //console.log('createFetch', task, projectId)
     const response = await fetch(`/api/projects/${projectId}/tasks`, {
         method: 'POST',
         headers: {
@@ -85,7 +85,7 @@ export const fetchCreateTask = (task, projectId) => async dispatch => {
     if(response.ok){
 
         const newTask = await response.json()
-        console.log('newtask', newTask)
+        //console.log('newtask', newTask)
         dispatch(createTask(newTask))
 
         return newTask
@@ -141,7 +141,7 @@ const tasksReducer = (state = initialState, action) => {
     let newState;
     switch(action.type){
         // case READ_TASKS:
-        //     console.log('are we getting to the reducer')
+        //     //console.log('are we getting to the reducer')
         //     newState={...state, allTasks: {...state}}
         //     const nextLevelAll = {}
         //     if(!action.Tasks.length) {
@@ -156,7 +156,7 @@ const tasksReducer = (state = initialState, action) => {
         //     }
         case READ_TASKS:
             newState={...state}
-            console.log('action.Tasks', action.Tasks)
+            //console.log('action.Tasks', action.Tasks)
             action.Tasks.forEach(task => {
             newState[task.id] = task
             })

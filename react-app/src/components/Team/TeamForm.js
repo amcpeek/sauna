@@ -9,7 +9,7 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    console.log('in Team Form team', team)
+   // console.log('in Team Form team', team)
 
     if(formType=='Edit Team'){
         initName=team.name
@@ -19,13 +19,13 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
         initDescription=''
     }
 
-    console.log('initName', initName)
+   // console.log('initName', initName)
 
     const [name, setName] = useState(initName)
     const [description, setDescription] = useState(initDescription)
     const [validationErrors, setValidationErrors] = useState([])
-    console.log('validationErrors', validationErrors, validationErrors.length)
-    console.log('name description', name, description)
+   // console.log('validationErrors', validationErrors, validationErrors.length)
+   // console.log('name description', name, description)
 
     useEffect(() => {
         // if(!name&&!description) {
@@ -60,14 +60,14 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
             const returnedTeam = await dispatch(fetchCreateTeam(tempTeam))
             .then( async (team1) => {
 
-                console.log('returned team', team1.id)
+                //console.log('returned team', team1.id)
                 handleCreateMembership(team1.id)
                 await dispatch( fetchOneTeam(team1.id))
                 .then(setShowTModal(false))
                 history.push(`/teams/${team1.id}`)
                 }) //should redirect to your teams page
             .catch(async (err)=> {
-                console.log('well what is err', err)
+                //console.log('well what is err', err)
                 // const errObj = await err.json()
                 // errors.push(errObj.errors)
                 // setValidationErrors(errors)
@@ -88,7 +88,7 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
                 // console.log('what is errObj.message', errObj.errors)
                 // errors.push(errObj.errors)
                 // setValidationErrors(errors)
-                console.log('well what is err', err)
+             //('well what is err', err)
                 setValidationErrors(err)
 
               });

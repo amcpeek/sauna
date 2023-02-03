@@ -61,7 +61,7 @@ def create_team():
     form['csrf_token'].data = request.cookies['csrf_token']
     #get current logged in user ID
     currentId=current_user.get_id()
-    print('OOOOOO', form)
+    # print('OOOOOO', form)
 
     if form.validate_on_submit():
         new_team=Team(ownerId=currentId)

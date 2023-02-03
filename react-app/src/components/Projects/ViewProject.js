@@ -56,7 +56,7 @@ const ViewProject = () => {
         if(projId) {
 
             tId = state.team[projId.teamId]
-            console.log('8898789878987', projId.teamId, 'teamId', tId)
+           // console.log('8898789878987', projId.teamId, 'teamId', tId)
         }
         return tId
         } )
@@ -80,7 +80,7 @@ const ViewProject = () => {
         memberArray = oneTeam.memberships
         isMember = memberArray.find(member =>  member.users[0].id == user.id)
         if(isMember) {
-            console.log('isMember', isMember.id)
+          // console.log('isMember', isMember.id)
         }
 
     }

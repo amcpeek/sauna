@@ -8,7 +8,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
     let initName, initDescription, initTeamId
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log('hhhhh', id)
+    //console.log('hhhhh', id)
 
     if(formType=='Edit Project'){
         initName=project.name
@@ -22,7 +22,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
     const [name, setName] = useState(initName)
     const [description, setDescription] = useState(initDescription)
     const [validationErrors, setValidationErrors] = useState([])
-    console.log('validationErrors', validationErrors, validationErrors.length)
+    //console.log('validationErrors', validationErrors, validationErrors.length)
 
     useEffect(() => {
         // if(!name&&!description) {
@@ -62,12 +62,12 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
             //.then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
             .then((project) => {
                 history.push(`/projects/${project.id}`)
-              //  console.log('returned project', project)
+              // console.log('returned project', project)
                 dispatch( fetchOneProject(project.id)).then(setShowModal(false))
                  })
             .catch(async (err)=>{
                 const errObj=await err.json();
-                console.log('what is errObj.message', errObj.errors)
+                //console.log('what is errObj.message', errObj.errors)
                 errors.push(errObj.errors)
                 setValidationErrors(errors)
 

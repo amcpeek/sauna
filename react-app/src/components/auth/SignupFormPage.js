@@ -32,7 +32,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         if(res) {
           setErrors(res)
         } else {
-          console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
+          //console.log("then are we getting the errors in the data v bc it doesn't see this as an error", res)
         setShowSignUpModal(false)
         }
       })

@@ -39,7 +39,7 @@ const ProfilePage = () => {
             for (let j in allTeams[i].memberships) {
                 if(allTeams[i].memberships[j].userId == user.id ) {
                     curUsersTeams.push(allTeams[i])
-                    console.log(allTeams[i].memberships[j].userId, user.id, )
+                    //console.log(allTeams[i].memberships[j].userId, user.id, )
                      break
                 }
            }
@@ -50,9 +50,9 @@ const ProfilePage = () => {
         }
     }
     if(allTasks) {
-        console.log('alkdjfalkjfadklfjadklfjflkadj',allTasks)
+       // console.log('alkdjfalkjfadklfjadklfjflkadj',allTasks)
         curTasks = allTasks.filter(task => task.assigneeId == user.id)
-        console.log(curTasks)
+       // console.log(curTasks)
 
 
     }

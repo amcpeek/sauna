@@ -29,7 +29,7 @@ const ViewAllTeams = () => {
         await dispatch(fetchCreateMembership(teamId))
           .then(history.push(`/profile`)) //this isn't working at all
           .catch(async (err) => {
-            console.log('5555555555', err)
+            //console.log('5555555555', err)
           })
      }
 

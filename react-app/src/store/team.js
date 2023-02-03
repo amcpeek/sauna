@@ -106,7 +106,7 @@ export const fetchUpdateTeam = (team) => async dispatch => {
         dispatch(edit(editTeam))
         return editTeam
     }
-    console.log('in the fetchUpdateTeam what is the response', response)
+    //console.log('in the fetchUpdateTeam what is the response', response)
     if(response.status>=400) throw response
 }
 

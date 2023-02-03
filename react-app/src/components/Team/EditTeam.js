@@ -6,7 +6,7 @@ import { fetchOneTeam } from "../../store/team";
 
 
 const EditTeam=({showTModal, setShowTModal, sentTeamId})=>{
-    console.log('are we getting to EditTeam.js', sentTeamId)
+   // console.log('are we getting to EditTeam.js', sentTeamId)
     const dispatch = useDispatch()
     // const {id}=useParams();
     const findTeamTest = async () => {
@@ -19,7 +19,7 @@ const EditTeam=({showTModal, setShowTModal, sentTeamId})=>{
     }, [dispatch])
 
     const tempTeam = useSelector(state=>state.team[sentTeamId])
-    console.log('s tempTeam working', tempTeam)
+   // console.log('s tempTeam working', tempTeam)
 
     if(!tempTeam) return null
 

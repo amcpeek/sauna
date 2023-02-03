@@ -27,7 +27,7 @@ def all_tasks_by_project_id(id):
 @task_routes.route('/tasks')
 @login_required
 def allTasks():
-    print('are we getting to the backend')
+    # print('are we getting to the backend')
     """
     Query for all users and returns them in a list of task dictionaries
     """
@@ -146,7 +146,7 @@ def delete_task(id):
 
     project = Project.query.get(task.projectId)
 
-    print("task.projectId", task.projectId, 'ownerId', int(authenticate()['id']), 'int(project.ownerId)', int(project.ownerId))
+    # print("task.projectId", task.projectId, 'ownerId', int(authenticate()['id']), 'int(project.ownerId)', int(project.ownerId))
     if int(authenticate()['id']) == int(project.ownerId):
         db.session.delete(task)
         db.session.commit()

@@ -34,7 +34,7 @@ const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTas
 
     if (allProjects && user) {
        // console.log('user', user, "allProjects", allProjects)
-      //  console.log('are we getting to the create page?')
+      // console.log('are we getting to the create page?')
 
                 return (
                     <TaskForm task={task} formType="Create Task" projectId={id}

@@ -317,6 +317,11 @@ textarea {
     width: 40%;
 }
 
+
+.width-60-per {
+    display: flex;
+    width: 60%;
+}
 .width-80-per {
     display: flex;
     width: 80%;
@@ -475,6 +480,7 @@ height: 2em;
     /* width: 30em;
     height: 50em; */
     width: 40%;
+    height: 80vh;
     background-color: lightgray
     }
 

@@ -8,6 +8,8 @@ import ViewTask from '../Tasks/ViewTask';
 import CreateTask from '../Tasks/CreateTask';
 import EditTask from '../Tasks/EditTask';
 import EditProjectModal from './EditProjectModal';
+import { fetchAllTeams, fetchOneTeam } from '../../store/team'
+import { fetchCreateMembership } from '../../store/membership'
 
 
 const ViewProject = () => {
@@ -20,6 +22,9 @@ const ViewProject = () => {
     const [showAddTask2, setShowAddTask2] = useState(false)
     const [showAddTask3, setShowAddTask3] = useState(false)
     const [showModal, setShowModal] = useState(false);
+    let arr = []
+    let isMember = ''
+
 
     //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
 
@@ -28,11 +33,12 @@ const ViewProject = () => {
         const returnProject = await dispatch(fetchOneProject(id))
         const returnTasks = await dispatch(getAllTasksByProjectId(id))
         const returnUser = await dispatch(authenticate())
+        const returnTeam = await dispatch(fetchAllTeams())
     }
 
     useEffect(() => {
        findProjectTest()
-    }, [dispatch])
+    }, [dispatch, isMember])
 
     //edit
     const showTaskFunc = (task) => {
@@ -44,17 +50,42 @@ const ViewProject = () => {
     let oneProject = useSelector(state => {return state.project[id]})
     let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
     let user = useSelector(state => {return state.session.user})
+    let oneTeam = useSelector(state => {return state.team[oneProject.teamId]} )
 
 
 
-    let arr = []
+
 
     if(allTasksByProg && allTasksByProg[id]) {
         arr = Object.values(allTasksByProg[id])
     }
 
+    if(oneTeam && oneTeam.memberships && user) {
+        // console.log('ONE   TEAM',oneTeam.memberships)
 
-    if(oneProject) {
+        // {memberArray && memberArray.length && memberArray.map(member => {return (
+        //     <option value={member.id}>{member.users[0].username}</option>
+        // )})}
+        let memberArray = oneTeam.memberships
+        isMember = memberArray.find(member =>  member.users[0].id == user.id)
+        if(isMember) {
+            console.log('isMember', isMember.id)
+        }
+
+    }
+
+    const handleCreateMembership = async (teamId) => {
+        await dispatch(fetchCreateMembership(teamId))
+        .then(dispatch(fetchAllTeams()))
+        //   .then(history.push(`/profile`)) //this isn't working at all
+          .catch(async (err) => {
+           // console.log('5555555555', err)
+          })
+     }
+
+
+
+    if(oneProject && oneTeam) {
 
         //console.log('allTasksByProg', Object.values(allTasksByProg[id]))
         const toDo = arr.filter(task => task.stageId == 1)
@@ -62,12 +93,13 @@ const ViewProject = () => {
         const complete = arr.filter(task => task.stageId == 3)
         return (
             <div className='col'>
-                <div className='col vh-15 lr-margin-small'>
+                <div className='col vh-20 lr-margin-small'>
                     {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                     <div className='bg-green small-box round-sq'> AM</div> */}
                     <div className='should-wrap-full'><h2>{oneProject.name}</h2></div>
                     <div className='should-wrap-full scroller'>
                        <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
+                       <p>Team: {oneTeam.name}</p>
                          {oneProject.description} </p>
                         </div>
                     <div className='long-gray-line tb-margin'></div>
@@ -88,14 +120,22 @@ const ViewProject = () => {
                      <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
                      </div>
                     }
+
                     <button className='just-text-button do-not-interact bg-white'>Overview</button>
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
+                    {oneTeam && oneTeam.memberships && user && !isMember && (
+                        <div className='row ai-c'>
+                        <button className='asana-button height-shorter' onClick={() => handleCreateMembership(oneProject.teamId)}>Join Team</button>
+                        <p className='font-small-med'> &nbsp; *Only team member can engage with tasks &nbsp; &nbsp; </p>
+                        </div>
+                        // <div>{isMember.id}</div>
+                    )}
                 </div>
 
 
 
-                <div className='bg-light-gray round-sq-05 vw-100-vh-75'>
+                <div className='bg-light-gray round-sq-05 vw-99-vh-70'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>

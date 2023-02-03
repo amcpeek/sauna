@@ -12,6 +12,7 @@ const EditTask=({selectedTask, showTask, setShowTask})=>{
 
      const {projectId}=useParams()
     const dispatch = useDispatch()
+    const user = useSelector(state => {return state.session.user})
 
     const findProjectTest = async () => {
         const allProjects = await dispatch(fetchAllProjects())
@@ -26,7 +27,7 @@ const EditTask=({selectedTask, showTask, setShowTask})=>{
 
     const tempTask = useSelector(state=>state.task[selectedTask.id])
 
-    if(tempTask) {
+    if(tempTask && user) {
        // console.log('can we get tempTask? tempTask.projectId', tempTask.projectId)
         const task={
             id:tempTask.id,

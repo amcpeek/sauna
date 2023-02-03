@@ -3,6 +3,7 @@ from .user import User
 from .task import Task
 
 
+
 class Project(db.Model):
     __tablename__ = 'projects'
 

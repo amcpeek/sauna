@@ -474,6 +474,53 @@ height: 2em;
     right: 5em;
 }
 
+.floating-task-1 {
+    min-width: 15vw;
+    height: 4vh;
+    position: absolute;
+    top: 11em;
+    right: 25em;
+    background-color: white;
+    border-radius: 0.5em;
+    font-size: small;
+}
+
+
+.floating-task-2 {
+    min-width: 15vw;
+    height: 4vh;
+    position: absolute;
+    top: 18em;
+    right: 5em;
+    background-color: white;
+    border-radius: 0.5em;
+    font-size: small;
+}
+
+.floating-task-3 {
+    min-width: 15vw;
+    height: 4vh;
+    position: absolute;
+    top: 40em;
+    right: 20em;
+    background-color: white;
+    border-radius: 0.5em;
+    font-size: small;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .main-gray-box {
     display: flex;

@@ -4,7 +4,22 @@ import React, { useEffect, useState } from 'react';
 
 
 
+
 const SplashPage = () => {
+    const [t1, setT1] = useState(true)
+    const [t2, setT2] = useState(true)
+    const [t3, setT3] = useState(true)
+
+    const clickT1 = () => {
+        setT1(false)
+    }
+    const clickT2 = () => {
+        setT2(false)
+    }
+    const clickT3 = () => {
+        setT3(false)
+    }
+
     return (
         <div>
         <div className='f'>
@@ -22,7 +37,7 @@ const SplashPage = () => {
                             </div>
 
                             <Link className='cursor text-blue just-no-und ' to='/teams'>
-                            <div className='asana-button width-60-per lr-margin-small'>
+                            <div className='asana-button width-60-per lr-margin-small box-shadow'>
                                 <div className='lr-margin-small col'>
                                 <h1>Join our sample company </h1>
                                 <h4>Manage teams, projects, and tasks with Sauna </h4>
@@ -44,6 +59,32 @@ const SplashPage = () => {
             src='https://assets.asana.biz/transform/efb32754-4aa7-4fd8-ba6f-2d019316dd4a/home-hero-1b'
             alt='home2'
             />
+            {t1 && (
+                <button onClick={clickT1} className='floating-task-1 row ai-c asana-button box-shadow'>
+                <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                <div>Collect creative feedback</div>
+                </button>
+
+            )}
+
+            {t2 && (
+                 <div onClick={clickT2} className='floating-task-2 row ai-c asana-button box-shadow'>
+                 <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                 <div>Get budget sign-off</div>
+                 </div>
+
+            )}
+
+            {t3 && (
+                <div onClick={clickT3} className='floating-task-3 row ai-c asana-button box-shadow'>
+                <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                <div>Launch brand campaign</div>
+                </div>
+
+            )}
+
+
+
         </div>
         </div>
 

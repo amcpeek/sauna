@@ -6,6 +6,7 @@ import { authenticate } from '../../store/session';
 import EditTeamModal from './EditTeamModal';
 import CreateTeamModal from './CreateTeamModal';
 import {fetchDeleteMembership} from '../../store/membership'
+import { fetchAllTasks } from '../../store/task'
 
 //note shows currently if member
 
@@ -18,6 +19,7 @@ const ProfilePage = () => {
     const findProjectTest = async () => {
         const returnTeams = await dispatch(fetchAllTeams())
         const returnUser = await dispatch(authenticate())
+        const returnTasks = await dispatch(fetchAllTasks())
     }
 
     useEffect(() => {
@@ -27,8 +29,11 @@ const ProfilePage = () => {
     let user = useSelector(state => {return state.session.user})
     let allTeamsObj = useSelector(state => {return state.team})
     let allTeams = Object.values(allTeamsObj)
+    let allTasksObj = useSelector(state => {return state.task} )
+    let allTasks = Object.values(allTasksObj)
     let curUsersTeams = []
     let ownersTeams = []
+    let curTasks = []
     if(user && allTeams) {
         for(let i in allTeams) {
             for (let j in allTeams[i].memberships) {
@@ -44,8 +49,13 @@ const ProfilePage = () => {
 
         }
     }
+    if(allTasks) {
+        console.log('alkdjfalkjfadklfjadklfjflkadj',allTasks)
+        curTasks = allTasks.filter(task => task.assigneeId == user.id)
+        console.log(curTasks)
 
 
+    }
 
     const handleRemoveMembership = async (teamId) => {
         await dispatch(fetchDeleteMembership(teamId))
@@ -64,8 +74,6 @@ const ProfilePage = () => {
                 </div>
 
             )
-
-
         }
         return (
             <div  className='jc-c row lr-margin'>
@@ -104,6 +112,7 @@ const ProfilePage = () => {
                       </div>
                 )}
                 {user && curUsersTeams.length > 0  && (
+                    <>
                      <div className='col main-left-proj lr-margin-small'>
                      <h2 className='text-blue tb-margin'>Team Member:</h2>
                          {curUsersTeams && (curUsersTeams.map(team => {
@@ -122,8 +131,28 @@ const ProfilePage = () => {
                              }))
                              }
                      </div>
+                     <div className='col main-left-proj lr-margin-small'>
+                     <h2 className='text-blue tb-margin'>Tasks Assigned to you:</h2>
+                     {curTasks && curTasks.length && (curTasks.map(task => {
+                        return ( <div>
+                            <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
+                            <h3>{task.name}</h3>
+                            <h5>{task.description}</h5>
+                            </Link>
+                            </div>
+
+                        )
+                     })
+
+
+                        )
+                     }
+
+                     </div>
+                     </>
 
                 )}
+
 
             </div>
 

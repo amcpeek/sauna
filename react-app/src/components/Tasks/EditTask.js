@@ -32,9 +32,10 @@ const EditTask=({selectedTask, showTask, setShowTask})=>{
             id:tempTask.id,
             name:tempTask.name,
             description:tempTask.description,
-            stageId:tempTask.stageId
+            stageId:tempTask.stageId,
+            assigneeId:tempTask.assigneeId
         }
-      //  console.log('is task correct', task)
+        console.log('is task correct', task)
         return (
             <TaskForm task={task} formType="Edit Task" projectId={tempTask.projectId} showTask={showTask} setShowTask={setShowTask}/>
         )

@@ -8,12 +8,19 @@
 
 
 //action types
+const READ_TASKS = 'tasks/READ_TASKS' //p1
 const READ_SINGLE_TASK = 'tasks/READ_SINGLE_TASK'
 const CREATE_TASK = 'tasks/CREATE_TASK'
 const DELETE_TASK = 'tasks/DELETE_TASK'
 const UPDATE_TASK = 'tasks/UPDATE_TASK'
 const READ_TASKS_BY_PROJECT_ID = 'tasks/READ_TASKS_BY_PROJECT_ID'
 //action creators
+//T1
+const getAll = ({Tasks}) => ({
+    type: READ_TASKS,
+    Tasks
+})
+
 //T2
 const getTask = (task) => ({
     type: READ_SINGLE_TASK,
@@ -42,6 +49,19 @@ const getByProject = ({Tasks}) => ({
 })
 
 //thunks
+//T1
+export const fetchAllTasks = () => async dispatch => {
+    const response = await fetch(`/api/tasks`);
+    console.log('are we getting to the fetch', response)
+
+    if(response.ok){
+        const tasksList = await response.json()
+        console.log('taskList', tasksList)
+        dispatch(getAll(tasksList))
+    }
+    if(response.status>=400) throw response
+}
+
 //T2
 export const fetchOneTask = (id) => async dispatch => {
     const response = await fetch(`/api/tasks/${id}`)
@@ -120,6 +140,32 @@ const initialState = {}
 const tasksReducer = (state = initialState, action) => {
     let newState;
     switch(action.type){
+        // case READ_TASKS:
+        //     console.log('are we getting to the reducer')
+        //     newState={...state, allTasks: {...state}}
+        //     const nextLevelAll = {}
+        //     if(!action.Tasks.length) {
+        //         return {...state}
+        //     }
+        //     action.Tasks.forEach(task => {
+        //         nextLevelAll[task.id] = task
+        //     })
+        //     return {
+        //         ...state,
+        //         allTasks: { nextLevelAll }
+        //     }
+        case READ_TASKS:
+            newState={...state}
+            console.log('action.Tasks', action.Tasks)
+            action.Tasks.forEach(task => {
+            newState[task.id] = task
+            })
+            return newState
+
+
+
+
+
         case READ_TASKS_BY_PROJECT_ID:
             newState = { ...state, tasksByProjectId: {...state} }
 

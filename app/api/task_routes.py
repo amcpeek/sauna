@@ -24,13 +24,14 @@ def all_tasks_by_project_id(id):
 #T7 get by project id
 
 # T1 get all, backend only
-@task_routes.route('/tasks/')
+@task_routes.route('/tasks')
 @login_required
 def allTasks():
+    print('are we getting to the backend')
     """
     Query for all users and returns them in a list of task dictionaries
     """
-    return {'tasks': [task.to_dict() for task in Task.query.all()]}
+    return {'Tasks': [task.to_dict() for task in Task.query.all()]}
     # return {'testing':'test'}
 
 #T2 get by task id

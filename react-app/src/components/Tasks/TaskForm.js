@@ -4,18 +4,21 @@ import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../store/task";
 import { fetchOneProject } from "../../store/project"
 import { authenticate } from '../../store/session';
+import { fetchOneTeam } from '../../store/team'
 
 const TaskForm=({task, formType, projectId,
     setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3,
     showTask, setShowTask
     }) => {
-    let initName, initDescription, initStageId
+    let initName, initDescription, initStageId, initAssigneeId
+    let memberArray = []
     const history=useHistory()
     const dispatch = useDispatch()
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
         const returnUser = await dispatch(authenticate())
+        const returnTeam = await dispatch(fetchOneTeam(oneProject.teamId))
       }
 
       useEffect(() => {
@@ -27,9 +30,12 @@ const TaskForm=({task, formType, projectId,
         initDescription=task.description;
         initName=task.name
         initStageId=task.stageId
+        initAssigneeId=task.assigneeId
+        console.log('initAssigneeId', initAssigneeId)
     } else {
         initDescription=''
         initName=''
+        initAssigneeId=0
         if(showAddTask1) {
             initStageId=1
         } else if (showAddTask2) {
@@ -44,36 +50,37 @@ const TaskForm=({task, formType, projectId,
     const [name, setName] = useState(initName)
     const [stageId, setStageId] = useState(initStageId)
     const [validationErrors, setValidationErrors] = useState([])
+    const [assigneeId, setAssigneeId] = useState(initAssigneeId)
+
     let user = useSelector(state => {return state.session.user})
     let oneProject = useSelector(state => {return state.project[projectId]})
-
-
+    let oneTeam = useSelector(state => {return state.team[oneProject.teamId]} )
 
     useEffect(() => {
         setDescription(initDescription)
         setName(initName)
         setStageId(initStageId)
+        setAssigneeId(initAssigneeId)
     }, [task])
 
     useEffect(() => {
-       // console.log('when is the task use effect run', "name", name, 'description', description, 'stageId', stageId)
-        // if (!name&&!description&&!stageId) {
-        //   setValidationErrors([]);
-        //   return;
-        // }
-        //if don't want this prior to press submit, can put in the handleSubmit, or just rely on backend validation
         const errors =[];
         if(name.length<=0 || name == ' '){errors.push("Title required");}
         else if(name.length>=60){errors.push("Title must be less than 60 characters")}
-        // if(description.length<=0){errors.push("Description required");}
         if(description.length>=500){errors.push("Description must be less than 500 characters")}
-
+        // if(assigneeId  not in list of current members)
         setValidationErrors(errors);
-    }, [name, description, stageId])
+    }, [name, description, stageId, assigneeId])
+
+
+    if(oneTeam && oneTeam.memberships) {
+        // console.log('ONE   TEAM',oneTeam.memberships)
+        memberArray = oneTeam.memberships
+    }
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        const tempTask = { ...task, name, description, stageId};
+        const tempTask = { ...task, name, description, stageId, assigneeId};
         const errors=[]
 
         if(formType==="Create Task"){
@@ -186,6 +193,23 @@ const TaskForm=({task, formType, projectId,
                 <option value={2} >In Progress</option>
                 <option value={3} >Complete</option>
             </select>
+            </div>
+ {/* // */}
+            <div className='jc-sf col width-100-per'>
+                {console.log('assigneeId', assigneeId)}
+
+                 <select
+                 type='number'
+                 onChange={(e) => setAssigneeId(e.target.value) }
+                 value={assigneeId}
+
+                 >
+                    {memberArray && memberArray.length && memberArray.map(member => {return (
+                        <option value={member.id}>{member.users[0].username}</option>
+                    )})}
+             </select>
+
+
             </div>
       </div>
 )}

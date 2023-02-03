@@ -30,17 +30,17 @@ const NavBar = () => {
     <nav>
        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
        <div className='jc-sb lr-margin vh-5 ai-c '>
-              <div className='row'>
+              <div className='row ai-c'>
 
-                      <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
+                      <Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link>
                       &nbsp; &nbsp; &nbsp;
-                      <div><TeamsButton user={user}/></div>
+                      <TeamsButton user={user}/>
                       &nbsp; &nbsp; &nbsp;
-                      <div ><Link to='/whySauna' className='no-und'>Why Sauna?</Link></div>
+                      <Link to='/whySauna' className='no-und'>Why Sauna?</Link>
                       &nbsp; &nbsp; &nbsp;
-                      <div ><a href='https://github.com/amcpeek/sauna/wiki' className='no-und'>Features</a></div>
+                      <a href='https://github.com/amcpeek/sauna/wiki' className='no-und' target="_blank">Features</a>
                       &nbsp; &nbsp; &nbsp;
-                      <div><a href='https://github.com/amcpeek/sauna' className='no-und'>Resources</a></div>
+                      <a href='https://github.com/amcpeek/sauna' className='no-und' target="_blank">Resources</a>
 
               </div>
 
@@ -48,31 +48,20 @@ const NavBar = () => {
               <div className='row'>
                   <div>
                       <a
-                      href='https://www.linkedin.com/in/annika-mcpeek/'>
+                      href='https://www.linkedin.com/in/annika-mcpeek/'
+                      target="_blank">
                       <i className="fa-brands fa-linkedin"/>
                       </a>
                       &nbsp; &nbsp; &nbsp;
                       <a
-                      href='https://github.com/amcpeek/'>
+                      href='https://github.com/amcpeek/'
+                      target="_blank">
                       <i className="fa-brands fa-github"/>
                       </a>
                       &nbsp; &nbsp; &nbsp;
                   </div>
                   <div className='row ai-jc width-same'>
-
-                      {/* {user &&
-                      <div className='ai-c'>
-                        <button onClick={() => setShowModal(true)} className='just-text-button bg-white cursor'><i className="fa-solid fa-plus"></i></button>
-                        <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
-                      </div>
-                      } */}
-
-
-
-                      <div>
-                         <div> <ProfileButton user={user}/></div>
-
-                      </div>
+                         <ProfileButton user={user}/>
                   </div>
               </div>
 

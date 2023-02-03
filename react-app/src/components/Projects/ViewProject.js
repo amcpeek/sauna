@@ -65,10 +65,11 @@ const ViewProject = () => {
                 <div className='col vh-15 lr-margin-small'>
                     {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                     <div className='bg-green small-box round-sq'> AM</div> */}
-                    <div><h2>{oneProject.name}</h2></div>
-                    <div>
-                        Team Lead: {oneProject.owner.username} <br/>
-                        {oneProject.description}</div>
+                    <div className='should-wrap-full'><h2>{oneProject.name}</h2></div>
+                    <div className='should-wrap-full scroller'>
+                       <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
+                         {oneProject.description} </p>
+                        </div>
                     <div className='long-gray-line tb-margin'></div>
                     {/* <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div> */}
 
@@ -98,7 +99,7 @@ const ViewProject = () => {
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>To Do <button className='just-text-button cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>To Do <button className='match-tasks cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus "></i></button></h2>
                         {toDo.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task))}>
@@ -123,7 +124,7 @@ const ViewProject = () => {
 
 
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>In Progress <button className='just-text-button' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>In Progress <button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button></h2>
                         {inProg.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task)) }>
@@ -143,7 +144,7 @@ const ViewProject = () => {
                         </div>
                     </div>
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>Complete <button className='just-text-button' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>Complete <button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button></h2>
                         {complete.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
@@ -164,8 +165,8 @@ const ViewProject = () => {
 
                     </div>
                     {showTask &&
-                     <div className='f col width-40-per bg-white box-shadow round-sq-05'>
-                     <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
+                     <div className='f col width-40-per bg-white box-shadow round-sq-05 '>
+                     <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task width-90-per" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
                          <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
                          {/* onClick={() => setShowTask(false)}  add back in later*/}
                          <ViewTask selectedTask={selectedTask}/>

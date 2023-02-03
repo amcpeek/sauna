@@ -67,7 +67,7 @@ const ProfilePage = () => {
         if(!ownersTeams.length && !curUsersTeams.length) {
             return (
                 <div className='f'>
-            <div className='main-left col main-left lr-margin'>
+            <div className='main-left col lr-margin'>
                 <h1>You are not currently part of any teams or own any teams</h1>
                 <Link to='/teams'>join a team or create a team</Link>
                 </div>
@@ -76,19 +76,19 @@ const ProfilePage = () => {
             )
         }
         return (
-            <div  className='jc-c row lr-margin'>
+            <div  className='jc-c row lr-margin-10-vw'>
                 {user && ownersTeams.length > 0 && (
-                      <div className='col main-left-proj lr-margin-small'>
+                      <div className='col main-left-proj lr-margin-small width-20-vw '>
 
-                      <h2 className='text-blue tb-margin'>Team Owner:</h2>
+                      <h2 className='tb-margin'>Team Owner</h2>
                       {ownersTeams && (ownersTeams.map(team => {
                           return (
                               <div>
                               <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                                   <div className='short-gray-line'></div>
-                              <h3 className='text-blue'>{team.name}:</h3>
+                              <h3 className='text-blue should-wrap'>{team.name}</h3>
                               <div className='col'>
-                              <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
+                              <h5 className='should-wrap'>Team Lead: {team.owner.username} <br/> {team.description}</h5>
                               </div>
                               </Link>
                               <br/>
@@ -105,40 +105,42 @@ const ProfilePage = () => {
                           }))
                           }
                            <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <button onClick={() => setShowTModal(true)} className='asana-button'>Create New Team</button>
                         <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
-                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
-                        <div className='short-gray-line tb-margin'></div>
+
                       </div>
                       </div>
                 )}
                 {user && curUsersTeams.length > 0  && (
                     <>
-                     <div className='col main-left-proj lr-margin-small'>
-                     <h2 className='text-blue tb-margin'>Team Member:</h2>
+                     <div className='col main-left-proj lr-margin-small width-20-vw'>
+                     <h2 className='tb-margin'>Team Member</h2>
                          {curUsersTeams && (curUsersTeams.map(team => {
                              return (
                                  <div>
                                  <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-                                     <div className='short-gray-line'></div>
-                                 <h3 className='text-blue'>{team.name}:</h3>
+                                 <div className='short-gray-line'></div>
+
+                                 <h3 className='text-blue should-wrap'>{team.name}</h3>
                                  <div className='col'>
-                                 <h5>Team Lead: {team.owner.username} <br/> {team.description}</h5>
+                                 <h5 className='should-wrap'>Team Lead: {team.owner.username} <br/> {team.description}</h5>
                                  </div>
                                  </Link>
-                                 <button onClick={() => handleRemoveMembership(team.id)}>Leave Team</button>
+                                 <button className='asana-button margin-b-2' onClick={() => handleRemoveMembership(team.id)}>Leave Team</button>
+
                                  </div>
                                  )
                              }))
                              }
                      </div>
-                     <div className='col main-left-proj lr-margin-small'>
-                     <h2 className='text-blue tb-margin'>Tasks Assigned to you:</h2>
-                     {curTasks && curTasks.length && (curTasks.map(task => {
+                     <div className='col main-left-proj lr-margin-small width-20-vw'>
+                     <h2 className='tb-margin'>Tasks Assigned to you</h2>
+                     <div className='short-gray-line'></div>
+                     {curTasks && curTasks.length > 0 && (curTasks.map(task => {
                         return ( <div>
                             <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
-                            <h3>{task.name}</h3>
-                            <h5>{task.description}</h5>
+                            <h3 className='text-blue tb-margin'>{task.name}</h3>
+                            <h5 className='should-wrap'>{task.description}</h5>
                             </Link>
                             </div>
 

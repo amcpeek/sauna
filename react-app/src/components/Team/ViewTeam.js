@@ -48,12 +48,12 @@ const ViewTeam = () => {
             <div className='col main-left-proj'>
 
                     <div>
-                       <div>Team Information:</div>
-                        <div className='text-blue'>{oneTeamObj.name}</div>
-                        <div>Team Lead: {oneTeamObj.owner.username}</div>
-                        <div>{oneTeamObj.description}</div>
+                       {/* <div>Team Information:</div> */}
+                        <h1 className='should-wrap-70'>{oneTeamObj.name}</h1>
+                        <h4 className='text-blue'>Team Lead: {oneTeamObj.owner.username}</h4>
+                        <div className='should-wrap-70'>{oneTeamObj.description}</div>
                         <br/>
-                        <div>Team Members:
+                        <div className='text-blue'>Team Members:
                         {oneTeamObj.memberships && !oneTeamObj.memberships.length && (<div>Your team does not yet have any members</div>)}
 
                         </div>
@@ -67,8 +67,8 @@ const ViewTeam = () => {
                         <br/>
                     </div>
                     {user && user.id == oneTeamObj.owner.id && (
-                        <div className='f vh-5 lr-margin-small ai-c'>
-                        <button onClick={() => (setShowTModal(true), setSentTeamId(oneTeamObj.id)) } className='just-text-button bg-white'>Edit Team
+                        <div className=' vh-5 ai-c jc-st'>
+                        <button onClick={() => (setShowTModal(true), setSentTeamId(oneTeamObj.id)) } className='asana-button row'>Edit Team &nbsp;
                         <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
                         </button>
                         <EditTeamModal showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
@@ -82,30 +82,32 @@ const ViewTeam = () => {
 
                         {oneTeamObj.memberships.find(member => member.users[0].id == user.id)?
 
-                        <div>You are a member of this team
-                           <button onClick={() => setShowModal(true)} className='just-text-button thin-bor bg-white cursor tb-margin'>Create New Project</button>
+                        <div>
+                           <button onClick={() => setShowModal(true)} className='asana-button'>Create New Project</button>
                         <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
                         </div>
                         :
-                        <button onClick={() => handleCreateMembership(oneTeamObj.id)}>Join Team</button>
+                        <button className='asana-button' onClick={() => handleCreateMembership(oneTeamObj.id)}>Join Team</button>
                         }
                       </div>
                       }
-                      {oneTeamObj.projects && !oneTeamObj.projects.length && (<div>Your team does not yet have any projects</div>)}
+                      <h2 className='text-blue'>Team's Projects</h2>
+                      {oneTeamObj.projects && !oneTeamObj.projects.length && (<div>This team does not yet have any projects</div>)}
+
                       {oneTeamObj.projects && oneTeamObj.projects.map(project => {
                       return (
                         <div>
-                             <div>Team's Projects:</div>
+
 
                         <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                         <div>
 
                             <div className='short-gray-line'></div>
 
-                        <h3 className='text-blue'>
+                        <h3 className='text-blue should-wrap-70'>
                         {/* <i className="fa-solid fa-user-plus"></i> */}
                         {project.name}</h3>
-                        <div className='col'>
+                        <div className='col should-wrap-70'>
                             {project.owner && (
                                 <h5>Project Lead: {project.owner.username} <br/>{project.description}</h5>
                             )}

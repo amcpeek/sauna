@@ -17,6 +17,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showLogInModal, setShowLogInModal] = useState(false)
 
   if (sessionUser) return <Redirect to="/" />;
 
@@ -45,8 +46,14 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
+  // const switchToLogIn = (e) => {
+  //   e.preventDefault()
+  //   // setShowSignUpModal(false)
+  //   setShowLogInModal(true)
+  // }
+
   return (
-    <div className="jc-st ai-st col all-margin-small">
+    <div className="jc-st ai-st col all-margin-small lr-margin-small">
     <div className='jc-st col'>
     <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
@@ -59,7 +66,8 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
 
     <form onSubmit={handleSubmit} className="C" >
       <div className='b-margin'>
-      <label>
+      <label className='row jc-sb wh-100'>
+        Username  &nbsp;
         <input
           className='circle thin-bor bg-white'
           placeholder="Username"
@@ -71,7 +79,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </label>
       </div>
       <div className='b-margin'>
-      <label>
+      <label className='row jc-sb wh-100'>Email
         <input
           className='circle thin-bor bg-white'
           placeholder="Email"
@@ -83,7 +91,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </label>
       </div>
       <div className='b-margin'>
-      <label>
+      <label className='row jc-sb wh-100'>Password
         <input
           className='circle thin-bor bg-white'
           placeholder="Password"
@@ -95,7 +103,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </label>
       </div>
       <div className='b-margin'>
-      <label>
+      <label className='row jc-sb wh-100'>Confirm Password &nbsp; &nbsp; &nbsp;
         <input
           className='circle thin-bor bg-white'
           placeholder="Confirm Password"
@@ -108,8 +116,9 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
       </div>
 
       <div>
-      <button className='circle thin-bor bg-white' type="submit">Sign Up</button>
+      <button className='asana-button' type="submit">Sign Up</button>
       </div>
+      {/* <button className='asana-button' onClick={switchToLogIn}>Log in & Demo User</button> */}
 
     </form>
 

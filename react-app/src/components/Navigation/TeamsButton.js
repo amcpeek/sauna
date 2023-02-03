@@ -48,14 +48,16 @@ function TeamButton({ user }) {
 
   return (
     <div className=''>
-      <button onClick={openMenu} className=' just-text-button bg-white pad-1 z-2 cursor'>Teams</button>
+      <button onClick={openMenu} className='just-text-button bg-white pad-1 z-2 cursor'>
+      <div className='font-med' >Teams</div>
+      </button>
       {showMenu && user && (
 
         <div className="dropdownTeam">
-            <button className='just-text-button bg-white cursor'><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>
+            <button className='just-text-button bg-white cursor jc-c'><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>
 
-            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>Your Teams</NavLink></button>
-            <button className='just-text-button bg-white cursor' onClick={() => setShowTModal(true)}>Create Team</button>
+            <button className='just-text-button bg-white cursor jc-c'><NavLink exact to="/profile" className='no-und'>Your Teams & Tasks</NavLink></button>
+            <button className='just-text-button bg-white cursor jc-c' onClick={() => setShowTModal(true)}>Create Team</button>
 
         </div>
 

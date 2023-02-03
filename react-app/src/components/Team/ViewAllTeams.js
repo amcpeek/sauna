@@ -39,7 +39,7 @@ const ViewAllTeams = () => {
 
 
             <div className='col main-left-proj'>
-                <div>View All Teams</div>
+                <h1>All Teams</h1>
                 {allTeams && (allTeams.map(team => {
                     return (
                         <div>
@@ -48,12 +48,12 @@ const ViewAllTeams = () => {
 
 
 
-                        <h3 className='text-blue'>
+                        <h3 className='text-blue should-wrap-70'>
                         {/* <i className="fa-solid fa-user-plus"></i> */}
-                        {team.name}:</h3>
+                        {team.name}</h3>
                         <div className='col'>
 
-                        <h5>Team Lead: {team.owner.username}
+                        <h5 className='should-wrap-70'>Team Lead: {team.owner.username}
                         <br/>
                         {team.description}</h5>
                         </div>
@@ -71,10 +71,10 @@ const ViewAllTeams = () => {
             </div>
             {user &&
                       <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor'>Create New Team</button>
+                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor text-blue font-large'>Create New Team</button>
                         <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
                         {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
-                        <div className='short-gray-line tb-margin'></div>
+                        {/* <div className='short-gray-line tb-margin'></div> */}
                       </div>
                       }
         </div>

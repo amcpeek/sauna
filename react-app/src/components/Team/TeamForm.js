@@ -115,10 +115,10 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
               </div>
 
               <form className='' onSubmit={handleSubmit}>
-              <button className='just-text-button bg-white' onClick={()=>setShowTModal(false)}>X</button>
+              <button className='just-text-button bg-white b-margin' onClick={()=>setShowTModal(false)}>X</button>
               {/* NOT WORKING = ERROR */}
       {/* // */}
-                  <div className='jc-sf col width-100-per'>
+                  <div className='jc-sf col width-100-per b-margin'>
 
 
                       <label>
@@ -136,7 +136,7 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
 
                   </div>
       {/* // */}
-                  <div className=' jc-sf col width-100-per'>
+                  <div className=' jc-sf col width-100-per b-margin'>
 
                       <label>
                       Description
@@ -153,7 +153,7 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
 
                   </div>
       {/* // */}
-                  <div className=''>
+                  <div className='b-margin'>
                   {!!validationErrors.length && (
                   <div className=''>
                   <div className=''>
@@ -166,7 +166,7 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
                   </div>
       {/* // */}
                   <div className="">
-                   <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
+                   <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor b-margin" disabled={!!validationErrors.length}/>
                    </div>
                   </form>
                   {formType==="Edit Team" &&(

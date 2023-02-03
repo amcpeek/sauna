@@ -30,8 +30,8 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
         //     return
         // }
         const errors = []
-        if(name.length<=0){errors.push("Title required")}
-        else if(name.length>=60){errors.push("Title must be less than 60 characters")}
+        if(name.length<=0){errors.push("Name required")}
+        else if(name.length>=60){errors.push("Name must be less than 60 characters")}
         if(description.length<=0){errors.push("Description required")}
         else if(description.length>=500){errors.push("Description must be less than 500 characters")}
         setValidationErrors(errors);
@@ -94,9 +94,9 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
               </div>
 
               <form className='' onSubmit={handleSubmit}>
-              <button className='just-text-button bg-white' onClick={()=>setShowModal(false)}>X</button>
+              <button className='just-text-button bg-white b-margin' onClick={()=>setShowModal(false)}>X</button>
       {/* // */}
-                  <div className='jc-sf col width-100-per'>
+                  <div className='jc-sf col width-100-per b-margin'>
 
 
                       <label>
@@ -113,7 +113,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
                   </div>
       {/* // */}
-                  <div className=' jc-sf col width-100-per'>
+                  <div className=' jc-sf col width-100-per b-margin'>
 
                       <label>
                       Description
@@ -130,7 +130,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
                   </div>
       {/* // */}
-                  <div className=''>
+                  <div className='b-margin'>
                   {!!validationErrors.length && (
                   <div className=''>
                   <div className=''>
@@ -143,7 +143,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
                   </div>
       {/* // */}
                   <div className="">
-                   <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
+                   <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor b-margin" disabled={!!validationErrors.length}/>
                    </div>
                   </form>
                   {formType==="Edit Project" &&(

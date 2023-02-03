@@ -75,6 +75,10 @@ textarea {
     background-color: none
 }
 
+.match-tasks {
+    background-color: rgba(247,246,246,255);
+    border: none;
+}
 
 .no-bor {
     border: none
@@ -183,6 +187,10 @@ textarea {
     margin-top: 0.5em;
 }
 
+.margin-b-2 {
+    margin-bottom: 2em;
+}
+
 .all-padding {
     display:flex;
     padding: 5em;
@@ -216,7 +224,7 @@ textarea {
 }
 
 .vw-100-vh-75 {
-    width: 100vw;
+    width: 99vw;
     height: 75vh;
 
 }
@@ -234,7 +242,12 @@ textarea {
     display:flex;
     margin-left: 10em;
     margin-right: 10em;
+}
 
+.lr-margin-10-vw {
+    display:flex;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }
 
 .lr-margin-small {
@@ -261,6 +274,10 @@ textarea {
 
 .width-50em {
     width: 30em;
+}
+
+.width-20-vw {
+    width: 20vw;
 }
 
 
@@ -302,6 +319,11 @@ textarea {
     width: 80%;
 }
 
+.width-90-per {
+    display: flex;
+    width: 90%;
+}
+
 
 .width-100-per {
     display: flex;
@@ -325,8 +347,22 @@ textarea {
 
 }
 
+.max-width-90em {
+    max-width: 90em;
+}
+
+
+.max-width-20em {
+    max-width: 20em;
+}
+
+.max-width-20-per {
+    max-width: 20%
+}
 
 /* font */
+
+
 
 .font-small {
     font-size:xx-small;
@@ -334,6 +370,15 @@ textarea {
 
 .font-small-med {
     font-size: small
+
+}
+
+.font-med {
+    font-size: medium;
+}
+
+.font-large {
+    font-size:large
 
 }
 
@@ -365,6 +410,9 @@ textarea {
 
 
 /* lines */
+.just-no-und {
+    text-decoration:none;
+}
 
 .no-und {
     text-decoration:none;
@@ -512,7 +560,7 @@ height: 2em;
     border-radius: 1em;
     border: white 0.5em solid;
     background-color: #f9f9f9;
-    min-width: 9.5em;
+    min-width: 7.5em;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 4;
     justify-content: center;
@@ -535,3 +583,49 @@ height: 2em;
   .z-2 {
     z-index: 2
    }
+
+
+   .asana-button {
+    background-color: white;
+    border-radius: 5px;
+    border: rgb(166, 162, 162) solid 0.05em;
+    cursor: pointer
+
+   }
+
+
+   .should-wrap {
+    overflow-wrap: break-word;
+    width: 20vw;
+   }
+
+
+   .should-wrap-10 {
+    overflow-wrap: break-word;
+    width: 10em;
+   }
+
+
+   .should-wrap-full {
+    overflow-wrap: break-word;
+    width: 90vw;
+    height: 5vh;
+   }
+
+   .should-wrap-70 {
+    overflow-wrap: break-word;
+    width: 70vw;
+
+   }
+
+   .scroller {
+    /* width: 300px; */
+    height: 100em;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  }
+
+  .should-wrap-task-edit {
+    overflow-wrap: break-word;
+    width: 20vw;
+  }

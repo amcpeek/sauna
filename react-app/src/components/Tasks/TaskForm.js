@@ -152,14 +152,14 @@ const TaskForm=({task, formType, projectId,
 
 
     return (
-        <div className="jc-st col ai-st bg-white width-100-per ">
+        <div className="jc-st col ai-st bg-white width-100-per all-margin-small">
         <div className="">
         </div>
         <div className=''><h2>{formType}</h2></div>
         <form className=' jc-st col ai-st width-100-per' onSubmit={handleSubmit}>
-            <button className='just-text-button bg-white' onClick={()=>closeBox()}>X</button>
+            <button className='just-text-button bg-white b-margin' onClick={()=>closeBox()}>X</button>
 {/* // */}
-            <div className='width-100-per'>
+            <div className='width-100-per b-margin'>
                 <input
                 className='round-sq-05 thin-bor width-100-per'
                 placeholder='Your task'
@@ -172,7 +172,7 @@ const TaskForm=({task, formType, projectId,
 {/* // */}
 {formType==="Edit Task" &&(
     <div className="jc-sf col width-100-per">
-            <div className='jc-sf col'>
+            <div className='jc-sf col b-margin'>
                 <textarea
                 className='width-100-per round-sq-05 thin-bor'
                 placeholder='Your Description'
@@ -183,7 +183,7 @@ const TaskForm=({task, formType, projectId,
                 ></textarea>
             </div>
 {/* // */}
-            <div className='jc-sf col width-100-per'>
+            <div className='jc-sf col width-100-per b-margin'>
             <select
                 type='number'
                 onChange={(e) => setStageId(e.target.value) }
@@ -195,7 +195,7 @@ const TaskForm=({task, formType, projectId,
             </select>
             </div>
  {/* // */}
-            <div className='jc-sf col width-100-per'>
+            <div className='jc-sf col width-100-per b-margin'>
                 {console.log('assigneeId', assigneeId)}
 
                  <select
@@ -222,7 +222,7 @@ const TaskForm=({task, formType, projectId,
             </div>
             {!!validationErrors.length && (
             <div className=''>
-            <div className=''>
+            <div className='b-margin'>
              {validationErrors.map((error) => (
             <div key={error} className="">{error}</div>
                        ))}
@@ -232,15 +232,20 @@ const TaskForm=({task, formType, projectId,
             </div>
 {/* // */}
             <div className="">
-             <input type="submit" value={formType} className=" bg-white round-sq-05 thin-bor" disabled={!!validationErrors.length}/>
+             <input type="submit" value={formType} className="asana-button b-margin" disabled={!!validationErrors.length}/>
              </div>
             </form>
             {formType==="Edit Task" && user && oneProject && user.id == oneProject.ownerId && (
                 <div className="">
-              <button onClick={()=>deleteEvents(task)} className="bg-white round-sq-05 thin-bor">Delete</button>
+              <button onClick={()=>deleteEvents(task)} className="asana-button">Delete</button>
               </div>
                 )}
+                {formType==="Edit Task" && user && oneProject && (user.id != oneProject.ownerId) && (
+                <div className="">*Only the project owner can delete tasks
 
+              </div>
+
+                )}
 
 
 

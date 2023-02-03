@@ -50,9 +50,9 @@ function ProfileButton({ user }) {
       {/* <i className="material-symbols-outlined">menu</i>
       <i className="material-symbols-outlined"> account_circle</i> */}
       {!user?
-      <div className='font-small-med' >Get Started</div>:
+      <div className='font-small-med ai-c ' >Get Started</div>:
       // <div className=''>{(user.username).slice(0,1).toUpperCase()} {((user.username).slice(1,2)).toUpperCase()}</div>
-      <div><i className="fa-regular fa-user"></i></div>
+      <div><i className="fa-regular fa-user ai-c"></i></div>
       }
 
       </button>
@@ -60,7 +60,7 @@ function ProfileButton({ user }) {
 
         <div className="dropdownContentNav">
 
-            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>View Your Profile</NavLink></button>
+            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>Your Teams & Tasks</NavLink></button>
             <button className='just-text-button bg-white cursor' onClick={logout}>Log Out</button>
         </div>
       )}
@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
              <SignUpFormModal showSignUpModal={showSignUpModal} setShowSignUpModal={setShowSignUpModal}/>
       {showMenu && !user && (
         <div className="dropdownContentNav">
-          <button className='just-text-button bg-white cursor' onClick={() => setShowLogInModal(true)}>Log In</button>
+          <button className='just-text-button bg-white cursor' onClick={() => setShowLogInModal(true)}>Log In & Demo User</button>
           <button className='just-text-button bg-white cursor' onClick={() => setShowSignUpModal(true)}>Sign Up</button>
 
 

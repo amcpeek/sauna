@@ -10,11 +10,11 @@ const ViewTask = ({selectedTask}) => {
     const history = useHistory()
 
     return (
-        <div className='width-100-per jc-st'>
+        <div className='jc-st lr-margin-small'>
         {selectedTask &&
-        <div>
-        <h2 className='width-100-per jc-st'>{selectedTask.name}</h2>
-        <div className='width-100-per jc-st'>{selectedTask.description}</div>
+        <div className=''>
+        <h2 className='should-wrap-task-edit'>{selectedTask.name}</h2>
+        <p className='should-wrap-task-edit'>{selectedTask.description}</p>
         </div>
         }
         </div>

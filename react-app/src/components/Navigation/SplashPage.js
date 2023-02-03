@@ -15,7 +15,8 @@ const SplashPage = () => {
                                 <h4>Sauna, an Asana clone,  helps you manage projects, focus on what's important, <br/> and organize work in one place for seamless collaboration.</h4>
                                 <h4>Join one of the many teams working on projects on Sauna </h4>
                                 <h4>Join our sample company managing teams and projects with Sauna </h4>
-                                    <Link to='/teams'>Discover Teams</Link>
+                                <h2><Link className='cursor text-blue just-no-und' to='/teams'>Discover Teams</Link></h2>
+
                             </div>
 
                         </div>

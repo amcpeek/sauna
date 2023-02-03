@@ -43,7 +43,7 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
         })
 
     }
-    return setErrors(['Confirm Password field must be the same as the Password field']);
+    return setErrors(['passwords: Must match']);
   };
 
   // const switchToLogIn = (e) => {
@@ -58,8 +58,8 @@ function SignupFormPage({showSignUpModal, setShowSignUpModal}) {
     <button className="bg-white just-text-button circle" onClick={() => setShowSignUpModal(false)}>X</button>
     <h4>Sign Up</h4>
       <div className=''>
-        <div className=''>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>  )}
+        <div className='b-margin col'>
+        {errors.map((error, idx) => <div key={idx}>{error}</div>  )}
         </div>
       </div>
     </div>

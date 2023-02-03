@@ -12,6 +12,7 @@ const TaskForm=({task, formType, projectId,
     }) => {
     let initName, initDescription, initStageId, initAssigneeId
     let memberArray = []
+    let isMember = ''
     const history=useHistory()
     const dispatch = useDispatch()
 
@@ -76,6 +77,10 @@ const TaskForm=({task, formType, projectId,
     if(oneTeam && oneTeam.memberships) {
         // console.log('ONE   TEAM',oneTeam.memberships)
         memberArray = oneTeam.memberships
+        isMember = memberArray.find(member =>  member.users[0].id == user.id)
+        if(isMember) {
+            console.log('isMember', isMember.id)
+        }
     }
 
     const handleSubmit = async (e)=>{
@@ -148,6 +153,12 @@ const TaskForm=({task, formType, projectId,
         } else if (showTask) {
             setShowTask(false)
         }
+    }
+
+    if(!isMember) {
+        return (
+            <div className='jc-c width-100-per'>Only team Members can edit tasks</div>
+        )
     }
 
 

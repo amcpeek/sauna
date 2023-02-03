@@ -57,12 +57,14 @@ const TeamForm=({team, formType, showTModal, setShowTModal})=> {
         const errors = []
 
         if(formType==='Create Team'){ //WORKING
-            const returnedTeam = dispatch(fetchCreateTeam(tempTeam))
-            .then((team) => {
-                history.push(`/teams/${team.id}`)
-               // console.log('returned team', team)
-                dispatch(handleCreateMembership(team.id))
-                dispatch( fetchOneTeam(team.id)).then(setShowTModal(false))
+            const returnedTeam = await dispatch(fetchCreateTeam(tempTeam))
+            .then( async (team1) => {
+
+                console.log('returned team', team1.id)
+                handleCreateMembership(team1.id)
+                await dispatch( fetchOneTeam(team1.id))
+                .then(setShowTModal(false))
+                history.push(`/teams/${team1.id}`)
                 }) //should redirect to your teams page
             .catch(async (err)=> {
                 console.log('well what is err', err)

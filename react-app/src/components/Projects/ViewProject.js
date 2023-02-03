@@ -24,6 +24,7 @@ const ViewProject = () => {
     const [showModal, setShowModal] = useState(false);
     let arr = []
     let isMember = ''
+    let memberArray = []
 
 
     //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
@@ -36,9 +37,7 @@ const ViewProject = () => {
         const returnTeam = await dispatch(fetchAllTeams())
     }
 
-    useEffect(() => {
-       findProjectTest()
-    }, [dispatch, isMember])
+
 
     //edit
     const showTaskFunc = (task) => {
@@ -50,10 +49,22 @@ const ViewProject = () => {
     let oneProject = useSelector(state => {return state.project[id]})
     let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
     let user = useSelector(state => {return state.session.user})
-    let oneTeam = useSelector(state => {return state.team[oneProject.teamId]} )
+    let oneTeam = useSelector(state => {
+        let projId = state.project[id]
+        let tId = 0
+
+        if(projId) {
+
+            tId = state.team[projId.teamId]
+            console.log('8898789878987', projId.teamId, 'teamId', tId)
+        }
+        return tId
+        } )
 
 
-
+    useEffect(() => {
+        findProjectTest()
+     }, [dispatch])
 
 
     if(allTasksByProg && allTasksByProg[id]) {
@@ -66,7 +77,7 @@ const ViewProject = () => {
         // {memberArray && memberArray.length && memberArray.map(member => {return (
         //     <option value={member.id}>{member.users[0].username}</option>
         // )})}
-        let memberArray = oneTeam.memberships
+        memberArray = oneTeam.memberships
         isMember = memberArray.find(member =>  member.users[0].id == user.id)
         if(isMember) {
             console.log('isMember', isMember.id)
@@ -124,8 +135,9 @@ const ViewProject = () => {
                     <button className='just-text-button do-not-interact bg-white'>Overview</button>
                     <button className='just-text-button do-not-interact bg-white'>Board</button>
                     <button className='just-text-button do-not-interact bg-white'>List</button>
-                    {oneTeam && oneTeam.memberships && user && !isMember && (
+                    {oneTeam && oneTeam.memberships && user && memberArray && !isMember && (
                         <div className='row ai-c'>
+
                         <button className='asana-button height-shorter' onClick={() => handleCreateMembership(oneProject.teamId)}>Join Team</button>
                         <p className='font-small-med'> &nbsp; *Only team member can engage with tasks &nbsp; &nbsp; </p>
                         </div>
@@ -135,11 +147,16 @@ const ViewProject = () => {
 
 
 
-                <div className='bg-light-gray round-sq-05 vw-99-vh-70'>
+                <div className='bg-light-gray round-sq-05 vw-99-vh-70 scroller-tasks'>
 
                 <div className='f width-100-per'>
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>To Do <button className='match-tasks cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus "></i></button></h2>
+                        <h2>To Do
+                            {isMember && (
+                             <button className='match-tasks cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus "></i></button>
+                            )}
+
+                            </h2>
                         {toDo.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task))}>
@@ -164,7 +181,11 @@ const ViewProject = () => {
 
 
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>In Progress <button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>In Progress
+                        {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button>
+                        )}
+
+                            </h2>
                         {inProg.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task)) }>
@@ -184,7 +205,12 @@ const ViewProject = () => {
                         </div>
                     </div>
                     <div className='col width-40-per lr-margin-small'>
-                        <h2>Complete <button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button></h2>
+                        <h2>Complete
+                        {isMember && (
+                            <button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button>
+                        )}
+
+                            </h2>
                         {complete.map(task=> {
                             return (
                                 <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
@@ -205,7 +231,7 @@ const ViewProject = () => {
 
                     </div>
                     {showTask &&
-                     <div className='f col width-40-per bg-white box-shadow round-sq-05 '>
+                     <div className='f col width-40-per bg-white box-shadow round-sq-05  ai-c'>
                      <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task width-90-per" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
                          <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
                          {/* onClick={() => setShowTask(false)}  add back in later*/}

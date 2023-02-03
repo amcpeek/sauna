@@ -635,3 +635,10 @@ height: 2em;
     overflow-wrap: break-word;
     width: 20vw;
   }
+
+  .scroller-tasks {
+    height: vh70;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+
+  }

@@ -65,7 +65,7 @@ export const fetchOneMembership = (membershipId) => async dispatch => {
 //exclude fetch by user id
 
 export const fetchCreateMembership = (teamId) => async dispatch => {
-   // console.log('in Fetch Create Membership', teamId)
+    console.log('in Fetch Create Membership', teamId)
     const response = await fetch(`/api/teams/${teamId}/memberships`, {
         method: 'POST',
         headers: {
@@ -76,7 +76,7 @@ export const fetchCreateMembership = (teamId) => async dispatch => {
     if(response.ok){
         const newMembership = await response.json()
         dispatch(create(newMembership))
-       // console.log('this is working', newMembership)
+        console.log('this is working', newMembership)
         return newMembership
     }
     if(response.status>=400) throw response

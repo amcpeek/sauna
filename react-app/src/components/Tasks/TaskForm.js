@@ -36,7 +36,7 @@ const TaskForm=({task, formType, projectId,
     } else {
         initDescription=''
         initName=''
-        initAssigneeId=0
+        initAssigneeId=1
         if(showAddTask1) {
             initStageId=1
         } else if (showAddTask2) {

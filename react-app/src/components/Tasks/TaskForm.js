@@ -15,6 +15,7 @@ const TaskForm=({task, formType, projectId,
     let isMember = ''
     const history=useHistory()
     const dispatch = useDispatch()
+    let user = useSelector(state => {return state.session.user})
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -36,7 +37,10 @@ const TaskForm=({task, formType, projectId,
     } else {
         initDescription=''
         initName=''
-        initAssigneeId=1
+        if(user) {
+            initAssigneeId=user.id
+        }
+
         if(showAddTask1) {
             initStageId=1
         } else if (showAddTask2) {
@@ -53,7 +57,7 @@ const TaskForm=({task, formType, projectId,
     const [validationErrors, setValidationErrors] = useState([])
     const [assigneeId, setAssigneeId] = useState(initAssigneeId)
 
-    let user = useSelector(state => {return state.session.user})
+
     let oneProject = useSelector(state => {return state.project[projectId]})
     let oneTeam = useSelector(state => {return state.team[oneProject.teamId]} )
 

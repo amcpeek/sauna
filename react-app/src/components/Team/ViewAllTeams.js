@@ -5,6 +5,7 @@ import { fetchAllTeams } from '../../store/team'
 import { authenticate } from '../../store/session';
 import CreateTeamModal from './CreateTeamModal';
 import { fetchCreateMembership } from '../../store/membership';
+import arrayOfColors from '../../assets/ArrayOfColors';
 
 
 const ViewAllTeams = () => {
@@ -32,54 +33,73 @@ const ViewAllTeams = () => {
             //console.log('5555555555', err)
           })
      }
-
-
     return (
-        <div className='main-left col main-left lr-margin'>
+        <div className="col lr-margin-med">
+            <h1 className='tb-margin lr-margin-x-small'>All Teams</h1>
 
-
-            <div className='col main-left-proj'>
-                <h1>All Teams</h1>
-                {allTeams && (allTeams.map(team => {
-                    return (
-                        <div>
-                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-
-
-
-
-                        <h3 className='text-blue should-wrap-70'>
-                        {/* <i className="fa-solid fa-user-plus"></i> */}
-                        {team.name}</h3>
-                        <div className='col'>
-
-                        <h5 className='should-wrap-70'>Team Lead: {team.owner.username}
-                        <br/>
-                        {team.description}</h5>
-                        </div>
-                        </Link>
-
-                        {/* <button onClick={() => handleCreateMembership(team.id)}>Join Team</button> */}
-
-                        <div className='short-gray-line tb-margin'></div>
-                        </div>
-                        )
-
-
-                    }))
-                    }
+            <div className='row jc-st'>
+                <div className='all-teams-name '>
+                    <div className='l-margin-small'>Team Name</div>
+                    </div>
+                <div className='all-teams-owner'>
+                <div className='l-margin-small'>Owner</div>
+                    </div>
+                <div className='all-teams-members'>
+                <div className='l-margin-small'>Members</div>
+                    </div>
             </div>
+            {/* <div className='long-gray-line'></div> */}
+
+             {allTeams && !allTeams.length && (<div>This team does not yet have any projects</div>)}
+
+             {allTeams&& allTeams.map(team => {
+                      return (
+                        <div className='all-team-row'>
+                        <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                        <div className='row'>
+                            <div className='row all-teams-name'>
+                                <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                <div className='tb-margin'> {team.name} </div>
+                            </div>
+                            <div className='row all-teams-owner'>
+                                 <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[team.owner.id]}}>{(team.owner.username).slice(0,2)}</div>
+                                 <div className='tb-margin'>{team.owner.username}</div>
+
+                            </div>
+                            <div className='row all-teams-members scroller-members'>
+                                {team.memberships && team.memberships.map( member =>
+                                <div className='box-circle-mem'>
+                                    <div className='memberCircle'
+                                style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div>
+                                </div>
+                                )}
+
+
+                            </div>
+
+                        </div>
+                        {/* <div className='long-gray-line'></div> */}
+                            </Link>
+                            </div>)})}
             {user &&
-                      <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='just-text-button bg-white cursor text-blue font-large'>Create New Team</button>
-                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
-                        {/* <Link className='no-und' to='/profile'>View Your Teams</Link> */}
-                        {/* <div className='short-gray-line tb-margin'></div> */}
-                      </div>
-                      }
+                <div className='ai-c all-teams-create'>
+
+                    <div  className='row ai-c tb-margin'>
+                        <button onClick={() => setShowTModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
+                        <div className='dotted-round-sq jc-c ai-c font-small-med pad-02 lr-margin-small'>
+                            <i className="fa-solid fa-plus"></i>
+                            </div>
+                            <div className='font-med'>Create Team</div>
+                        </button>
+                    <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                    </div>
+
+
+                </div>
+            }
         </div>
     )
-
 }
+
 
 export default ViewAllTeams

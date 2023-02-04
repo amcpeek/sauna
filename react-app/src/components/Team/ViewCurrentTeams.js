@@ -283,7 +283,7 @@ const ProfilePage = () => {
                                                     <div className='row ai-c tb-margin jc-sb width-vw'>
                                                         <div className='row'>
                                                             <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
-                                                            <div className='ai-c'>&nbsp; {team.name} </div>
+                                                            <div className='ai-c lr-margin-small'> {team.name} </div>
                                                         </div>
 
                                                     </div>
@@ -310,7 +310,7 @@ const ProfilePage = () => {
                                             <div className='row ai-c tb-margin jc-sb'>
                                                 <div className='row'>
                                                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
-                                                    <div className='ai-c'>&nbsp; {team.name} </div>
+                                                    <div className='ai-c lr-margin-small'>{team.name} </div>
                                                 </div>
                                             </div>
 

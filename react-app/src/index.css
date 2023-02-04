@@ -277,6 +277,17 @@ textarea {
     margin-right: 1em;
 }
 
+.lr-margin-x-small {
+    display:flex;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.l-margin-small {
+    display:flex;
+    margin-left: 1em;
+}
+
 .lr-margin-med {
     display:flex;
     margin-left: 3em;
@@ -797,12 +808,6 @@ height: 2em;
 
 
 
-
-
-
-
-
-
   .scroller-profile {
 
     width: 45vw;
@@ -860,7 +865,7 @@ height: 2em;
     .profile-box {
         width: 45vw;
         height: 40vh;
-        border: solid .1em white;
+        border: solid .1em lightgray;
         border-radius: 0.5em;
         margin: 0.4em;
     }
@@ -874,3 +879,76 @@ height: 2em;
         max-height: 6em;
 
     }
+
+    .all-team-row {
+        height: 100%;
+    }
+
+
+    .all-teams-name {
+        border-top: solid 0.05em lightgray;
+        border-right: solid 0.05em lightgray;
+        border-bottom: solid 0.05em lightgray;
+        width: 40vw;
+        height: 100%;
+    }
+
+    .all-teams-owner {
+        border: solid 0.05em lightgray;
+        width: 20vw;
+
+    }
+
+
+
+
+    .all-teams-create {
+        border-top: solid 0.05em lightgray;
+        width: 90vw;
+        height: 100%;
+    }
+
+
+    .all-teams-members {
+        border-top: solid 0.05em lightgray;
+        border-left: solid 0.05em lightgray;
+        /* border-bottom: solid 0.05em lightgray; */
+        width: 30vw;
+        height: 100%;
+    }
+
+
+     .scroller-members {
+        width: 30vw;
+
+        overflow-x: scroll;
+        scrollbar-color: white;
+        scrollbar-width: thin;
+      }
+
+
+      .memberCircle {
+        display:flex;
+        height: 2em;
+        width: 2em;
+        border-radius: 50%;
+        border: 1px none solid;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+        padding: .4em;
+
+
+
+      }
+
+      .box-circle-mem {
+        display:flex;
+        height: 2.5em;
+        width: 2.5em;
+        margin-top: 0.75em;
+        margin-bottom: 0.75em;
+        margin-left: 1em;
+        /* margin-right: 1em; */
+
+      }

@@ -10,15 +10,26 @@ def seed_users():
     u3 = User(
         username='Colleen', email='colleen@aa.io', password='passwordColleen')
     u4 = User(
-        username='David', email='david@aa.io', password='passwordDavid')
+        username='Dylan', email='dylan@aa.io', password='passwordDylan')
     u5 = User(
         username='Erik', email='erik@aa.io', password='passwordErik')
     u6 = User(
-        username='Fredrik', email='fredrik@aa.io', password='passwordFredrik')
+        username='Fiona', email='fiona@aa.io', password='passwordFiona')
     u7 = User(
-        username='Grace', email='grace@aa.io', password='passwordGrace')
+        username='Grant', email='grant@aa.io', password='passwordGrant')
     u8 = User(
-        username='Henrik', email='henrik@aa.io', password='passwordHenrik')
+        username='Hannah', email='hannah@aa.io', password='passwordHannah')
+    u9 = User(
+        username='Irma', email='irma@aa.io', password='passwordIrma')
+    u10 = User(
+        username='Jesse', email='jesse@aa.io', password='passwordJesse')
+    u10 = User(
+        username='Kiana', email='jesse@aa.io', password='passwordJesse')
+    u11 = User(
+        username='Lauralyn', email='lauralyn@aa.io', password='passwordLauralyn')
+    u12 = User(
+        username='Michelle', email='michelle@aa.io', password='passwordMichelle')
+    #Nolan, Oscar, Pija, Quinn, Rachel/Ron, Shawn, Tom/Taxi, Ugo, Vasilios, Wendy, Xiavier, Yolanda, Zooe
 
 
     db.session.add(u1)
@@ -29,6 +40,10 @@ def seed_users():
     db.session.add(u6)
     db.session.add(u7)
     db.session.add(u8)
+    db.session.add(u9)
+    db.session.add(u10)
+    db.session.add(u11)
+    db.session.add(u12)
 
 
     db.session.commit()

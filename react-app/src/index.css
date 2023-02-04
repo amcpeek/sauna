@@ -399,6 +399,11 @@ textarea {
     width: 150%;
 }
 
+.width-vw {
+    display: flex;
+    width: 43vw;
+}
+
 .width-38em {
     display: flex;
     width: 38em;
@@ -509,6 +514,13 @@ textarea {
     border-bottom: solid .1em lightgray;
     width: 80%;
 }
+
+.long-gray-line-96 {
+    border-bottom: solid .1em lightgray;
+    width: 95.5%;
+    margin-top: 1em;
+}
+
 
 .gray-line-med {
     border-bottom: solid .1em lightgray;
@@ -851,7 +863,6 @@ height: 2em;
         border: solid .1em white;
         border-radius: 0.5em;
         margin: 0.4em;
-
     }
 
 

@@ -19,6 +19,7 @@ import ViewAllTeams from './components/Team/ViewAllTeams';
 import ViewTeam from './components/Team/ViewTeam'
 // import NewTeam from './components/Team/NewTeam';
 // import NewProfile from './components/Team/NewProfile';
+import NewAllTeams from './components/Team/NewAllTeams';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -78,7 +79,11 @@ function App() {
         <Route path='/teams/:id' exact={true}>
           <ViewTeam/>
         </Route>
-  
+
+        <Route path='/newallteams' exact={true}>
+          <NewAllTeams/>
+        </Route>
+
 
 
 

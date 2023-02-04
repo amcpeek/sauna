@@ -255,28 +255,42 @@ const ProfilePage = () => {
 
 
                             <div  className='col ai-st tb-margin scroller-profile'>
-                                <button onClick={() => setShowTModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
-                                    <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'>
-                                        <i className="fa-solid fa-plus"></i>
-                                        </div>
-                                        <div className='font-med'>&nbsp; Create Team</div>
-                                    </button>
-                                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
 
-                                        {ownersTeams && ownersTeams.map(project => {
-                                    return (
-                                        <div>
-                                        <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
-                                        <div className='row ai-c tb-margin jc-sb'>
-                                            <div className='row'>
-                                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
-                                                <div className=''>&nbsp; {project.name} </div>
+
+
+                                            <div >
+                                            <button onClick={() => setShowTModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
+                                                    <div className='row ai-c tb-margin jc-sb width-vw'>
+                                                        <div className='row'>
+                                                        <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'><i className="fa-solid fa-plus"></i></div>
+                                                            <div className='font-med ai-c'>&nbsp; Create Team </div>
+                                                        </div>
+
+                                                    </div>
+                                            </button>
+                                            <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+                                                    <div className='long-gray-line'></div>
+
                                             </div>
 
-                                        </div>
-                                        <div className='long-gray-line'></div>
-                                            </Link>
-                                            </div>)})}
+
+                                        {ownersTeams && ownersTeams.map(team => {
+                                    return (
+
+
+                                            <div >
+                                                <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                                                    <div className='row ai-c tb-margin jc-sb width-vw'>
+                                                        <div className='row'>
+                                                            <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                                            <div className='ai-c'>&nbsp; {team.name} </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div className='long-gray-line'></div>
+                                                </Link>
+                                            </div>
+                                            )})}
                              </div>
 
                     </div>
@@ -288,19 +302,29 @@ const ProfilePage = () => {
                 <div className='col ai-st width-members tb-margin lr-margin-small'>
                             <div>Team Member</div>
                             <div  className='col ai-st tb-margin scroller-profile'>
-                                        {curUsersTeams && curUsersTeams.map(project => {
+                                        {curUsersTeams && curUsersTeams.map(team => {
                                     return (
-                                        <div>
-                                        <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
-                                        <div className='row ai-c tb-margin jc-sb'>
-                                            <div className='row'>
-                                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
-                                                <div className=''>&nbsp; {project.name} </div>
+                                        <div >
+                                            <div className='row width-vw jc-sb'>
+                                            <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
+                                            <div className='row ai-c tb-margin jc-sb'>
+                                                <div className='row'>
+                                                    <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                                    <div className='ai-c'>&nbsp; {team.name} </div>
+                                                </div>
                                             </div>
 
-                                        </div>
-                                        <div className='long-gray-line'></div>
                                             </Link>
+                                            <button onClick={() => handleRemoveMembership(team.id)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
+                                            <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'>
+                                            <i className="fa-solid fa-person-walking-arrow-right"></i>
+                                                </div>
+                                                <div className='font-med'>&nbsp; Leave Team</div>
+                                            </button>
+
+                                            </div>
+
+                                            <div className='long-gray-line'></div>
                                             </div>)})}
                              </div>
 

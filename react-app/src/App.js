@@ -17,6 +17,7 @@ import PageNotFound from './components/Navigation/PageNotFound';
 import SplashPage from './components/Navigation/SplashPage'
 import ViewAllTeams from './components/Team/ViewAllTeams';
 import ViewTeam from './components/Team/ViewTeam'
+// import NewTeam from './components/Team/NewTeam';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -76,6 +77,9 @@ function App() {
         <Route path='/teams/:id' exact={true}>
           <ViewTeam/>
         </Route>
+        {/* <Route path='/teams/new/:id'>
+          <NewTeam/>
+        </Route> */}
 
 
 

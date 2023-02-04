@@ -178,6 +178,8 @@ textarea {
 
 /* margin, padding */
 
+
+
 .margin-0 {
     margin: 0px;
 
@@ -268,12 +270,37 @@ textarea {
 
 }
 
+.t-margin {
+    display:flex;
+    margin-top: 2em;
+
+}
+
+.pad-0 {
+    display: flex;
+    padding: 0
+}
+
 .pad-1 {
     display: flex;
     padding: .5em
 }
 
+.pad-04 {
+    display: flex;
+    padding: .4em
+}
+
+.pad-02 {
+    display: flex;
+    padding: .2em
+}
+
 /* width, height */
+
+.width-members {
+    width: 10em;
+}
 
 .width-50em {
     width: 30em;
@@ -437,7 +464,11 @@ textarea {
 .long-gray-line {
     border-bottom: solid .1em lightgray;
     width: 100%;
+}
 
+.long-gray-line-80 {
+    border-bottom: solid .1em lightgray;
+    width: 80%;
 }
 
 .small-box {
@@ -695,3 +726,42 @@ height: 2em;
     scrollbar-width: thin;
 
   }
+
+
+  .dotted-circle {
+  display:flex;
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  border: 1px grey dashed;
+  }
+
+    .solid-circle {
+    display:flex;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    border: 1px none solid;
+    }
+
+
+
+    .dotted-round-sq {
+    display:flex;
+    height: 2em;
+    width: 2em;
+    border-radius: 0.5em;
+    border: 1px grey dashed;
+    }
+
+    .solid-round-sq {
+        display:flex;
+        height: 2em;
+        width: 2em;
+        border-radius: 0.5em;
+        border: 1px none solid;
+    }
+
+    .flex-wrap {
+        flex-wrap: wrap
+    }

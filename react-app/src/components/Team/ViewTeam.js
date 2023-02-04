@@ -7,7 +7,11 @@ import CreateProjectModal from '../Projects/CreateProjectModal';
 import { fetchCreateMembership } from '../../store/membership';
 import EditTeamModal from './EditTeamModal';
 
+
 const ViewTeam = () => {
+    let arrayOfColors = [ '#82AC7C', '#ac8eb2', '#bcaaaa','#B2A68D', '#7297A0', '#54738E', '#9DBA94', '#ddbb98' ,'#A88C7D',
+    '#82AC7C', '#ac8eb2', '#bcaaaa','#B2A68D', '#7297A0', '#54738E', '#9DBA94', '#ddbb98' ,'#A88C7D' ]
+
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -42,33 +46,19 @@ const ViewTeam = () => {
 
 
     if (oneTeamObj && oneTeamObj.memberships) {
+        return (
+            <div className="col lr-margin">
+            <h2 className='should-wrap-70'>{oneTeamObj.name}</h2>
 
-    return (
-        <div className='main-left col main-left lr-margin'>
-            <div className='col main-left-proj'>
-
-                    <div>
-                       {/* <div>Team Information:</div> */}
-                        <h1 className='should-wrap-70'>{oneTeamObj.name}</h1>
-                        <h4 className='text-blue'>Team Lead: {oneTeamObj.owner.username}</h4>
-                        <div className='should-wrap-70'>{oneTeamObj.description}</div>
-                        <br/>
-                        <div className='text-blue'>Team Members:
-                        {oneTeamObj.memberships && !oneTeamObj.memberships.length && (<div>Your team does not yet have any members</div>)}
-
-                        </div>
-                        {oneTeamObj.memberships && oneTeamObj.memberships.map(member => {
-                            return (
-                                <div>
-                            <div> {member.users[0].username}</div>
-                        </div>
-                            )
-                        })}
-                        <br/>
-                    </div>
-                    {user && user.id == oneTeamObj.owner.id && (
+            <div className="col">
+                <div className='tb-margin'>About Us</div>
+                <div className='long-gray-line'></div>
+                <div className='should-wrap-70'>
+                {oneTeamObj.description}
+                </div>
+                {user && user.id == oneTeamObj.owner.id && (
                         <div className=' vh-5 ai-c jc-st'>
-                        <button onClick={() => (setShowTModal(true), setSentTeamId(oneTeamObj.id)) } className='asana-button row'>Edit Team &nbsp;
+                        <button onClick={() => (setShowTModal(true), setSentTeamId(oneTeamObj.id)) } className='no-bor bg-white row'>
                         <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
                         </button>
                         <EditTeamModal showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
@@ -76,55 +66,84 @@ const ViewTeam = () => {
 
                     )}
 
+            </div>
+            <div className='col t-margin jc-c'>
+                <div className='tb-margin'>Members ({oneTeamObj.memberships.length})</div>
+                <div className='long-gray-line'></div>
+                <div className='row flex-wrap'>
 
-                      {user &&
+                        {user &&
+                        (!(oneTeamObj.memberships.find(member => member.users[0].id == user.id)) && (
+                            <div className='row ai-c width-members tb-margin'>
+                                <button className='no-bor bg-white jc-st ai-c cursor pad-0' onClick={() => handleCreateMembership(oneTeamObj.id)}>
+                                <div className='dotted-circle jc-c ai-c font-small-med pad-04'>
+                                <i className="fa-solid fa-plus"></i>
+                                </div>
+
+                                <div className='font-med'>&nbsp; Join Team</div>
+                                </button>
+                            </div>
+                        ))}
+
+                        <div className='ai-c jc-c'>
+                        {oneTeamObj.memberships && !oneTeamObj.memberships.length && (<div  >This team does not yet have any members</div>)}
+                        </div>
+
+
+                        {oneTeamObj.memberships && oneTeamObj.memberships.map(member => {
+                            return (
+                                <div>
+                            <div> </div>
+                            <div className='row ai-c width-members tb-margin'>
+                        <div className='solid-circle jc-c ai-c font-small-med pad-04' style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div><div>&nbsp;{member.users[0].username}</div>
+                    </div>
+                        </div>
+                            )
+                        })}
+                </div>
+
+            </div>
+
+            <div className='tb-margin'>Projects</div>
+            <div className='long-gray-line'></div>
+
+            {user &&
                       <div className='ai-c'>
-
-                        {oneTeamObj.memberships.find(member => member.users[0].id == user.id)?
-
-                        <div>
-                           <button onClick={() => setShowModal(true)} className='asana-button'>Create New Project</button>
+                        {oneTeamObj.memberships.find(member => member.users[0].id == user.id) &&
+                        <div  className='row ai-c tb-margin'>
+                           <button onClick={() => setShowModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
+                            <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'>
+                                <i className="fa-solid fa-plus"></i>
+                                </div>
+                                <div className='font-med'>&nbsp; New Project</div>
+                            </button>
                         <CreateProjectModal showModal={showModal} setShowModal={setShowModal}/>
                         </div>
-                        :
-                        <button className='asana-button' onClick={() => handleCreateMembership(oneTeamObj.id)}>Join Team</button>
                         }
                       </div>
                       }
-                      <h2 className='text-blue'>Team's Projects</h2>
-                      {oneTeamObj.projects && !oneTeamObj.projects.length && (<div>This team does not yet have any projects</div>)}
 
-                      {oneTeamObj.projects && oneTeamObj.projects.map(project => {
+            <div className='long-gray-line'></div>
+            {oneTeamObj.projects && !oneTeamObj.projects.length && (<div>This team does not yet have any projects</div>)}
+
+            {oneTeamObj.projects && oneTeamObj.projects.map(project => {
                       return (
                         <div>
-
-
                         <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
-                        <div>
-
-                            <div className='short-gray-line'></div>
-
-                        <h3 className='text-blue should-wrap-70'>
-                        {/* <i className="fa-solid fa-user-plus"></i> */}
-                        {project.name}</h3>
-                        <div className='col should-wrap-70'>
-                            {project.owner && (
-                                <h5>Project Lead: {project.owner.username} <br/>{project.description}</h5>
-                            )}
+                        <div className='row ai-c tb-margin jc-sb'>
+                            <div className='row'>
+                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                <div className=''>&nbsp; {project.name} </div>
+                            </div>
+                            <div className='solid-circle jc-c ai-c font-small-med pad-04' style={{backgroundColor: arrayOfColors[project.owner.id]}}>{(project.owner.username).slice(0,2)}</div>
                         </div>
-                        <br/>
-                        </div>
-                        </Link>
-                        </div>
-                        )
-                    })
-                    }
+                        <div className='long-gray-line'></div>
+                            </Link>
+                            </div>)})}
             </div>
-        </div>
-    )
+        )
     } else {
         return (null)
     }
 }
-
 export default ViewTeam

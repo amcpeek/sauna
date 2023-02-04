@@ -6,12 +6,11 @@ import { authenticate } from '../../store/session';
 import CreateProjectModal from '../Projects/CreateProjectModal';
 import { fetchCreateMembership } from '../../store/membership';
 import EditTeamModal from './EditTeamModal';
+import arrayOfColors from '../../assets/ArrayOfColors';
 
 
 const ViewTeam = () => {
-    let arrayOfColors = [ '#82AC7C', '#ac8eb2', '#bcaaaa','#B2A68D', '#7297A0', '#54738E', '#9DBA94', '#ddbb98' ,'#A88C7D',
-    '#82AC7C', '#ac8eb2', '#bcaaaa','#B2A68D', '#7297A0', '#54738E', '#9DBA94', '#ddbb98' ,'#A88C7D' ]
-
+   
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -95,7 +94,9 @@ const ViewTeam = () => {
                                 <div>
                             <div> </div>
                             <div className='row ai-c width-members tb-margin'>
-                        <div className='solid-circle jc-c ai-c font-small-med pad-04' style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div><div>&nbsp;{member.users[0].username}</div>
+                        <div className='solid-circle jc-c ai-c font-small-med pad-04'
+                        style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div>
+                        <div>&nbsp;{member.users[0].username}</div>
                     </div>
                         </div>
                             )

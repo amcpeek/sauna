@@ -10,6 +10,7 @@ import EditTask from '../Tasks/EditTask';
 import EditProjectModal from './EditProjectModal';
 import { fetchAllTeams, fetchOneTeam } from '../../store/team'
 import { fetchCreateMembership } from '../../store/membership'
+import arrayOfColors from '../../assets/ArrayOfColors';
 
 
 const ViewProject = () => {
@@ -25,6 +26,7 @@ const ViewProject = () => {
     let arr = []
     let isMember = ''
     let memberArray = []
+
 
 
     //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
@@ -107,9 +109,14 @@ const ViewProject = () => {
                 <div className='col vh-20 lr-margin-small'>
                     {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
                     <div className='bg-green small-box round-sq'> AM</div> */}
-                    <div className='should-wrap-full'><h2>{oneProject.name}</h2></div>
+
+                    <div className='should-wrap-full row ai-c'>
+                    <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[oneProject.id]}}><i className="fa-solid fa-list-ul"></i></div>&nbsp;&nbsp;
+                        <h2>{oneProject.name}</h2>
+                        </div>
                     <div className='should-wrap-full scroller'>
                        <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
+
                        <p>Team: {oneTeam.name}</p>
                          {oneProject.description} </p>
                         </div>
@@ -159,7 +166,8 @@ const ViewProject = () => {
                             </h2>
                         {toDo.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task))}>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() => (showTaskFunc(task))}>
+                                    <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
                                     {task.name}
                                 </button>
                             )
@@ -188,7 +196,8 @@ const ViewProject = () => {
                             </h2>
                         {inProg.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() => (showTaskFunc(task)) }>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() => (showTaskFunc(task)) }>
+                                    <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
                                     {task.name}
                                 </button>
                             )
@@ -213,7 +222,8 @@ const ViewProject = () => {
                             </h2>
                         {complete.map(task=> {
                             return (
-                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
+                                <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
+                                    <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
                                     {task.name}
                                 </button>
                             )

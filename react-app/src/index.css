@@ -103,6 +103,12 @@ textarea {
 
 }
 
+.bg-red {
+    display:flex;
+    background-color: red;
+
+}
+
 .bg-light-gray {
     display:flex;
     background-color: rgba(247,246,246,255);
@@ -273,7 +279,11 @@ textarea {
 .t-margin {
     display:flex;
     margin-top: 2em;
+}
 
+.t-margin-05 {
+    display:flex;
+    margin-top: 0.5em;
 }
 
 .pad-0 {
@@ -284,6 +294,11 @@ textarea {
 .pad-1 {
     display: flex;
     padding: .5em
+}
+
+.pad--1 {
+    display: flex;
+    padding: 1em
 }
 
 .pad-04 {
@@ -379,6 +394,11 @@ textarea {
 .width-20em {
     display: flex;
     width: 20em;
+
+}
+
+.min-width-40vw {
+    min-width: 40vw;
 
 }
 
@@ -724,6 +744,26 @@ height: 2em;
     height: vh70;
     overflow-y: scroll;
     scrollbar-width: thin;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  .scroller-profile {
+
+    width: 45vw;
+    height: 29vh;
+    overflow-y: scroll;
+    scrollbar-color: white;
+    scrollbar-width: thin;
+
 
   }
 
@@ -764,4 +804,14 @@ height: 2em;
 
     .flex-wrap {
         flex-wrap: wrap
+    }
+
+
+    .profile-box {
+        width: 45vw;
+        height: 40vh;
+        border: solid .1em white;
+        border-radius: 0.5em;
+        margin: 0.4em;
+
     }

@@ -7,12 +7,21 @@ import EditTeamModal from './EditTeamModal';
 import CreateTeamModal from './CreateTeamModal';
 import {fetchDeleteMembership} from '../../store/membership'
 import { fetchAllTasks } from '../../store/task'
+import arrayOfColors from '../../assets/ArrayOfColors';
+import { fetchAllProjects } from '../../store/project';
+import CreateProjectModal from '../Projects/CreateProjectModal';
 
-//note shows currently if member
 
 const ProfilePage = () => {
+    const [ toDo, setToDo] = useState(true)
+    const [ inProg, setInProg] = useState(false)
+    const [ comp, setComp] = useState(false)
+    let toDoCur, inProgCur, compCur = []
+    const oneTeamObj = 0
+
     const dispatch = useDispatch()
     const history = useHistory()
+    const [showModal, setShowModal] = useState(false); //for projects
     const [showTModal, setShowTModal] = useState(false);
     const [sentTeamId, setSentTeamId] = useState(0)
 
@@ -20,7 +29,37 @@ const ProfilePage = () => {
         const returnTeams = await dispatch(fetchAllTeams())
         const returnUser = await dispatch(authenticate())
         const returnTasks = await dispatch(fetchAllTasks())
+        const returnProjects = await dispatch(fetchAllProjects())
     }
+
+    const today = new Date()
+    const todayFormatted =  (new Intl.DateTimeFormat('default', { dateStyle: 'full' }).format(today))
+    const options = {
+
+        hour: 'numeric', minute: 'numeric', second: 'numeric',
+        hour12: false,
+        timeZone: 'America/Los_Angeles'
+      };
+    const timeOfDay = (new Intl.DateTimeFormat('default', options).format(today))
+
+    console.log('timeofday', timeOfDay)
+
+    const first2 = timeOfDay.slice(0,2)
+    console.log(first2)
+
+    let greeting = 'Welcome'
+    if (first2 > 0 && first2 < 12) {
+        greeting = 'Good Morning'
+    } else if (first2 >= 12 && first2 <= 17) {
+        greeting = 'Good Afternoon'
+    } else if (first2 > 17) {
+        greeting = 'Good Evening'
+    }
+
+
+
+
+
 
     useEffect(() => {
         findProjectTest()
@@ -31,9 +70,13 @@ const ProfilePage = () => {
     let allTeams = Object.values(allTeamsObj)
     let allTasksObj = useSelector(state => {return state.task} )
     let allTasks = Object.values(allTasksObj)
+    let allProjectsObj = useSelector(state => { return state.project})
+    let allProjects = Object.values(allProjectsObj)
+
     let curUsersTeams = []
     let ownersTeams = []
     let curTasks = []
+    let curProjects = []
     if(user && allTeams) {
         for(let i in allTeams) {
             for (let j in allTeams[i].memberships) {
@@ -46,15 +89,17 @@ const ProfilePage = () => {
            if(allTeams[i].ownerId == user.id) {
             ownersTeams.push(allTeams[i])
            }
-
         }
     }
     if(allTasks) {
-       // console.log('alkdjfalkjfadklfjadklfjflkadj',allTasks)
         curTasks = allTasks.filter(task => task.assigneeId == user.id)
-       // console.log(curTasks)
+        toDoCur = curTasks.filter(task => task.stageId == 1)
+        inProgCur = curTasks.filter(task => task.stageId == 2)
+        compCur = curTasks.filter(task => task.stageId == 3)
+    }
 
-
+    if(allProjects) {
+        curProjects = allProjects.filter(project => project.ownerId == user.id )
     }
 
     const handleRemoveMembership = async (teamId) => {
@@ -68,184 +113,209 @@ const ProfilePage = () => {
             return (
                 <div className='f'>
             <div className='main-left col lr-margin'>
-                <h1>You are not currently part of any teams or own any teams</h1>
+                <h1>You are not currently part of any teams, so you do not have access to teams, projects, or tasks</h1>
                 <Link to='/teams'>join a team or create a team</Link>
                 </div>
                 </div>
 
             )
         }
-        return (
-            <div  className='jc-c row lr-margin-10-vw'>
-                {user && ownersTeams.length > 0 && (
-                      <div className='col main-left-proj lr-margin-small width-20-vw '>
+    }
 
-                      <h2 className='tb-margin'>Team Owner</h2>
-                      {ownersTeams && (ownersTeams.map(team => {
-                          return (
-                              <div>
-                              <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-                                  <div className='short-gray-line'></div>
-                              <h3 className='text-blue should-wrap'>{team.name}</h3>
-                              <div className='col'>
-                              <h5 className='should-wrap'>Team Lead: {team.owner.username} <br/> {team.description}</h5>
-                              </div>
-                              </Link>
-                              <br/>
-                              {/* {team.owner.id == user.id && (
-                                  <div className='f vh-5 lr-margin-small ai-c'>
-                                  <button onClick={() => (setShowTModal(true), setSentTeamId(team.id)) } className='just-text-button bg-white'>Edit Team
-                                  <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
-                                  </button>
-                                  <EditTeamModal showTModal={showTModal} setShowTModal={setShowTModal} sentTeamId={sentTeamId}/>
-                                  </div>
-                              )} */}
-                              </div>
-                              )
-                          }))
-                          }
-                           <div className='ai-st  col'>
-                        <button onClick={() => setShowTModal(true)} className='asana-button'>Create New Team</button>
-                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
 
-                      </div>
-                      </div>
-                )}
-                {user && curUsersTeams.length > 0  && (
-                    <>
-                     <div className='col main-left-proj lr-margin-small width-20-vw'>
-                     <h2 className='tb-margin'>Team Member</h2>
-                         {curUsersTeams && (curUsersTeams.map(team => {
-                             return (
-                                 <div>
-                                 <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-                                 <div className='short-gray-line'></div>
+    return (
+        <div className="col lr-margin jc-c ai-c">
+            <div>{todayFormatted.slice(0, -6)}</div>
+            <h1>{greeting}, {user.username}</h1>
+            <div className='row'>
+                <div className='profile-box'>
 
-                                 <h3 className='text-blue should-wrap'>{team.name}</h3>
-                                 <div className='col'>
-                                 <h5 className='should-wrap'>Team Lead: {team.owner.username} <br/> {team.description}</h5>
-                                 </div>
-                                 </Link>
-                                 <button className='asana-button margin-b-2' onClick={() => handleRemoveMembership(team.id)}>Leave Team</button>
+                    <div className='row ai-c width-members tb-margin lr-margin-small'>
+                        <div className='solid-circle jc-c ai-c font-small-med pad-04'
+                        style={{backgroundColor: arrayOfColors[user.id]}}>{user.username.slice(0,2)}</div>
+                        <div>&nbsp;&nbsp;&nbsp;Tasks</div>
+                    </div>
 
-                                 </div>
-                                 )
-                             }))
-                             }
-                     </div>
-                     <div className='col main-left-proj lr-margin-small width-20-vw'>
-                     <h2 className='tb-margin'>Tasks Assigned to you</h2>
-                     <div className='short-gray-line'></div>
-                     {curTasks && curTasks.length > 0 && (curTasks.map(task => {
+                    <div className='row jc-sa lr-margin-small'>
+                        <div>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(true), setInProg(false), setComp(false))}>To Do</button>
+                        {toDo && <div className='gray-line-med'></div> }
+                        </div>
+                        <div>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(true), setComp(false))}>In Progress</button>
+                        {inProg && <div className='gray-line-med'></div> }
+
+                        </div>
+                        <div>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(false), setComp(true))}>Completed</button>
+                        {comp && <div className='gray-line-med'></div> }
+
+                        </div>
+
+
+                    </div>
+                    <div className='long-gray-line t-margin-05'></div>
+
+                    {toDo && (
+                         <div className='scroller-profile'>
+                         {toDoCur && curTasks.length > 0 && (toDoCur.map(task => {
                         return ( <div>
                             <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
-                            <h3 className='text-blue tb-margin'>{task.name}</h3>
-                            <h5 className='should-wrap'>{task.description}</h5>
+                            <div className='row width-100-per ai-c t-margin-05'>
+                             <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                            </div>
                             </Link>
                             </div>
+                        )}))}</div>)}
 
-                        )
-                     })
+                    {inProg && (
+                         <div className='scroller-profile'>
+                         {inProgCur && curTasks.length > 0 && (inProgCur.map(task => {
+                        return ( <div>
+                            <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
+                            <div className='row width-100-per ai-c t-margin-05'>
+                             <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                            </div>
+                            </Link>
+                            </div>
+                        )}))}</div>)}
+
+                    {comp && (
+                         <div className='scroller-profile'>
+                         {compCur && curTasks.length > 0 && (compCur.map(task => {
+                        return ( <div>
+                            <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
+                            <div className='row width-100-per ai-c t-margin-05'>
+                             <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                            </div>
+                            </Link>
+                            </div>
+                        )}))}</div>)}
 
 
-                        )
-                     }
-
-                     </div>
-
-                     </>
-
-                )}
 
 
+
+
+
+
+
+
+                </div>
+                <div className='profile-box'>
+
+                    <div className='col ai-st width-members tb-margin lr-margin-small'>
+                        <div>Projects</div>
+
+                        {user &&
+                      <div className='ai-st row flex-wrap scroller-profile'>
+                        {!curProjects && (<div>This team does not yet have any projects</div>)}
+
+            {curProjects && curProjects.map(project => {
+                      return (
+                        <div className='profile-project '>
+                        {/* width-30-per overflow-hidden lr-margin-med height-10-per */}
+                        <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
+                        <div className='row tb-margin'>
+                            <div className='row'>
+                                <div className='jc-st ai-st'>
+                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+
+                                </div>
+
+
+                                <div className='jc-c ai-c lr-margin-small'>{project.name} </div>
+
+                            </div>
+
+                        </div>
+
+                            </Link>
+                            </div>)})}
+                      </div>
+                      }
+
+
+
+                        </div>
+                    </div>
+            </div>
+
+            {/* use the same logic as projects */}
+
+            <div className='row'>
+                <div className='profile-box'>
+
+
+                    <div className='col ai-st width-members tb-margin lr-margin-small'>
+                            <div>Team Owner</div>
+
+
+                            <div  className='col ai-st tb-margin scroller-profile'>
+                                <button onClick={() => setShowTModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
+                                    <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'>
+                                        <i className="fa-solid fa-plus"></i>
+                                        </div>
+                                        <div className='font-med'>&nbsp; Create Team</div>
+                                    </button>
+                                        <CreateTeamModal showTModal={showTModal} setShowTModal={setShowTModal}/>
+
+                                        {ownersTeams && ownersTeams.map(project => {
+                                    return (
+                                        <div>
+                                        <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
+                                        <div className='row ai-c tb-margin jc-sb'>
+                                            <div className='row'>
+                                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                                <div className=''>&nbsp; {project.name} </div>
+                                            </div>
+
+                                        </div>
+                                        <div className='long-gray-line'></div>
+                                            </Link>
+                                            </div>)})}
+                             </div>
+
+                    </div>
+
+
+
+                </div>
+                <div className='profile-box'>
+                <div className='col ai-st width-members tb-margin lr-margin-small'>
+                            <div>Team Member</div>
+                            <div  className='col ai-st tb-margin scroller-profile'>
+                                        {curUsersTeams && curUsersTeams.map(project => {
+                                    return (
+                                        <div>
+                                        <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
+                                        <div className='row ai-c tb-margin jc-sb'>
+                                            <div className='row'>
+                                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                                <div className=''>&nbsp; {project.name} </div>
+                                            </div>
+
+                                        </div>
+                                        <div className='long-gray-line'></div>
+                                            </Link>
+                                            </div>)})}
+                             </div>
+
+                    </div>
+
+                </div>
             </div>
 
 
-         )
 
-    } else {
-        return ( <div>There are no projects</div> )
-    }
+        </div>
+
+    )
+
 }
+
+
 export default ProfilePage
-
-//BELOW IS THE VERSION WHERE IT SHOWS THE CURRENT USERS PROJECTS
-  // const dispatch = useDispatch()
-    // const history = useHistory()
-    // const [showTModal, setShowTModal] = useState(false);
-
-    // const findProjectTest = async () => {
-    //     const returnProjects = await dispatch(fetchAllProjects())
-    //     const returnUser = await dispatch(authenticate())
-    // }
-
-
-    // useEffect(() => {
-    //    findProjectTest()
-    // }, [dispatch])
-    // let user = useSelector(state => {return state.session.user})
-    // let allProjectsObj = useSelector(state => {return state.project})
-    // let allProjects = Object.values(allProjectsObj)
-    // let curUsersProjects = []
-
-    // if(user && allProjects)  {
-    //     curUsersProjects = allProjects.filter(project => project.ownerId ==  user.id)
-    // }
-    // if(user && curUsersProjects.length) {
-    //     console.log('plan a')
-
-    //     return (
-    //         <div className='f'>
-    //         <div className='main-left col main-left lr-margin'>
-    //             <div>
-    //                 <h1>Listed here are the projects you own:</h1>
-    //             </div>
-
-    //         <div className='col main-left-proj'>
-    //         {curUsersProjects && (curUsersProjects.map(project => {
-    //             return (
-    //                 <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
-    //                 <div>
-
-    //                     <div className='short-gray-line'></div>
-
-    //                 <h3 className='text-blue'> {project.name}:</h3>
-    //                 <div className='col'>
-
-    //                 <h5>{project.description}</h5>
-
-    //                 </div>
-
-    //                 <br/>
-
-    //                 </div>
-    //                 </Link>
-    //                 )
-
-
-    //             }))
-    //             }
-    //     </div>
-    //     </div>
-    //     </div>
-
-    //     )
-
-    // } else if (user && allProjects) {
-    //     return (
-    //         <div className='f'>
-    //         <div className='main-left col main-left lr-margin'>
-    //             <div>
-    //                 <h1>You do not currently own any projects.</h1>
-    //                 <button onClick={() => setShowTModal(true)} className='thin-bor bg-white text-blue circle'>Create a project here</button>
-    //             <CreateProjectModal showTModal={showTModal} setShowTModal={setShowTModal}/>
-    //             </div>
-    //             </div>
-    //             </div>
-    //     )
-
-    // } else {
-    //     return (
-    //         <div>There are no projects</div>
-    //     )
-    // }

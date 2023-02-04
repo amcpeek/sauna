@@ -248,11 +248,21 @@ textarea {
     height: 20vh;
 }
 
+.height-10-per {
+    height: 30%;
+}
+
 
 .lr-margin {
     display:flex;
     margin-left: 10em;
     margin-right: 10em;
+}
+
+.lr-margin-large {
+    display:flex;
+    margin-left: 20em;
+    margin-right: 20em;
 }
 
 .lr-margin-10-vw {
@@ -265,8 +275,12 @@ textarea {
     display:flex;
     margin-left: 1em;
     margin-right: 1em;
+}
 
-
+.lr-margin-med {
+    display:flex;
+    margin-left: 3em;
+    margin-right: 3em;
 }
 
 .tb-margin {
@@ -415,6 +429,11 @@ textarea {
     max-width: 20%
 }
 
+.width-30-per {
+    width: 30%
+
+}
+
 /* font */
 
 
@@ -489,6 +508,13 @@ textarea {
 .long-gray-line-80 {
     border-bottom: solid .1em lightgray;
     width: 80%;
+}
+
+.gray-line-med {
+    border-bottom: solid .1em lightgray;
+    width: 100%;
+    margin-top: .5em;
+
 }
 
 .small-box {
@@ -709,6 +735,15 @@ height: 2em;
     width: 20vw;
    }
 
+   .should-wrap-100-per {
+    overflow-wrap: break-word;
+    width: 100%;
+   }
+
+   .overflow-hidden {
+    overflow: hidden
+   }
+
 
    .should-wrap-10 {
     overflow-wrap: break-word;
@@ -802,6 +837,9 @@ height: 2em;
         border: 1px none solid;
     }
 
+
+
+
     .flex-wrap {
         flex-wrap: wrap
     }
@@ -813,5 +851,15 @@ height: 2em;
         border: solid .1em white;
         border-radius: 0.5em;
         margin: 0.4em;
+
+    }
+
+
+    .profile-project {
+        width: 18em;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        max-height: 6em;
 
     }

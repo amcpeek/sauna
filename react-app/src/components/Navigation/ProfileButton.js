@@ -60,7 +60,7 @@ function ProfileButton({ user }) {
 
         <div className="dropdownContentNav">
 
-            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>Your Teams & Tasks</NavLink></button>
+            <button className='just-text-button bg-white cursor'><NavLink exact to="/profile" className='no-und'>Your Profile</NavLink></button>
             <button className='just-text-button bg-white cursor' onClick={logout}>Log Out</button>
         </div>
       )}

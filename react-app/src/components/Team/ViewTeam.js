@@ -10,7 +10,7 @@ import arrayOfColors from '../../assets/ArrayOfColors';
 
 
 const ViewTeam = () => {
-   
+
     const { id } = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -46,13 +46,13 @@ const ViewTeam = () => {
 
     if (oneTeamObj && oneTeamObj.memberships) {
         return (
-            <div className="col lr-margin">
+            <div className="col lr-margin-large">
             <h2 className='should-wrap-70'>{oneTeamObj.name}</h2>
 
             <div className="col">
                 <div className='tb-margin'>About Us</div>
                 <div className='long-gray-line'></div>
-                <div className='should-wrap-70'>
+                <div className='should-wrap-100-per tb-margin'>
                 {oneTeamObj.description}
                 </div>
                 {user && user.id == oneTeamObj.owner.id && (
@@ -96,7 +96,7 @@ const ViewTeam = () => {
                             <div className='row ai-c width-members tb-margin'>
                         <div className='solid-circle jc-c ai-c font-small-med pad-04'
                         style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div>
-                        <div>&nbsp;{member.users[0].username}</div>
+                        <div>&nbsp;&nbsp;&nbsp;{member.users[0].username}</div>
                     </div>
                         </div>
                             )

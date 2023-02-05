@@ -58,7 +58,10 @@ const ViewAllTeams = () => {
                         <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                         <div className='row'>
                             <div className='row all-teams-name'>
-                                <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                            <div className='box-circle-mem'>
+                            <div className='solid-round-sq ai-c jc-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                            </div>
+
                                 <div className='tb-margin'> {team.name} </div>
                             </div>
                             <div className='row all-teams-owner'>

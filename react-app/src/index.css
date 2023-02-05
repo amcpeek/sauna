@@ -537,7 +537,6 @@ textarea {
     border-bottom: solid .1em lightgray;
     width: 100%;
     margin-top: .5em;
-
 }
 
 .small-box {
@@ -893,6 +892,8 @@ height: 2em;
         height: 100%;
     }
 
+
+
     .all-teams-owner {
         border: solid 0.05em lightgray;
         width: 20vw;
@@ -913,6 +914,13 @@ height: 2em;
         border-top: solid 0.05em lightgray;
         border-left: solid 0.05em lightgray;
         /* border-bottom: solid 0.05em lightgray; */
+        width: 30vw;
+        height: 100%;
+    }
+
+    .all-teams-members-task {
+        border: solid 0.05em lightgray;
+     
         width: 30vw;
         height: 100%;
     }

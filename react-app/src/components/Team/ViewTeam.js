@@ -66,6 +66,20 @@ const ViewTeam = () => {
                     )}
 
             </div>
+
+            <div>
+                            <div> </div>
+                            <div className='tb-margin'>Team Lead</div>
+                <div className='long-gray-line'></div>
+                            <div className='row ai-c width-members tb-margin'>
+                        <div className='solid-circle jc-c ai-c font-small-med pad-04'
+                        style={{backgroundColor: arrayOfColors[oneTeamObj.owner.id]}}>{oneTeamObj.owner.username.slice(0,2)}</div>
+                        <div>&nbsp;&nbsp;&nbsp;{oneTeamObj.owner.username}</div>
+                    </div>
+                        </div>
+
+
+
             <div className='col t-margin jc-c'>
                 <div className='tb-margin'>Members ({oneTeamObj.memberships.length})</div>
                 <div className='long-gray-line'></div>

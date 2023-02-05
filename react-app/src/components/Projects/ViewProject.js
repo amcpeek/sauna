@@ -26,11 +26,25 @@ const ViewProject = () => {
     const [overView, setOverView] = useState(false)
     const [boardView, setBoardView] = useState(true)
     const [listView, setListView] = useState(false)
+    const [users, setUsers] = useState([]);
     let arr = []
     let isMember = ''
     let memberArray = []
 
 
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('/api/users/');
+          const responseData = await response.json();
+          setUsers(responseData.users);
+        }
+        fetchData();
+      }, [dispatch]);
+
+
+      if (users) {
+        console.log('users', users)
+      }
 
     //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
 
@@ -127,6 +141,8 @@ const ViewProject = () => {
 
                 </div>
                 <div className='f vh-5 lr-margin-small ai-c '>
+
+                    <div className='row jc-sa lr-margin-small'>
                     {user &&  user.id == oneProject.ownerId &&
                      <div>
                      <button onClick={() => setShowModal(true)} className='just-text-button bg-white'>
@@ -135,10 +151,28 @@ const ViewProject = () => {
                      <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
                      </div>
                     }
-
+                    <div>
                     <button onClick={() => (setListView(false),setBoardView(false), setOverView(true))} className='just-text-button  bg-white'>Overview</button>
+                    {overView && <div className='gray-line-med'></div> }
+                    </div>
+
+                    <div>
                     <button onClick={() => (setListView(false), setOverView(false), setBoardView(true))}  className='just-text-button bg-white'>Board</button>
+                    {boardView && <div className='gray-line-med'></div> }
+                    </div>
+
+                    <div>
                     <button onClick={() => (setBoardView(false), setOverView(false), setListView(true))}  className='just-text-button  bg-white'>List</button>
+                    {listView && <div className='gray-line-med'></div> }
+                    </div>
+
+                    </div>
+
+
+
+
+
+
                     {oneTeam && oneTeam.memberships && user && memberArray && !isMember && (
                         <div className='row ai-c'>
 
@@ -149,33 +183,197 @@ const ViewProject = () => {
                     )}
                 </div>
 
-
-
                 <div className='bg-light-gray round-sq-05 vw-99-vh-70 scroller-tasks'>
 
                     {/* ONLY SHOWS IF OVERVIEW IS TRUE */}
 
 
                     {overView && (
-                         <div className='f width-100-per lr-margin-small'>
-                             <div className='should-wrap-full scroller'>
-                            <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
+                        //  <div className='f width-100-per lr-margin-small'>
+                        //      <div className='should-wrap-full scroller'>
+                        //     <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
+                        //     <p>Team: {oneTeam.name}</p>
+                        //         {oneProject.description} </p>
+                        //         </div>
+                        //     <div className='long-gray-line tb-margin'></div>
+                        //  </div>
+                        <div className='jc-c width-100-per'>
+                        <div className="col lr-margin-med">
+                        <h2 className='should-wrap-70'></h2>
 
-                            <p>Team: {oneTeam.name}</p>
-                                {oneProject.description} </p>
+                        <div className="col">
+                            <div className='tb-margin'>Our Purpose</div>
+                            <div className='long-gray-line'></div>
+                            <div className='should-wrap-100-per tb-margin'>
+                            {oneProject.description}
+                            </div>
+                            {user && user.id == oneProject.owner.id && (
+                                    <div className=' vh-5 ai-c jc-st'>
+                                    <button onClick={() => (setShowModal(true)) } className='no-bor bg-white row'>
+                                    <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
+                                    </button>
+                                    <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
+                                    </div>
+
+                                )}
+
+                        </div>
+
+                        <div>
+                                        <div> </div>
+                                        <div className='tb-margin'>Project Lead</div>
+                            <div className='long-gray-line'></div>
+                                        <div className='row ai-c width-members tb-margin'>
+                                    <div className='solid-circle jc-c ai-c font-small-med pad-04'
+                                    style={{backgroundColor: arrayOfColors[oneProject.owner.id]}}>{oneProject.owner.username.slice(0,2)}</div>
+                                    <div>&nbsp;&nbsp;&nbsp;{oneProject.owner.username}</div>
                                 </div>
-                            <div className='long-gray-line tb-margin'></div>
+                                    </div>
 
-                         </div>
+
+
+                        <div className='col t-margin jc-c'>
+                            <div>{oneTeam.name}</div>
+                            <div className='tb-margin'>Team Members ({oneTeam.memberships.length})</div>
+                            <div className='long-gray-line'></div>
+                            <div className='row flex-wrap'>
+
+                                    {user &&
+                                    (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
+                                        <div className='row ai-c width-members tb-margin'>
+                                            <button className='no-bor bg-white jc-st ai-c cursor pad-0' onClick={() => handleCreateMembership(oneTeam.id)}>
+                                            <div className='dotted-circle jc-c ai-c font-small-med pad-04'>
+                                            <i className="fa-solid fa-plus"></i>
+                                            </div>
+
+                                            <div className='font-med'>&nbsp; Join Team</div>
+                                            </button>
+                                        </div>
+                                    ))}
+
+                                    <div className='ai-c jc-c'>
+                                    {oneTeam.memberships && !oneTeam.memberships.length && (<div  >This team does not yet have any members</div>)}
+                                    </div>
+
+
+                                    {oneTeam.memberships && oneTeam.memberships.map(member => {
+                                        return (
+                                            <div>
+                                        <div> </div>
+                                        <div className='row ai-c width-members tb-margin'>
+                                    <div className='solid-circle jc-c ai-c font-small-med pad-04'
+                                    style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div>
+                                    <div>&nbsp;&nbsp;&nbsp;{member.users[0].username}</div>
+                                </div>
+                                    </div>
+                                        )
+                                    })}
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+
+
 
                     )}
+
+
 
                     {/* ONLY SHOWS IF LIST IS TRUE */}
 
                     {listView && (
-                        <div className='f width-100-per jc-c'>
-                            <h2 className='lr-margin jc-c'>This feature is still in development</h2>
+                         <div className='f width-100-per jc-c'>
+                           {/* <h2 className='lr-margin jc-c'>This feature is still in development</h2> */}
+
+
+
+
+
+
+                        <div className="col lr-margin-med">
+                        {/* <h1 className='tb-margin lr-margin-x-small'>All Teams</h1> */}
+
+                        <div className='row jc-st'>
+                            <div className='all-teams-name '>
+                                <div className='l-margin-small'>Task</div>
+                                </div>
+                            <div className='all-teams-owner'>
+                            <div className='l-margin-small'>Assignee</div>
+                                </div>
+                            <div className='all-teams-members-task'>
+                            <div className='l-margin-small'>Due Date</div>
+                                </div>
                         </div>
+                        {/* <div className='long-gray-line'></div> */}
+
+                         {toDo && !toDo.length && (<div>This project does not yet have any tasks</div>)}
+                         <div className='l-margin-small'>To Do</div>
+
+                         {toDo.map(task => {
+                                  return (
+                                    <div className=''>
+                                    <div className='row'>
+                                        <div className='row all-teams-name ai-c '>
+                                            <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
+                                            <div className='tb-margin'> {task.name} </div>
+                                        </div>
+                                        <div className='row all-teams-owner'>
+                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
+                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
+                                        </div>
+                                        <div className='ai-c'>
+                                            <div className='row all-teams-members-task ai-c'>
+                                                <div className='l-margin-small'>Feb {task.id}</div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                        </div>)})}
+                                        <div className='l-margin-small'>In Progress</div>
+                            {inProg.map(task => {
+                        return (
+                        <div className=''>
+                        <div className='row'>
+                            <div className='row all-teams-name ai-c '>
+                                <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
+                                <div className='tb-margin'> {task.name} </div>
+                            </div>
+                            <div className='row all-teams-owner'>
+                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
+                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
+                            </div>
+                            <div className='ai-c'>
+                                <div className='row all-teams-members-task ai-c'>
+                                    <div className='l-margin-small'>Feb {task.id}</div>
+                                    </div>
+                            </div>
+                        </div>
+                            </div>)})}
+                            <div className='l-margin-small'>Complete</div>
+
+                            {complete.map(task => {
+                                  return (
+                                    <div className=''>
+                                    <div className='row'>
+                                        <div className='row all-teams-name ai-c '>
+                                            <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
+                                            <div className='tb-margin'> {task.name} </div>
+                                        </div>
+                                        <div className='row all-teams-owner'>
+                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
+                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
+                                        </div>
+                                        <div className='ai-c'>
+                                            <div className='row all-teams-members-task ai-c'>
+                                                <div className='l-margin-small'>Feb {task.id}</div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                        </div>)})}
+                                        <div className='l-margin-small'>*Use Board View to edit</div>
+
+                    </div>
+                    </div>
                     )}
 
 

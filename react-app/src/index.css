@@ -456,15 +456,18 @@ textarea {
 
 .font-small {
     font-size:xx-small;
+    font-family: 'Poppins', sans-serif;
 }
 
 .font-small-med {
-    font-size: small
+    font-size: small;
+    font-family: 'Poppins', sans-serif;
 
 }
 
 .font-med {
     font-size: medium;
+    font-family: 'Poppins', sans-serif;
 }
 
 .font-large {
@@ -920,7 +923,7 @@ height: 2em;
 
     .all-teams-members-task {
         border: solid 0.05em lightgray;
-     
+
         width: 30vw;
         height: 100%;
     }
@@ -960,3 +963,9 @@ height: 2em;
         /* margin-right: 1em; */
 
       }
+
+
+    .logo {
+        width: 1.5em;
+        height: 1.5em;
+    }

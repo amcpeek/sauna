@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
       {!user?
       <div className='font-small-med ai-c ' >Get Started</div>:
       // <div className=''>{(user.username).slice(0,1).toUpperCase()} {((user.username).slice(1,2)).toUpperCase()}</div>
-      <div><i className="fa-regular fa-user ai-c"></i></div>
+      <div className='text-blue'><i className="fa-regular fa-user ai-c"></i></div>
       }
 
       </button>

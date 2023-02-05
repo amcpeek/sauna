@@ -9,6 +9,7 @@ import { authenticate } from '../../store/session';
 import CreateProjectModal from '../Projects/CreateProjectModal';
 import CreateTeamModal from '../Team/CreateTeamModal';
 import TeamsButton from './TeamsButton';
+import saunaLogo from '../../assets/saunaLogo.png'
 
 
 const NavBar = () => {
@@ -32,7 +33,15 @@ const NavBar = () => {
        <div className='jc-sb lr-margin vh-5 ai-c '>
               <div className='row ai-c'>
 
-                      <Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link>
+                      <Link to={'/'} className=' l-margin-small row no-und'>
+
+                        <img
+                        className='logo'
+                        src={saunaLogo}
+                        alt='Logo'
+                        ></img>
+                        <div> &nbsp; Sauna</div>
+                      </Link>
                       &nbsp; &nbsp; &nbsp;
                       <TeamsButton user={user}/>
                       &nbsp; &nbsp; &nbsp;
@@ -48,12 +57,14 @@ const NavBar = () => {
               <div className='row'>
                   <div>
                       <a
+                      className='text-blue'
                       href='https://www.linkedin.com/in/annika-mcpeek/'
                       target="_blank">
                       <i className="fa-brands fa-linkedin"/>
                       </a>
                       &nbsp; &nbsp; &nbsp;
                       <a
+                      className='text-blue'
                       href='https://github.com/amcpeek/'
                       target="_blank">
                       <i className="fa-brands fa-github"/>

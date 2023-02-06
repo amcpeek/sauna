@@ -238,7 +238,7 @@ const ProfilePage = () => {
                         <div className='row '>
                             <div className='row'>
                                 <div className='jc-st ai-c'>
-                                    <div className='box-circle-mem-no-margin'>
+                                    <div className='box-circle-mem-no-margin ai-c jc-c'>
                                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
                                     </div>
 

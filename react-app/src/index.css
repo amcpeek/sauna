@@ -522,6 +522,10 @@ textarea {
 
 }
 
+.just-gray-line {
+    border-bottom: solid .1em lightgray;
+}
+
 .short-gray-line {
     border-bottom: solid .1em lightgray;
     width: 5em;

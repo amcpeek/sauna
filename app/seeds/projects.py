@@ -1,15 +1,21 @@
 from app.models import db, Project, environment, SCHEMA
 
 def seed_projects():
-    p1=Project(ownerId=1, teamId=1, name='Document Renewal Process', description='Each sub team has created their own processes and we need to collaborate to unite them')
-    p2=Project(ownerId=2, teamId=1, name='Market to Parents', description='Market at home tutoring to parents of the customer district')
+    p1=Project(ownerId=1, teamId=1, name='Document School District Tutoring Renewal Process', description='Each sub team has created their own processes and we need to collaborate to unite them')
+    p2=Project(ownerId=1, teamId=1, name='Implement the remote tutoring district contract', description='Market at home tutoring to parents of the customer district')
+
     p3=Project(ownerId=5, teamId=2, name='Create new district admin user type', description='Update database structure and UI so district admin can update students in all their associated schools')
     p4=Project(ownerId=6, teamId=2, name='Build an internal parent sign up page', description='Create a method for implementation team to create a unique sign up form experience to meet district needs')
+
+    p5=Project(ownerId=9, teamId=3, name='Creating improved parent marketing materials', description='Develop webpages for advertizement about the remove literacy tutoring the school district funded')
+    p6=Project(ownerId=10, teamId=3, name='Roll out sales initiative to California districts', description='Because of the newly approved state funding for tutoring school boards are ready for remote tutoring conversations.')
 
     db.session.add(p1)
     db.session.add(p2)
     db.session.add(p3)
     db.session.add(p4)
+    db.session.add(p5)
+    db.session.add(p6)
     db.session.commit()
 
 def undo_projects():

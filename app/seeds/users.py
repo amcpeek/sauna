@@ -23,12 +23,12 @@ def seed_users():
         username='Irma', email='irma@aa.io', password='passwordIrma')
     u10 = User(
         username='Jesse', email='jesse@aa.io', password='passwordJesse')
-    u10 = User(
-        username='Kiana', email='jesse@aa.io', password='passwordJesse')
     u11 = User(
-        username='Lauralyn', email='lauralyn@aa.io', password='passwordLauralyn')
+        username='Kiana', email='kiana@aa.io', password='passwordJesse')
     u12 = User(
-        username='Michelle', email='michelle@aa.io', password='passwordMichelle')
+        username='Lauralyn', email='lauralyn@aa.io', password='passwordLauralyn')
+    # u13 = User(
+    #     username='Michelle', email='michelle@aa.io', password='passwordMichelle')
     #Nolan, Oscar, Pija, Quinn, Rachel/Ron, Shawn, Tom/Taxi, Ugo, Vasilios, Wendy, Xiavier, Yolanda, Zooe
 
 

@@ -5,9 +5,12 @@ def seed_teams():
     description='Support customers implementing the process of at home remote tutoring and renewing contracts with districts')
     t2 = Team(name='Product & Engineering', ownerId=5,
     description='Create the app used by customers and internal employees')
+    t3 = Team(name='Sales & Marketing', ownerId=9,
+    description='Engage with new customers')
 
     db.session.add(t1)
     db.session.add(t2)
+    db.session.add(t3)
     db.session.commit()
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE

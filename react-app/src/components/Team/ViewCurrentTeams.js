@@ -248,6 +248,7 @@ const ProfilePage = () => {
 
                                 <div className='jc-c ai-c lr-margin-small'>{project.name} </div>
 
+
                             </div>
 
                         </div>

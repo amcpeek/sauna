@@ -2,18 +2,61 @@ from app.models import db, Task, environment, SCHEMA
 
 
 def seed_tasks():
+    #T1
+    #P1 owner = 1
     t1=Task(assigneeId=1, projectId=1, name='Meet with team leads to review renewal process',
     description='After meeting with all team leads, work with each one to get all the current documentation on renewal processes', stageId=1)
     t2=Task(assigneeId=2, projectId=1, name='Review all documentation of current renewal processes',
     description='Collaborate with team members and comment on Google docs which aspects are best to keep from each system', stageId=2)
-    t3=Task(assigneeId=3, projectId=2, name='Get assessment data', description='Work with school district to get reading levels for students that will participate in at home small group tutoring', stageId=1)
-    t4=Task(assigneeId=4, projectId=2, name='Send communications to parents for sign up', description='Mass text and email all eligible families in the district', stageId=2)
+    t3=Task(assigneeId=3, projectId=1, name='Create the new renewal system', description='One master document that links to any other needed resources', stageId=2)
+    t4=Task(assigneeId=4, projectId=1, name='Meet with key stake holders again to review the new process',
+    description='Create a shared calendar invite', stageId=3)
+    t5=Task(assigneeId=1, projectId=1, name='Review feedback on new system', description='Take the feedback and build it into the final document', stageId=1)
+    t6=Task(assigneeId=1, projectId=1, name='Train the entire team on the new system', description='In the next monthly team wide meeting train all team members', stageId=2)
 
-    t5=Task(assigneeId=5, projectId=3, name='Design new database schema', description='Review the minimum amount of change necessary to add a new permission type', stageId=1)
-    t6=Task(assigneeId=6, projectId=3, name='Test new feature in development',
-    description='Confirm if changes to the database schema cause any issues with the user being able to view what they previously had access to as school admins', stageId=2)
-    t7=Task(assigneeId=7, projectId=4, name="Research parent's desires for the sign up form", description="Review parent and school leader's survey feedback on the current process", stageId=1)
-    t8=Task(assigneeId=8, projectId=4, name='Meet with Customer Success and Implementation team leaders', description='Discuss the issues with the current Google and Word Press sign up form processes', stageId=2)
+    #P2 owner = 1
+    t7=Task(assigneeId=1, projectId=2, name='Get assessment data', description='Work with school district to get reading levels for students that will participate in at home small group tutoring', stageId=1)
+    t8=Task(assigneeId=2, projectId=2, name='Send communications to parents for sign up', description='Mass text and email all eligible families in the district', stageId=1)
+    t9=Task(assigneeId=3, projectId=2, name='Review sign up responses', description='Use excel to filter sign up responses and match to confirm families are eligible', stageId=1)
+    t10=Task(assigneeId=4, projectId=2, name='Match student assessment data to parent sign ups', description='Using excel and SQL match student data to confirm they are enrolled', stageId=2)
+    t11=Task(assigneeId=1, projectId=2, name='Send student enrollment information to our partnering company', description='Clean data before it is sent to the partnering company', stageId=2)
+    t12=Task(assigneeId=1, projectId=2, name="Inform parents of their student's tutoring time slot", description='Send mass text and emails to families', stageId=3)
+
+    #T2
+    #P3 owner = 5
+    t13=Task(assigneeId=5, projectId=3, name='Design new database schema', description='Review the minimum amount of change necessary to add a new permission type', stageId=1)
+    t14=Task(assigneeId=6, projectId=3, name='Test new feature in development',
+    description='Confirm if changes to the database schema cause any issues with the user being able to view what they previously had access to as school admins', stageId=1)
+    t15=Task(assigneeId=7, projectId=3, name='Create new user type', description='Write the code necessary to create an additional user time', stageId=2)
+    t16=Task(assigneeId=8, projectId=3, name='Review what competitors have for their user types', description='Compare other tutoring ed tech platforms user types', stageId=2)
+    t17=Task(assigneeId=5, projectId=3, name='Engage in user research', description='Interview current customers and potential customers about what they are most interested in for user types', stageId=3)
+    t18=Task(assigneeId=6, projectId=3, name='Discuss with CS and Implementation team leaders', description='Meet with CS and Implementation Teams to discover what user types they need the most currently', stageId=3)
+
+    #P4 owner = 6
+    t19=Task(assigneeId=5, projectId=4, name="Research parent's desires for the sign up form", description="Review parent and school leader's survey feedback on the current process", stageId=1)
+    t20=Task(assigneeId=6, projectId=4, name='Meet with Customer Success and Implementation team leaders', description='Discuss the issues with the current Google and Word Press sign up form processes', stageId=1)
+    t21=Task(assigneeId=7, projectId=4, name='Review the current systems in Wordpress, Salesforce, and Google Suite', description='''Meet with Implementation and integration team leaders to review the current tools used
+    internally and with our external tutoring provider''', stageId=1)
+    t22=Task(assigneeId=8, projectId=4, name='Build the internal version of the sign up form in app', description='Code the new form', stageId=2)
+    t23=Task(assigneeId=5, projectId=4, name='Test the new form in QA', description='Have implementation team members test it', stageId=3)
+    t24=Task(assigneeId=6, projectId=4, name='Test the form with parents', description='Confirm parents that speak the languages most common amongst customers can navigate the sign up form', stageId=3)
+
+     #T3
+     #P5 owner = 9
+    t25=Task(assigneeId=9, projectId=5, name='Create a webpage with all sign up information', description='Include company logo and district logo', stageId=1)
+    t26=Task(assigneeId=10, projectId=5, name='Make sure all marketing material are in families home languages', description='Connect with implementation team to plan for most common languages', stageId=2)
+    t27=Task(assigneeId=11, projectId=5, name='Design flyers with QR codes schools can hand out to parents', description='Develop black and white and color options', stageId=3)
+    t28=Task(assigneeId=12, projectId=5, name='Write clear texting templates for parents', description='Confirm the allowed character length. Create versions for each needed language', stageId=3)
+    t29=Task(assigneeId=9, projectId=5, name='Test the effectiveness of the marketing materials', description='Share flyers, texts, and websites with parents in the districts served to confirm it make sense to them and interests them', stageId=3)
+    t30=Task(assigneeId=10, projectId=5, name='Review competitors marketing material', description='Confirm it is clear how this project is different from the many others being offered currently to the exact parents', stageId=3)
+
+    #P6 owner = 10
+    t31=Task(assigneeId=9, projectId=6, name='Review ed tech competitors' , description='Review competitors also eligible for the same state funding', stageId=1)
+    t32=Task(assigneeId=10, projectId=6, name='Work with current partnering districts to advocate for the product', description='Have current California districts quotes on the company website and marketing materials', stageId=1)
+    t33=Task(assigneeId=11, projectId=6, name='Ask current customers to speak with potential new customers', description='If a new district is interested, they may request to speak with a current customer', stageId=2)
+    t34=Task(assigneeId=12, projectId=6, name='Find organizations willing to supplement the funding', description='Connect with current non-profit partners who have relationships with California districts', stageId=2)
+    t35=Task(assigneeId=9, projectId=6, name="Assign SDR's call districts", description='Begin focusing on districts surrounding current partners', stageId=3)
+    t36=Task(assigneeId=10, projectId=6, name='Visit Ed Tech conferences in California', description='Be prepared to table at as many upcoming conferences as possible', stageId=3)
 
     db.session.add(t1)
     db.session.add(t2)
@@ -23,6 +66,36 @@ def seed_tasks():
     db.session.add(t6)
     db.session.add(t7)
     db.session.add(t8)
+    db.session.add(t9)
+    db.session.add(t10)
+    db.session.add(t11)
+    db.session.add(t12)
+    db.session.add(t13)
+    db.session.add(t14)
+    db.session.add(t15)
+    db.session.add(t16)
+    db.session.add(t17)
+    db.session.add(t18)
+    db.session.add(t19)
+    db.session.add(t20)
+    db.session.add(t21)
+    db.session.add(t22)
+    db.session.add(t23)
+    db.session.add(t24)
+    db.session.add(t25)
+    db.session.add(t25)
+    db.session.add(t26)
+    db.session.add(t27)
+    db.session.add(t28)
+    db.session.add(t29)
+    db.session.add(t30)
+    db.session.add(t31)
+    db.session.add(t32)
+    db.session.add(t33)
+    db.session.add(t34)
+    db.session.add(t35)
+    db.session.add(t35)
+    db.session.add(t36)
 
     db.session.commit()
 

@@ -11,8 +11,12 @@ def seed_memberships():
     m7 = Membership(userId=7, teamId=2)
     m8 = Membership(userId=8, teamId=2)
 
-    m9 = Membership(userId=1, teamId=2)
-    m10 = Membership(userId=5, teamId=1)
+    m9 = Membership(userId=9, teamId=3)
+    m10 = Membership(userId=10, teamId=3)
+    m11 = Membership(userId=11, teamId=3)
+    m12 = Membership(userId=12, teamId=3)
+
+    m13 = Membership(userId=1, teamId=2)
 
     db.session.add(m1)
     db.session.add(m2)
@@ -24,6 +28,10 @@ def seed_memberships():
     db.session.add(m8)
     db.session.add(m9)
     db.session.add(m10)
+    db.session.add(m11)
+    db.session.add(m12)
+    db.session.add(m13)
+
 
     db.session.commit()
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't

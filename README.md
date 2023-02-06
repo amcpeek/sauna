@@ -14,34 +14,34 @@ The backend uses SqlAlchemy and Flask in Python. The frontend uses React and Red
 
 ## Splash Page:
 Brief description of what Sauna is.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaSplash.png)
 
 ## Profile Page:
 View all of the users tasks, projects, and teams on one page.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaProfile.png)
 
 
 ## Kanban Board and creating a task:
 View one projects tasks all together. This form is where a user can create, update, delete, and assign tasks to team members.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaKanban.png)
 
 ## Editing a task and assign it to a team member:
 One the Kanban board view, a user can reassign task to team members and edit a tasks information.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaEditTask.png)
 
 
 ## List View of Tasks:
 The same tasks shown on a list instead of Kanban board.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaListView.png)
 
 ## View a Team Page:
 From this page a user can see information about a team, join a team if they are not part of it, and create a new project
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaTeamPage.png)
 
 
 ## Edit Team Page:
 A team owner can create, update, and delete a team, and a project owner can do the same for their projects. Any user can join any team and it's associated projects.
-![]()
+![](https://github.com/amcpeek/sauna/blob/main/imagesGithub/saunaEditTask.png)
 
 
 
@@ -68,5 +68,3 @@ npm start
 Annika McPeek
 ammcpeek@gmail.com
 linkedin.com/in/annika-mcpeek/
-
-

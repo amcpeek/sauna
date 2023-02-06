@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateTask,fetchUpdateTask,fetchDeleteTask } from "../../store/task";
 import { fetchOneProject } from "../../store/project"
@@ -14,6 +14,7 @@ const TaskForm=({task, formType, projectId,
     let memberArray = []
     let isMember = ''
     const history=useHistory()
+    const { id } = useParams()
     const dispatch = useDispatch()
     let user = useSelector(state => {return state.session.user})
 
@@ -27,7 +28,8 @@ const TaskForm=({task, formType, projectId,
         findProjectTest()
      }, [dispatch])
 
-    // const oneProject = useSelector(state => {return state.projects[projectId]})
+     console.log('TASK', task)
+    //const oneProject = useSelector(state => {return state.projects[projectId]})
     if(formType==="Edit Task"){
         initDescription=task.description;
         initName=task.name
@@ -59,7 +61,19 @@ const TaskForm=({task, formType, projectId,
 
 
     let oneProject = useSelector(state => {return state.project[projectId]})
-    let oneTeam = useSelector(state => {return state.team[oneProject.teamId]} )
+
+    let oneTeam = useSelector(state => {
+        let projId = state.project[id]
+        let tId = 0
+
+        if(projId) {
+
+            tId = state.team[projId.teamId]
+           // console.log('8898789878987', projId.teamId, 'teamId', tId)
+        }
+        return tId
+        } )
+
 
     useEffect(() => {
         setDescription(initDescription)

@@ -114,7 +114,7 @@ const ProfilePage = () => {
                 <div className='f'>
             <div className='main-left col lr-margin'>
                 <h1>You are not currently part of any teams, so you do not have access to teams, projects, or tasks</h1>
-                <Link to='/teams'>join a team or create a team</Link>
+                <Link className='text-blue' to='/teams'>join a team or create a team</Link>
                 </div>
                 </div>
 
@@ -222,7 +222,10 @@ const ProfilePage = () => {
                         <div className='row tb-margin'>
                             <div className='row'>
                                 <div className='jc-st ai-st'>
-                                <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                    <div className='box-circle-mem-no-margin'>
+                                    <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                    </div>
+
 
                                 </div>
 
@@ -282,7 +285,10 @@ const ProfilePage = () => {
                                                 <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                                                     <div className='row ai-c tb-margin jc-sb width-vw'>
                                                         <div className='row'>
+                                                            <div className='box-circle-mem-no-margin'>
                                                             <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+                                                            </div>
+
                                                             <div className='ai-c lr-margin-small'> {team.name} </div>
                                                         </div>
 
@@ -309,7 +315,11 @@ const ProfilePage = () => {
                                             <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                                             <div className='row ai-c tb-margin jc-sb'>
                                                 <div className='row'>
+                                                    <div className='box-circle-mem-no-margin ai-c'>
                                                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
+
+                                                    </div>
+
                                                     <div className='ai-c lr-margin-small'>{team.name} </div>
                                                 </div>
                                             </div>

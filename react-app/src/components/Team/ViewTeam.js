@@ -47,7 +47,7 @@ const ViewTeam = () => {
     if (oneTeamObj && oneTeamObj.memberships) {
         return (
             <div className="col lr-margin-large">
-            <h2 className='should-wrap-70'>{oneTeamObj.name}</h2>
+            <h2 className='should-wrap-22'>{oneTeamObj.name}</h2>
 
             <div className="col">
                 <div className='tb-margin'>About Us</div>
@@ -147,10 +147,16 @@ const ViewTeam = () => {
                         <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
                         <div className='row ai-c tb-margin jc-sb'>
                             <div className='row'>
+                                <div className='box-circle-mem-no-margin'>
                                 <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
-                                <div className=''>&nbsp; {project.name} </div>
+                                </div>
+
+                                <div className='should-wrap-100-per lr-margin-small'>{project.name} </div>
                             </div>
-                            <div className='solid-circle jc-c ai-c font-small-med pad-04' style={{backgroundColor: arrayOfColors[project.owner.id]}}>{(project.owner.username).slice(0,2)}</div>
+                            <div className='box-circle-mem-no-margin'>
+                                <div className='solid-circle jc-c ai-c font-small-med pad-04' style={{backgroundColor: arrayOfColors[project.owner.id]}}>{(project.owner.username).slice(0,2)}</div>
+                            </div>
+
                         </div>
                         <div className='long-gray-line'></div>
                             </Link>

@@ -42,9 +42,9 @@ const ViewProject = () => {
       }, [dispatch]);
 
 
-      if (users) {
-        console.log('users', users)
-      }
+    //   if (users) {
+    //     console.log('users', users)
+    //   }
 
     //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
 
@@ -60,8 +60,10 @@ const ViewProject = () => {
 
     //edit
     const showTaskFunc = (task) => {
-        showTask? setShowTask(false): setShowTask(true)
+        console.log('is task being passed int', task)
         setSelectedTask(task)
+        showTask? setShowTask(false): setShowTask(true)
+
 
     }
 
@@ -83,7 +85,7 @@ const ViewProject = () => {
 
     useEffect(() => {
         findProjectTest()
-     }, [dispatch])
+     }, [dispatch ])
 
 
     if(allTasksByProg && allTasksByProg[id]) {
@@ -112,6 +114,8 @@ const ViewProject = () => {
            // console.log('5555555555', err)
           })
      }
+
+     console.log('one proj', oneProject, 'oneTeam', oneTeam)
 
 
 
@@ -173,14 +177,15 @@ const ViewProject = () => {
 
 
 
-                    {oneTeam && oneTeam.memberships && user && memberArray && !isMember && (
+                    {user &&
+                                    (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
                         <div className='row ai-c'>
 
-                        <button className='asana-button height-shorter' onClick={() => handleCreateMembership(oneProject.teamId)}>Join Team</button>
+                        <button className='asana-button height-shorter' onClick={() => handleCreateMembership(oneTeam.id)}>Join Team</button>
                         <p className='font-small-med'> &nbsp; *Only team member can engage with tasks &nbsp; &nbsp; </p>
                         </div>
                         // <div>{isMember.id}</div>
-                    )}
+                    ))}
                 </div>
 
                 <div className='bg-light-gray round-sq-05 vw-99-vh-70 scroller-tasks'>
@@ -281,8 +286,11 @@ const ViewProject = () => {
 
 
                     {/* ONLY SHOWS IF LIST IS TRUE */}
+                    {listView && !users && (
+                            <div className='lr-margin tb-margin'>List view is only accessible once logged in</div>
+                    )}
 
-                    {listView && (
+                    {listView && users && (
                          <div className='f width-100-per jc-c'>
                            {/* <h2 className='lr-margin jc-c'>This feature is still in development</h2> */}
 
@@ -307,8 +315,10 @@ const ViewProject = () => {
                         </div>
                         {/* <div className='long-gray-line'></div> */}
 
-                         {toDo && !toDo.length && (<div>This project does not yet have any tasks</div>)}
+
                          <div className='l-margin-small'>To Do</div>
+                         {toDo && !toDo.length && (<div className='l-margin-small text-blue'>No "to do" tasks</div>)}
+
 
                          {toDo.map(task => {
                                   return (
@@ -329,7 +339,8 @@ const ViewProject = () => {
                                         </div>
                                     </div>
                                         </div>)})}
-                                        <div className='l-margin-small'>In Progress</div>
+                        <div className='l-margin-small'>In Progress</div>
+                        {inProg && !inProg.length && (<div className='l-margin-small text-blue'>No "in progress" tasks</div>)}
                             {inProg.map(task => {
                         return (
                         <div className=''>
@@ -350,6 +361,7 @@ const ViewProject = () => {
                         </div>
                             </div>)})}
                             <div className='l-margin-small'>Complete</div>
+                            {complete && !complete.length && (<div className='l-margin-small text-blue'>No "complete" tasks</div>)}
 
                             {complete.map(task => {
                                   return (
@@ -464,13 +476,14 @@ const ViewProject = () => {
                              </div>
 
                          </div>
-                         {showTask &&
+                         {showTask && selectedTask &&
                           <div className='f col width-40-per bg-white box-shadow round-sq-05  ai-c'>
                           <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task width-90-per" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
                               <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
                               {/* onClick={() => setShowTask(false)}  add back in later*/}
                               <ViewTask selectedTask={selectedTask}/>
                               <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>
+                              {/* {console.log('Edit task in main page', selectedTask, showTask, setShowTask )} */}
                               </button>
                           </div>
 

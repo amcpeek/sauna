@@ -181,7 +181,7 @@ const tasksReducer = (state = initialState, action) => {
                 tasksByProjectId: { [action.Tasks[0].projectId]: nextLevel }
             }
 
-        case READ_SINGLE_TASK: //this needs to be rewritten
+        case READ_SINGLE_TASK: //this doe not red in the tasksByProjectId
             newState = {...state}
             newState[action.task.id] = action.task
             return newState
@@ -194,15 +194,35 @@ const tasksReducer = (state = initialState, action) => {
             newState.tasksByProjectId[action.task.projectId] = {...state.tasksByProjectId[action.task.projectId], [action.task.id]: action.task}
            }
 
+
+
+
+
+
+
+
+
+
+        //    if(!newState[action.task.id]) {
+        //     newState = {[action.task.id]: action.task}
+        //    } else {
+        //     newState = {...state[action.task.id], [action.task.id]: action.task}
+        //    }
+            newState[action.task.id] = action.task
             return newState
 
         case UPDATE_TASK:
             newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
             newState.tasksByProjectId[action.task.projectId] = {...state.tasksByProjectId[action.task.projectId], [action.task.id]: action.task}
+
+
+            // newState = {...state[action.task.id], [action.task.id]: action.task}
+            newState[action.task.id] = action.task
             return newState
 
         case DELETE_TASK:
             newState = {...state, tasksByProjectId: {...state.tasksByProjectId}}
+            delete newState[action.task.id]
             delete newState.tasksByProjectId[action.task.projectId][action.task.id]
             return newState
 

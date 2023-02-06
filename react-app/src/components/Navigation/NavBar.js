@@ -54,7 +54,7 @@ const NavBar = () => {
               </div>
 
 
-              <div className='row'>
+              <div className='row ai-c'>
                   <div>
                       <a
                       className='text-blue'

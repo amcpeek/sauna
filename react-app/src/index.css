@@ -132,6 +132,10 @@ textarea {
     width: 100vw;
 }
 
+.vw-small {
+    width: 20vh;
+}
+
 .color-purple {
     display:flex;
     color: purple;
@@ -775,6 +779,11 @@ height: 2em;
     width: 10em;
    }
 
+   .should-wrap-22 {
+    overflow-wrap: break-word;
+    width: 22em;
+   }
+
 
    .should-wrap-full {
     overflow-wrap: break-word;
@@ -961,8 +970,18 @@ height: 2em;
         margin-bottom: 0.75em;
         margin-left: 1em;
         /* margin-right: 1em; */
-
       }
+
+      .box-circle-mem-no-margin {
+        display:flex;
+        height: 2.5em;
+        width: 2.5em;
+        /* margin-top: 0.75em;
+        margin-bottom: 0.75em;
+        margin-left: 1em; */
+        /* margin-right: 1em; */
+      }
+
 
 
     .logo {

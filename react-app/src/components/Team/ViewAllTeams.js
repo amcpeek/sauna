@@ -62,7 +62,7 @@ const ViewAllTeams = () => {
                             <div className='solid-round-sq ai-c jc-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
                             </div>
 
-                                <div className='tb-margin'> {team.name} </div>
+                                <div className='tb-margin should-wrap-100-per lr-margin-small'> {team.name} </div>
                             </div>
                             <div className='row all-teams-owner'>
                                  <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[team.owner.id]}}>{(team.owner.username).slice(0,2)}</div>

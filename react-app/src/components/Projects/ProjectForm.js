@@ -41,10 +41,11 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const tempProject = {...project, name, description, teamId:id}
+        const tempProject = {...project, name, description}
         const errors = []
 
         if(formType==='Create Project'){
+            tempProject.teamId = id
             const returnedProject = dispatch(fetchCreateProject(tempProject))
             .then((project) => {
                 history.push(`/projects/${project.id}`)
@@ -58,6 +59,7 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
             })
         }
         else if(formType==='Edit Project') {
+            tempProject.teamId = project.teamId
             dispatch(fetchUpdateProject(tempProject))
             //.then(()=>history.push('/projects')) //this will be easy to change to projects/id, but get it working first
             .then((project) => {

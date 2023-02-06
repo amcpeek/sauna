@@ -2,7 +2,7 @@
 ## an Asana Clone by Annika McPeek
 
 ## Link to live site:
-https://guava.onrender.com/ (currently available, haven't set up yet)
+https://sauna.onrender.com/
 
 ## Description:
 My clone of Asana will have have features to manage tasks as a team.
@@ -12,7 +12,7 @@ The backend uses SqlAlchemy and Flask in Python. The frontend uses React and Red
 ## Usage description of features.
 
 ## Home Page:
-Brief description of what Guava is.
+Brief description of what Sauna is.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_37
 ![]()
 
@@ -21,41 +21,36 @@ View one projects tasks all together.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_12
 ![]()
 
-## Task Details and Comments:
-Edit tasks here and comment between team members (anyone who joined a project).
+## Task Edit and assignment:
+Edit tasks here and assign it to team members.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_18
 ![]()
 
+## Create Team Page:
+A team owner can create, update, and delete a team. Any user can join any team and view it.
+https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_48
+![]()
+
 ## Create Project Page:
-A project owner can CRUD a project. Any user can join any project and view it.
+A project owner can create, update, and delete a project. Any user can join any team and it's associated projects.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_48
 ![]()
 
 ## Create Task Page:
-This form is where a user can CRUD their task if they are part of the project.
+This form is where a user can create, update, delete, and assign tasks to team members.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_53
 ![]()
 
-
-## Side Bar:
-View your projects and team members of each project. Switch between viewing different projects.
-https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_43
-![]()
 
 ## List View of Tasks:
 The same tasks shown on a list instead of Kanban board.
 https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eac8dcd966_1_0
 ![]()
 
-## Customer Facing Version of a Timeline:
-For projects with frequently changing timelines that need to be shared between organizations, this feature can help a partnering organization have one reference place for updated task timelines.
-https://docs.google.com/presentation/d/1_kyjjRIa4gab2SOSWLB3iPyOkDjcBhPFZ6-TlQAcegQ/edit#slide=id.g1eabe2e45a4_0_30t
-
-![]()
-
-
 ## Road Map
-After creating full CRUD for projects, tasks, teams, and comments, I want to add drag and drop on the Kanban board, a list version of the tasks, dependencies between tasks, and a customer facing version of the timeline.
+# Include dates for tasks
+# Include dependences between tasks. One task cannot be started until another task finishes
+# Customer facing version of projects
 
 ## Get started using my repo locally
 Once downloading the repo in the top level run:

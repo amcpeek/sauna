@@ -153,16 +153,17 @@ const ProfilePage = () => {
 
                     <div className='row jc-sa lr-margin-small'>
                         <div>
-                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(true), setInProg(false), setComp(false))}>To Do</button>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(true), setInProg(false), setComp(false))}>To Do ({toDoCur && (toDoCur.length)}) </button>
                         {toDo && <div className='gray-line-med'></div> }
                         </div>
                         <div>
-                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(true), setComp(false))}>In Progress</button>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(true), setComp(false))}>In Progress ({inProgCur && (inProgCur.length)}) </button>
+
                         {inProg && <div className='gray-line-med'></div> }
 
                         </div>
                         <div>
-                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(false), setComp(true))}>Completed</button>
+                        <button className='font-small-med no-bor bg-white' onClick={() => (setToDo(false), setInProg(false), setComp(true))}>Completed ({compCur && (compCur.length)})</button>
                         {comp && <div className='gray-line-med'></div> }
 
                         </div>
@@ -284,7 +285,7 @@ const ProfilePage = () => {
                                                         <div className='box-circle-mem-no-margin all-margin-tb-x-small'>
                                                         <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'><i className="fa-solid fa-plus"></i></div>
                                                         </div>
-                                                        <div className='ai-c lr-margin-small font-med'> Create Team?</div>
+                                                        <div className='ai-c lr-margin-small font-med'> Create Team</div>
 
                                                         </div>
 

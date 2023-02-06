@@ -4,7 +4,7 @@ import kingsSauna from '../../assets/kingsSauna.JPG'
 const WhySauna = () => {
     return (
         <div className="why-sauna-img" style={{ backgroundImage: `url(${kingsSauna})` }}>
-              <div className='overlap-img max-width-90em'>
+              <div className='overlap-img max-width-90em tb-margin col'>
              <p>In my family building a sauna at our cabin <a href='https://github.com/amcpeek/sauna/wiki' className=''>featured in my AirBnb clone</a>
              &nbsp;has for ages been a group project we are perpetually planning, but with the many moving logistics and involved teams we have not been
              able to complete it. But with an app like Sauna, group passion projects can become a reality.</p>

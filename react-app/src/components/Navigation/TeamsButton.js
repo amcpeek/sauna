@@ -54,9 +54,9 @@ function TeamButton({ user }) {
       {showMenu && user && (
 
         <div className="dropdownTeam">
-            <button className='just-text-button bg-white cursor jc-c'><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>
+            <button className='just-text-button bg-white cursor jc-c '><NavLink exact to="/teams" className='no-und'>All Teams</NavLink></button>
 
-            <button className='just-text-button bg-white cursor jc-c'><NavLink exact to="/profile" className='no-und'>Your Profile</NavLink></button>
+            <button className='just-text-button bg-white cursor jc-c all-margin-tb-x-small'><NavLink exact to="/profile" className='no-und'>Your Profile</NavLink></button>
             <button className='just-text-button bg-white cursor jc-c' onClick={() => setShowTModal(true)}>Create Team</button>
 
         </div>

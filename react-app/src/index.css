@@ -723,7 +723,7 @@ height: 2em;
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 10em;
+    left: 15.5em;
     border-radius: 1em;
     border: white 0.5em solid;
     background-color: #f9f9f9;
@@ -731,6 +731,7 @@ height: 2em;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 4;
     justify-content: center;
+    background-color: white;
   }
 
 

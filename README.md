@@ -47,9 +47,9 @@ A team owner can create, update, and delete a team, and a project owner can do t
 
 
 ## Road Map
-# Include dates for tasks
-# Include dependences between tasks. One task cannot be started until another task finishes
-# Customer facing version of projects on a separate unique link. Log in not required to view this page.
+* Include dates for tasks
+* Include dependences between tasks. One task cannot be started until another task finishes
+* Customer facing version of projects on a separate unique link. Log in not required to view this page.
 
 ## Get started using my repo locally
 Once downloading the repo in the top level run:
@@ -65,6 +65,6 @@ npm start
 
 
 ## Contact Me:
-Annika McPeek
-ammcpeek@gmail.com
-linkedin.com/in/annika-mcpeek/
+* Annika McPeek
+* ammcpeek@gmail.com
+* linkedin.com/in/annika-mcpeek/

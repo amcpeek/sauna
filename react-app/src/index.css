@@ -854,7 +854,7 @@ height: 2em;
     height: 2em;
     width: 2em;
     border-radius: 50%;
-    border: 1px none solid;
+    border: none;
     }
 
 
@@ -872,7 +872,7 @@ height: 2em;
         height: 2em;
         width: 2em;
         border-radius: 0.5em;
-        border: 1px none solid;
+        border: none;
     }
 
 

@@ -150,3 +150,6 @@ const projectsReducer = (state = initialState, action) => {
 }
 
 export default projectsReducer
+
+
+//            delete newState.task.tasksByProjectId[action.id]

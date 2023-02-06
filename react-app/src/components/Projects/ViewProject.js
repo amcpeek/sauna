@@ -245,8 +245,8 @@ const ViewProject = () => {
 
                                     {user &&
                                     (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
-                                        <div className='row ai-c width-members tb-margin'>
-                                            <button className='no-bor bg-white jc-st ai-c cursor pad-0' onClick={() => handleCreateMembership(oneTeam.id)}>
+                                        <div className='row ai-c width-members tb-margin  '>
+                                            <button className='no-bor match-tasks jc-st ai-c cursor pad-0' onClick={() => handleCreateMembership(oneTeam.id)}>
                                             <div className='dotted-circle jc-c ai-c font-small-med pad-04'>
                                             <i className="fa-solid fa-plus"></i>
                                             </div>

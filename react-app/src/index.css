@@ -216,7 +216,12 @@ textarea {
 .all-margin-small {
     display:flex;
     margin: 1em;
+}
 
+.all-margin-tb-x-small {
+    display:flex;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .b-margin {
@@ -820,14 +825,19 @@ height: 2em;
 
 
   .scroller-profile {
-
     width: 45vw;
     height: 29vh;
     overflow-y: scroll;
     scrollbar-color: white;
     scrollbar-width: thin;
+  }
 
-
+  .scroller-profile-projects {
+    width: 45vw;
+    /* height: 29vh; */
+    overflow-y: scroll;
+    scrollbar-color: white;
+    scrollbar-width: thin;
   }
 
 

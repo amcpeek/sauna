@@ -155,7 +155,7 @@ const tasksReducer = (state = initialState, action) => {
         //         allTasks: { nextLevelAll }
         //     }
         case READ_TASKS:
-            newState={...state}
+            newState={}
             //console.log('action.Tasks', action.Tasks)
             action.Tasks.forEach(task => {
             newState[task.id] = task
@@ -167,7 +167,7 @@ const tasksReducer = (state = initialState, action) => {
 
 
         case READ_TASKS_BY_PROJECT_ID:
-            newState = { ...state, tasksByProjectId: {...state} }
+            newState = { ...state}
 
             const nextLevel = {}
             if(!action.Tasks.length) {

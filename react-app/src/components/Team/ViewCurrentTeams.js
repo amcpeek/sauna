@@ -76,12 +76,14 @@ const ProfilePage = () => {
     let curUsersTeams = []
     let ownersTeams = []
     let curTasks = []
-    let curProjects = []
+    // let curProjects = []
+    let allMyProjectsSubArrays = []
     if(user && allTeams) {
         for(let i in allTeams) {
             for (let j in allTeams[i].memberships) {
                 if(allTeams[i].memberships[j].userId == user.id ) {
                     curUsersTeams.push(allTeams[i])
+                    allMyProjectsSubArrays.push(allTeams[i].projects)
                     //console.log(allTeams[i].memberships[j].userId, user.id, )
                      break
                 }
@@ -98,9 +100,22 @@ const ProfilePage = () => {
         compCur = curTasks.filter(task => task.stageId == 3)
     }
 
-    if(allProjects) {
-        curProjects = allProjects.filter(project => project.ownerId == user.id )
+    console.log('allMyProjects', allMyProjectsSubArrays)
+
+    let allMyProjects = []
+    if (allMyProjectsSubArrays) {
+        for(let i in allMyProjectsSubArrays) {
+            for (let j in allMyProjectsSubArrays[i]) {
+                allMyProjects.push(allMyProjectsSubArrays[i][j])
+            }
+        }
     }
+    console.log('allMyProjects', allMyProjects)
+
+    //this is the problem
+    // if(allProjects) {
+    //     curProjects = allProjects.filter(project => project.ownerId == user.id )
+    // }
 
     const handleRemoveMembership = async (teamId) => {
         await dispatch(fetchDeleteMembership(teamId))
@@ -208,20 +223,20 @@ const ProfilePage = () => {
                 <div className='profile-box'>
 
                     <div className='col ai-st width-members tb-margin lr-margin-small'>
-                        <div>Projects</div>
+                        <div className='b-margin'>Projects</div>
 
                         {user &&
-                      <div className='ai-st row flex-wrap scroller-profile'>
-                        {!curProjects && (<div>This team does not yet have any projects</div>)}
+                      <div className='ai-st row flex-wrap scroller-profile-projects'>
+                        {!allMyProjects && (<div>This team does not yet have any projects</div>)}
 
-            {curProjects && curProjects.map(project => {
+            {allMyProjects && allMyProjects.map(project => {
                       return (
                         <div className='profile-project '>
                         {/* width-30-per overflow-hidden lr-margin-med height-10-per */}
                         <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
-                        <div className='row tb-margin'>
+                        <div className='row '>
                             <div className='row'>
-                                <div className='jc-st ai-st'>
+                                <div className='jc-st ai-c'>
                                     <div className='box-circle-mem-no-margin'>
                                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[project.id]}}><i className="fa-solid fa-list-ul"></i></div>
                                     </div>
@@ -265,8 +280,12 @@ const ProfilePage = () => {
                                             <button onClick={() => setShowTModal(true)} className='no-bor bg-white jc-st ai-c cursor pad-0'>
                                                     <div className='row ai-c tb-margin jc-sb width-vw'>
                                                         <div className='row'>
+
+                                                        <div className='box-circle-mem-no-margin all-margin-tb-x-small'>
                                                         <div className='dotted-round-sq jc-c ai-c font-small-med pad-02'><i className="fa-solid fa-plus"></i></div>
-                                                            <div className='font-med ai-c'>&nbsp; Create Team </div>
+                                                        </div>
+                                                        <div className='ai-c lr-margin-small font-med'> Create Team?</div>
+
                                                         </div>
 
                                                     </div>

@@ -234,7 +234,7 @@ const TaskForm=({task, formType, projectId,
 
                  >
                     {memberArray && memberArray.length && memberArray.map(member => {return (
-                        <option value={member.id}>{member.users[0].username}</option>
+                        <option value={member.userId}>{member.users[0].username}</option>
                     )})}
              </select>
 

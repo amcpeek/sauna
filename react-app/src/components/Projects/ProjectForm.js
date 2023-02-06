@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { fetchCreateProject,fetchUpdateProject,fetchDeleteProject,  fetchOneProject } from "../../store/project";
+import { getAllTasksByProjectId, fetchAllTasks } from "../../store/task";
 
 const ProjectForm=({project, formType, showModal, setShowModal})=> {
     const { id } = useParams()
@@ -79,7 +80,11 @@ const ProjectForm=({project, formType, showModal, setShowModal})=> {
     const deleteEvents= (id)=>{
         const errors=[]
         dispatch(fetchDeleteProject(id))
-        .then(()=>history.push('/profile'))
+
+        .then(()=>{
+            dispatch(getAllTasksByProjectId(id))
+            dispatch(fetchAllTasks())
+            history.push('/profile')})
         .catch(async (err)=>{
           const errObj=await err.json();
           errors.push(errObj.message)

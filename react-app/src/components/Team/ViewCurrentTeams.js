@@ -41,12 +41,7 @@ const ProfilePage = () => {
         timeZone: 'America/Los_Angeles'
       };
     const timeOfDay = (new Intl.DateTimeFormat('default', options).format(today))
-
-    console.log('timeofday', timeOfDay)
-
     const first2 = timeOfDay.slice(0,2)
-    console.log(first2)
-
     let greeting = 'Welcome'
     if (first2 > 0 && first2 < 12) {
         greeting = 'Good Morning'
@@ -100,8 +95,6 @@ const ProfilePage = () => {
         compCur = curTasks.filter(task => task.stageId == 3)
     }
 
-    console.log('allMyProjects', allMyProjectsSubArrays)
-
     let allMyProjects = []
     if (allMyProjectsSubArrays) {
         for(let i in allMyProjectsSubArrays) {
@@ -110,12 +103,6 @@ const ProfilePage = () => {
             }
         }
     }
-    console.log('allMyProjects', allMyProjects)
-
-    //this is the problem
-    // if(allProjects) {
-    //     curProjects = allProjects.filter(project => project.ownerId == user.id )
-    // }
 
     const handleRemoveMembership = async (teamId) => {
         await dispatch(fetchDeleteMembership(teamId))

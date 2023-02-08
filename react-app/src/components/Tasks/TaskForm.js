@@ -10,13 +10,36 @@ const TaskForm=({task, formType, projectId,
     setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTask1, showAddTask2, showAddTask3,
     showTask, setShowTask
     }) => {
-    let initName, initDescription, initStageId, initAssigneeId
+    let initName, initDescription, initStageId, initAssigneeId, initDueDate
     let memberArray = []
     let isMember = ''
     const history=useHistory()
     const { id } = useParams()
     const dispatch = useDispatch()
     let user = useSelector(state => {return state.session.user})
+  
+
+
+
+    const newToday = new Date()
+    const todayFormatted =  (new Intl.DateTimeFormat('default', { dateStyle: 'full' }).format(newToday))
+    const options = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        timeZone: 'America/Los_Angeles'
+      };
+    const fullDay = (new Intl.DateTimeFormat('default', options).format(newToday))
+    let arrayDay = fullDay.split('/')
+    if (arrayDay[1].length == 1) {  arrayDay[1] = `0${arrayDay[1]}` }
+    if (arrayDay[0].length == 1) { arrayDay[0] = `0${arrayDay[0]}` }
+    let htmlDay = `${arrayDay[2]}-${arrayDay[0]}-${arrayDay[1]}`
+    let today = htmlDay
+
+
+
+
+
+
+
 
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(projectId))
@@ -35,10 +58,12 @@ const TaskForm=({task, formType, projectId,
         initName=task.name
         initStageId=task.stageId
         initAssigneeId=task.assigneeId
+        initDueDate=task.dueDate
        // console.log('initAssigneeId', initAssigneeId)
     } else {
         initDescription=''
         initName=''
+        initDueDate=today
         if(user) {
             initAssigneeId=user.id
         }
@@ -58,6 +83,7 @@ const TaskForm=({task, formType, projectId,
     const [stageId, setStageId] = useState(initStageId)
     const [validationErrors, setValidationErrors] = useState([])
     const [assigneeId, setAssigneeId] = useState(initAssigneeId)
+    const [dueDate, setDueDate] = useState(initDueDate)
 
 
     let oneProject = useSelector(state => {return state.project[projectId]})
@@ -80,6 +106,7 @@ const TaskForm=({task, formType, projectId,
         setName(initName)
         setStageId(initStageId)
         setAssigneeId(initAssigneeId)
+        setDueDate(initDueDate)
     }, [task])
 
     useEffect(() => {
@@ -88,6 +115,7 @@ const TaskForm=({task, formType, projectId,
         else if(name.length>=60){errors.push("Title must be less than 60 characters")}
         if(description.length>=500){errors.push("Description must be less than 500 characters")}
         // if(assigneeId  not in list of current members)
+        //due dates need to be able to be in the past so you can miss them
         setValidationErrors(errors);
     }, [name, description, stageId, assigneeId])
 
@@ -103,7 +131,7 @@ const TaskForm=({task, formType, projectId,
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        const tempTask = { ...task, name, description, stageId, assigneeId};
+        const tempTask = { ...task, name, description, stageId, assigneeId, dueDate};
         const errors=[]
 
         if(formType==="Create Task"){
@@ -225,13 +253,10 @@ const TaskForm=({task, formType, projectId,
             </div>
  {/* // */}
             <div className='jc-sf col width-100-per b-margin'>
-                {console.log('assigneeId', assigneeId)}
-
                  <select
                  type='number'
                  onChange={(e) => setAssigneeId(e.target.value) }
                  value={assigneeId}
-
                  >
                     {memberArray && memberArray.length && memberArray.map(member => {return (
                         <option value={member.userId}>{member.users[0].username}</option>
@@ -239,6 +264,22 @@ const TaskForm=({task, formType, projectId,
              </select>
 
 
+            </div>
+ {/* // */}
+            <div className='jc-sf col width-100-per b-margin'>
+
+            <div>
+             <label>
+             Due date
+             </label>
+             <input
+              className='input'
+              placeholder='Due Date'
+              type="date"
+              name="dueDate"
+              min={today}
+              onChange={(e) => setDueDate(e.target.value)}
+              value={dueDate}/></div>
             </div>
       </div>
 )}

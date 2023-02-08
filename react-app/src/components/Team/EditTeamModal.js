@@ -3,7 +3,7 @@ import { Modal } from '../../context/Modal'
 import EditTeam from './EditTeam';
 
 function EditTeamModal({showTModal, setShowTModal, sentTeamId}) {
-  console.log('in EditTeamModal', sentTeamId)
+//  console.log('in EditTeamModal', sentTeamId)
 
 
   return (

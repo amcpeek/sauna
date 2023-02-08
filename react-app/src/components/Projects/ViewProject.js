@@ -115,7 +115,7 @@ const ViewProject = () => {
           })
      }
 
-     console.log('one proj', oneProject, 'oneTeam', oneTeam)
+     //console.log('one proj', oneProject, 'oneTeam', oneTeam)
 
 
 
@@ -334,7 +334,7 @@ const ViewProject = () => {
                                         </div>
                                         <div className='ai-c'>
                                             <div className='row all-teams-members-task ai-c'>
-                                                <div className='l-margin-small'>Feb {task.id}</div>
+                                                <div className='l-margin-small'>{task.dueDate}</div>
                                                 </div>
                                         </div>
                                     </div>
@@ -355,7 +355,7 @@ const ViewProject = () => {
                             </div>
                             <div className='ai-c'>
                                 <div className='row all-teams-members-task ai-c'>
-                                    <div className='l-margin-small'>Feb {task.id}</div>
+                                    <div className='l-margin-small'>{task.dueDate}</div>
                                     </div>
                             </div>
                         </div>
@@ -377,7 +377,7 @@ const ViewProject = () => {
                                         </div>
                                         <div className='ai-c'>
                                             <div className='row all-teams-members-task ai-c'>
-                                                <div className='l-margin-small'>Feb {task.id}</div>
+                                                <div className='l-margin-small'>{task.dueDate}</div>
                                                 </div>
                                         </div>
                                     </div>

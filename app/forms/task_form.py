@@ -9,3 +9,4 @@ class TaskForm(FlaskForm):
     description = StringField("Description")
     stageId = StringField("Stage", validators=[DataRequired(message="Task must be associated with a stage")])
     assigneeId = IntegerField("AssigneeId")
+    dueDate = StringField('dueDate')

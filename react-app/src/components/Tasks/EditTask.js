@@ -34,7 +34,8 @@ const EditTask=({selectedTask, showTask, setShowTask})=>{
             name:tempTask.name,
             description:tempTask.description,
             stageId:tempTask.stageId,
-            assigneeId:tempTask.assigneeId
+            assigneeId:tempTask.assigneeId,
+            dueDate:tempTask.dueDate
         }
        //console.log('is task correct', task)
         return (

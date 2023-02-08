@@ -11,10 +11,22 @@ const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTas
     const dispatch = useDispatch()
     const user = useSelector(state => {return state.session.user})
     const allProjects = useSelector(state => {return state.project})
-    // console.log(user)
-    // console.log(allProjects)
-    //console.log('what is projectId in the create  task', id)
-    //console.log('showAddTask1 in CreateTask',  setShowAddTask1)
+
+
+    const newToday = new Date()
+    const todayFormatted =  (new Intl.DateTimeFormat('default', { dateStyle: 'full' }).format(newToday))
+    const options = {
+        year: 'numeric', month: 'numeric', day: 'numeric',
+        timeZone: 'America/Los_Angeles'
+      };
+    const fullDay = (new Intl.DateTimeFormat('default', options).format(newToday))
+    let arrayDay = fullDay.split('/')
+    if (arrayDay[1].length == 1) {  arrayDay[1] = `0${arrayDay[1]}` }
+    if (arrayDay[0].length == 1) { arrayDay[0] = `0${arrayDay[0]}` }
+    let htmlDay = `${arrayDay[2]}-${arrayDay[0]}-${arrayDay[1]}`
+    let today = htmlDay
+
+
 
 
     const findProjectTest = async () => {
@@ -28,7 +40,8 @@ const CreateTask=({setShowAddTask1, setShowAddTask2, setShowAddTask3, showAddTas
      const task={
         name:'',
         description:"",
-        stageId:1
+        stageId:1,
+        dueDate:today
     }
 
 

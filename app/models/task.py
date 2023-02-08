@@ -15,6 +15,7 @@ class Task(db.Model):
     description = db.Column(db.String(1000), nullable=False)
     stageId = db.Column(db.Integer)
     assigneeId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    dueDate = db.Column(db.String(50))
 
     project = db.relationship("Project", back_populates="tasks")
     user = db.relationship("User", back_populates='tasks')
@@ -29,5 +30,6 @@ class Task(db.Model):
             'name': self.name,
             'description': self.description,
             'stageId': self.stageId,
-            'assigneeId': self.assigneeId
+            'assigneeId': self.assigneeId,
+            'dueDate': self.dueDate
         }

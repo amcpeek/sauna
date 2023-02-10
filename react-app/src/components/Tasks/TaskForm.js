@@ -17,7 +17,12 @@ const TaskForm=({task, formType, projectId,
     const { id } = useParams()
     const dispatch = useDispatch()
     let user = useSelector(state => {return state.session.user})
-  
+
+    if(task) {
+        console.log('for edit what is task.dueDate', task.dueDate, task.id)
+    }
+
+
 
 
 
@@ -33,6 +38,14 @@ const TaskForm=({task, formType, projectId,
     if (arrayDay[0].length == 1) { arrayDay[0] = `0${arrayDay[0]}` }
     let htmlDay = `${arrayDay[2]}-${arrayDay[0]}-${arrayDay[1]}`
     let today = htmlDay
+
+
+    let tryToday = new Date(htmlDay)
+    console.log('tryToday', tryToday)
+
+    console.log('hihihihihi', new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric' }).format(tryToday));
+
+
 
 
 
@@ -268,10 +281,10 @@ const TaskForm=({task, formType, projectId,
  {/* // */}
             <div className='jc-sf col width-100-per b-margin'>
 
-            <div>
-             <label>
+            <div className='col'>
+             {/* <label>
              Due date
-             </label>
+             </label> */}
              <input
               className='input'
               placeholder='Due Date'

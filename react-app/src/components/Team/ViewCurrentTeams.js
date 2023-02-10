@@ -166,7 +166,9 @@ const ProfilePage = () => {
                             <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
                             <div className='row width-100-per ai-c t-margin-05'>
                              <i className="fa-regular fa-circle-check lr-margin-small"></i>
-                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                             <div className='min-width-35vw font-med should-wrap'>{task.name}</div>
+
+                             <div className='min-width-5vw jc-c'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
                             </div>
                             </Link>
                             </div>
@@ -179,7 +181,8 @@ const ProfilePage = () => {
                             <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
                             <div className='row width-100-per ai-c t-margin-05'>
                              <i className="fa-regular fa-circle-check lr-margin-small"></i>
-                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                             <div className='min-width-35vw font-med should-wrap'>{task.name}</div>
+                             <div className='min-width-5vw jc-c'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
                             </div>
                             </Link>
                             </div>
@@ -192,7 +195,8 @@ const ProfilePage = () => {
                             <Link to={`/projects/${task.projectId}`} className='no-und cursor'>
                             <div className='row width-100-per ai-c t-margin-05'>
                              <i className="fa-regular fa-circle-check lr-margin-small"></i>
-                             <div className='min-width-40vw font-med should-wrap'>{task.name}</div>
+                             <div className='min-width-35vw font-med should-wrap'>{task.name}</div>
+                             <div className='min-width-5vw jc-c'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
                             </div>
                             </Link>
                             </div>

@@ -438,7 +438,10 @@ textarea {
 
 .min-width-40vw {
     min-width: 40vw;
+}
 
+.min-width-35vw {
+    min-width: 35vw;
 }
 
 .max-width-90em {
@@ -456,7 +459,10 @@ textarea {
 
 .width-30-per {
     width: 30%
+}
 
+.min-width-5vw {
+    min-width: 5vw;
 }
 
 /* font */

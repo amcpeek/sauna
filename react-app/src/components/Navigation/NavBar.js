@@ -57,14 +57,14 @@ const NavBar = () => {
               <div className='row ai-c'>
                   <div>
                       <a
-                      className='text-blue'
+                      className='text-blue logo-bigger'
                       href='https://www.linkedin.com/in/annika-mcpeek/'
                       target="_blank">
                       <i className="fa-brands fa-linkedin"/>
                       </a>
                       &nbsp; &nbsp; &nbsp;
                       <a
-                      className='text-blue'
+                      className='text-blue logo-bigger'
                       href='https://github.com/amcpeek/'
                       target="_blank">
                       <i className="fa-brands fa-github"/>

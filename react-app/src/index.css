@@ -671,6 +671,10 @@ height: 2em;
     background-repeat: no-repeat;
 }
 
+
+
+
+
 .overlap-img {
     position: absolute;
     top: 3em;
@@ -1008,4 +1012,42 @@ height: 2em;
     .logo {
         width: 1.5em;
         height: 1.5em;
+    }
+
+
+
+
+    .logo-bigger {
+       font-size: 1.5em;
+    }
+
+    .lost-sauna-img {
+        width: 100vw;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+
+
+    .kemi-box {
+        color: 	#7B1818;
+        font-size: x-large;
+        display: flex;
+        justify-content: flex-end;
+
+        width: 15em;
+        padding: 1em;
+        /* border: solid purple 0.2em; */
+        box-shadow: 0 0 10px #fff;
+        height: 6em;
+        position: relative;
+        top: 5vh;
+        right: 5vw;
+        background-color: rgba(255,255,255, 0.3)
+
+
     }

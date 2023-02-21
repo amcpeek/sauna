@@ -20,6 +20,8 @@ import ViewTeam from './components/Team/ViewTeam'
 // import NewTeam from './components/Team/NewTeam';
 // import NewProfile from './components/Team/NewProfile';
 import NewAllTeams from './components/Team/NewAllTeams';
+import DndProject from './components/dnd/dndProject'
+import NewViewProject from './components/Projects/NewViewProject';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -83,6 +85,13 @@ function App() {
         <Route path='/newallteams' exact={true}>
           <NewAllTeams/>
         </Route>
+        <Route path='/dnd' exact={true}>
+          <DndProject/>
+        </Route>
+        <Route path='/newprojects/:id'exact={true} >
+          <NewViewProject/>
+        </Route>
+
 
 
 

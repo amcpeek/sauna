@@ -12,6 +12,7 @@ import { fetchAllTeams, fetchOneTeam } from '../../store/team'
 import { fetchCreateMembership } from '../../store/membership'
 import arrayOfColors from '../../assets/ArrayOfColors';
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
+import StageColumn from './NewStageColumn'
 
 
 const NewViewProject = () => {
@@ -419,101 +420,128 @@ const NewViewProject = () => {
                     )}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {/* ONLY SHOWS IF BOARD IS TRUE */}
 
                     {boardView && (
                          <div className='f width-100-per'>
-                         <div className='col width-40-per lr-margin-small'>
-                             <h2>To Do
-                                 {isMember && (
-                                  <button className='match-tasks cursor' onClick={() => (showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus "></i></button>
-                                 )}
-
-                                 </h2>
-                             {toDo.map(task=> {
-                                 return (
-                                     <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() => (showTaskFunc(task))}>
-                                         <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
-                                         {task.name}
-                                     </button>
-                                 )
-                             })}
-                             <div  className="jc-end"
-                             // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
-                             >
+                            <div className='progColView'>
+                             <Droppable droppableId={"To Do"} key={`${1}${'To Do'}`}>
+                             {(provided, snapshot) => (
+                                        <div key={1} >
+                                             <h2>To Do  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
+                                            <StageColumn
+                                                column={toDo}
+                                                // setHasSubmitted={setHasSubmitted}
+                                                placeholder={provided.placeholder}
+                                                provided={provided}
+                                                isDraggingOver={snapshot.isDraggingOver}
+                                                // loaded={loaded}
+                                                selectedTask={selectedTask}
+                                                showTask={showTask}
+                                                setSelectedTask={setSelectedTask}
+                                                setShowTask={setShowTask}
+                                            >
+                                            </StageColumn>
+                                        </div>
+                                    )}
+                             </Droppable>
+                             <div  className="jc-end">
                                  {showAddTask1 &&
-                                 <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
+                                 <button className="createTaskView">
                              <CreateTask setShowAddTask1={setShowAddTask1} showAddTask1={showAddTask1}/>
-                             {/* this prop thing isnt working yet, doesnt seem to be doing anything actually */}
                              </button>
                                  }
-
                              </div>
-
-                         </div>
-
-
-
-                         <div className='col width-40-per lr-margin-small'>
-                             <h2>In Progress
-                             {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button>
-                             )}
-
-                                 </h2>
-                             {inProg.map(task=> {
-                                 return (
-                                     <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() => (showTaskFunc(task)) }>
-                                         <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
-                                         {task.name}
-                                     </button>
-                                 )
-                             })}
-                             <div  className="jc-end"
-                             // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
-                             >
+                             </div>
+                             <div className='progColView'>
+                             <Droppable droppableId={"In Progress"} key={`${2}${'In Progress'}`}>
+                             {(provided, snapshot) => (
+                                        <div key={2} >
+                                             <h2>In Progress  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
+                                            <StageColumn
+                                                column={inProg}
+                                                // setHasSubmitted={setHasSubmitted}
+                                                placeholder={provided.placeholder}
+                                                provided={provided}
+                                                isDraggingOver={snapshot.isDraggingOver}
+                                                // loaded={loaded}
+                                                selectedTask={selectedTask}
+                                                showTask={showTask}
+                                                setSelectedTask={setSelectedTask}
+                                                setShowTask={setShowTask}
+                                            >
+                                            </StageColumn>
+                                        </div>
+                                    )}
+                             </Droppable>
+                             <div  className="jc-end">
                                  {showAddTask2 &&
-                                 <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
+                                 <button className="createTaskView">
                              <CreateTask setShowAddTask2={setShowAddTask2} showAddTask2={showAddTask2}/>
                              </button>
                                  }
-
                              </div>
-                         </div>
-                         <div className='col width-40-per lr-margin-small'>
-                             <h2>Complete
-                             {isMember && (
-                                 <button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button>
-                             )}
-
-                                 </h2>
-                             {complete.map(task=> {
-                                 return (
-                                     <button className="f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1" key={task.id} onClick={() =>  (showTaskFunc(task)) }>
-                                         <i className="fa-regular fa-circle-check"></i>&nbsp;&nbsp;
-                                         {task.name}
-                                     </button>
-                                 )
-                             })}
-                             <div  className="jc-end"
-                             // style={!showAddTask ? { transform: 'translateX(+100%)' } : {}}
-                             >
+                             </div>
+                             <div className='progColView'>
+                             <Droppable droppableId={"Complete"} key={`${3}${'Complete'}`}>
+                             {(provided, snapshot) => (
+                                        <div key={3} >
+                                             <h2>Complete  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
+                                            <StageColumn
+                                                column={complete}
+                                                // setHasSubmitted={setHasSubmitted}
+                                                placeholder={provided.placeholder}
+                                                provided={provided}
+                                                isDraggingOver={snapshot.isDraggingOver}
+                                                // loaded={loaded}
+                                                selectedTask={selectedTask}
+                                                showTask={showTask}
+                                                setSelectedTask={setSelectedTask}
+                                                setShowTask={setShowTask}
+                                            >
+                                            </StageColumn>
+                                        </div>
+                                    )}
+                             </Droppable>
+                             <div  className="jc-end">
                                  {showAddTask3 &&
-                                 <button className=" width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin">
+                                 <button className="createTaskView">
                              <CreateTask setShowAddTask3={setShowAddTask3} showAddTask3={showAddTask3}/>
                              </button>
                                  }
-
+                             </div>
                              </div>
 
-                         </div>
+
+
+
+
+
+
+
+                         {/* shared show task thing */}
+
                          {showTask && selectedTask &&
                           <div className='f col width-40-per bg-white box-shadow round-sq-05  ai-c'>
                           <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task width-90-per" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
                               <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
-                              {/* onClick={() => setShowTask(false)}  add back in later*/}
+
                               <ViewTask selectedTask={selectedTask}/>
                               <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>
-                              {/* {console.log('Edit task in main page', selectedTask, showTask, setShowTask )} */}
+
                               </button>
                           </div>
 
@@ -524,10 +552,15 @@ const NewViewProject = () => {
 
 
                     )}
+
+{/* end board view */}
+
+
+
+
+
+
                        </div>
-
-
-
         </div>
         </DragDropContext>
 

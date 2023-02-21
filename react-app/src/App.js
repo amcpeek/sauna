@@ -82,9 +82,9 @@ function App() {
           <ViewTeam/>
         </Route>
 
-        <Route path='/newallteams' exact={true}>
+        {/* <Route path='/newallteams' exact={true}>
           <NewAllTeams/>
-        </Route>
+        </Route> */}
         <Route path='/dnd' exact={true}>
           <DndProject/>
         </Route>

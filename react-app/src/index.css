@@ -498,7 +498,7 @@ textarea {
 /* curser,  hover */
 
 .cursor {
-    cursor: pointer
+    cursor: pointer;
  }
 
 .do-not-interact:hover {
@@ -1049,5 +1049,63 @@ height: 2em;
         right: 5vw;
         background-color: rgba(255,255,255, 0.5)
 
+
+    }
+
+/* col width-40-per lr-margin-small border-red */
+
+    .columnView {
+    display:flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 1em;
+    margin-right: 1em;
+    border: solid red .2em;
+    }
+
+    /* f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1 border-green */
+    .taskView {
+    margin-bottom: 1em;
+    background-color: none;
+    background-color: white;
+    border-radius: .5em;
+    height: 6em;
+    cursor: pointer;
+    padding: 1em;
+    border: none;
+    border: solid green .2em;
+    }
+
+     /* width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin */
+    .createTaskView {
+    display: flex;
+    width: 100%;
+    background-color: white;
+    background-color: none;
+    border: none;
+    border-radius: .5em;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+    }
+
+    .progColView {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+    }
+
+    /* f col width-40-per bg-white box-shadow round-sq-05  ai-c */
+    .editTaskView {
+        display:flex;
+        flex-direction: column;
+        width: 40%;
+        background-color: white;
+        box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+        border-radius: .5em;
+        align-items: center;
+        position: absolute;
+        right: 5px;
+        background-color: blue;
+        height: 40vh;
 
     }

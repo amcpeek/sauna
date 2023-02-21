@@ -103,16 +103,6 @@ const StageColumn = ({ column, provided, isDraggingOver, selectedTask, showTask,
                     </div>
                 ))}
                 {provided.placeholder}
-                {/* <div className={styles.addCardContainer}>
-                    { showAddCardModal ?
-                        <CreateCardForm setShowAddCardModal={setShowAddCardModal} listId={list.id} displayAddButtons={displayAddButtons} setDisplayAddButtons={setDisplayAddButtons} />
-                        :
-                        <div onClick={flipCardForm} className={styles.addCardButton}>
-                            <span className="material-symbols-outlined" id={styles.plusSign}>add</span>
-                            Add a card
-                        </div>
-                    }
-                </div> */}
             </div>
         </div>
     )

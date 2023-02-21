@@ -1103,9 +1103,7 @@ height: 2em;
         box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
         border-radius: .5em;
         align-items: center;
-        position: absolute;
-        right: 5px;
-        background-color: blue;
-        height: 40vh;
+        border: solid blue .2em;
+
 
     }

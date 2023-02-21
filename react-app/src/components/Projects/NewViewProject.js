@@ -13,6 +13,7 @@ import { fetchCreateMembership } from '../../store/membership'
 import arrayOfColors from '../../assets/ArrayOfColors';
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
 import StageColumn from './NewStageColumn'
+import { fetchUpdateTask } from '../../store/task';
 
 
 const NewViewProject = () => {
@@ -33,7 +34,6 @@ const NewViewProject = () => {
     let isMember = ''
     let memberArray = []
 
-
     useEffect(() => {
         async function fetchData() {
           const response = await fetch('/api/users/');
@@ -43,32 +43,16 @@ const NewViewProject = () => {
         fetchData();
       }, [dispatch]);
 
-
-    //   if (users) {
-    //     console.log('users', users)
-    //   }
-
-    //console.log('showAddTask1 in ViewProject', showAddTask1, setShowAddTask1)
-
-
     const findProjectTest = async () => {
         const returnProject = await dispatch(fetchOneProject(id))
         const returnTasks = await dispatch(getAllTasksByProjectId(id))
         const returnUser = await dispatch(authenticate())
         const returnTeam = await dispatch(fetchAllTeams())
     }
-
-
-
-    //edit
     const showTaskFunc = (task) => {
-       // console.log('is task being passed int', task)
         setSelectedTask(task)
         showTask? setShowTask(false): setShowTask(true)
-
-
     }
-
     let oneProject = useSelector(state => {return state.project[id]})
     let allTasksByProg = useSelector(state => { return state.task.tasksByProjectId})
     let user = useSelector(state => {return state.session.user})
@@ -77,33 +61,23 @@ const NewViewProject = () => {
         let tId = 0
 
         if(projId) {
-
             tId = state.team[projId.teamId]
-           // console.log('8898789878987', projId.teamId, 'teamId', tId)
         }
         return tId
         } )
 
-
     useEffect(() => {
         findProjectTest()
      }, [dispatch ])
-
 
     if(allTasksByProg && allTasksByProg[id]) {
         arr = Object.values(allTasksByProg[id])
     }
 
     if(oneTeam && oneTeam.memberships && user) {
-        // console.log('ONE   TEAM',oneTeam.memberships)
-
-        // {memberArray && memberArray.length && memberArray.map(member => {return (
-        //     <option value={member.id}>{member.users[0].username}</option>
-        // )})}
         memberArray = oneTeam.memberships
         isMember = memberArray.find(member =>  member.users[0].id == user.id)
         if(isMember) {
-          // console.log('isMember', isMember.id)
         }
 
     }
@@ -111,72 +85,73 @@ const NewViewProject = () => {
     const handleCreateMembership = async (teamId) => {
         await dispatch(fetchCreateMembership(teamId))
         .then(dispatch(fetchAllTeams()))
-        //   .then(history.push(`/profile`)) //this isn't working at all
           .catch(async (err) => {
-           // console.log('5555555555', err)
           })
      }
 
-     //console.log('one proj', oneProject, 'oneTeam', oneTeam)
-
-
-
-     const onDragEnd = result => {
+     const onDragEnd = async result => {
         const { destination, source, draggableId } = result
         if (!destination) {
             return
         }
+        console.log('result', result)
+
+
+
+
+        if(arr) {
+           let curTask =  arr.find(task => task.id == draggableId)
+           curTask.stageId = parseInt(destination.droppableId)
+           const response = await dispatch(fetchUpdateTask(curTask))
+           if(response.errors) {
+            //    setValidationErrors(Object.values(response.errors))
+               console.log(Object.values(response.errors))
+           } else{
+               if(showTask) {
+                   setShowTask(false)
+               }
+           }
+
+
+
+        }
+    }
 
         //this will need to be changed ^^^^^^^^^^^@@@@@@@@@@@@@@@^^^^^^^^^^^^^
         // If card is dropped in different list column, send thunk to move it
-    //     if (destination.droppableId !== source.droppableId) {
-    //         // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
-    //         let sourceList = lists.find(list => list.name === source.droppableId)
-    //         let destinationList = lists.find(list => list.name === destination.droppableId)
-    //         let grabbedCard = sourceList?.cards.find(card => card.id.toString() === draggableId.toString())
+        // if (destination.droppableId !== source.droppableId) {
+        //     // UPDATE AND MATCH THE DROPPABLE ID FORMAT AND DRAGGABLE ID FORMAT
+        //     // let sourceColumn = column.find(column => column.name === source.droppableId)
+        //     // let destinationColumn = column.find(column => column.name === destination.droppableId)
+        //     // let grabbedTask = sourceColumn?.task.find(task=> task.id.toString() === draggableId.toString())
 
-    //         let input = {
-    //             title: grabbedCard.title,
-    //             description: grabbedCard.description,
-    //             listId: destinationList.id,
-    //         }
-    //         setLoaded(false)
-    //         dispatch(editCardThunk(input, grabbedCard.id))
-    //         .then(() => setHasSubmitted(prevValue => !prevValue))
-    //     }
-      }
+        //     // let input = {
+        //     //     name: grabbedTask.name,
+        //     //     description: grabbedTask.description,
+        //     //     stageId: destinationColumn.id,
+        //     // }
+        //     // setLoaded(false)
+        //     // dispatch(editCardThunk(input, grabbedCard.id))
+        //     // .then(() => setHasSubmitted(prevValue => !prevValue))
+        // }
+
 
 
 
     if(oneProject && oneTeam) {
-
-        //console.log('allTasksByProg', Object.values(allTasksByProg[id]))
         const toDo = arr.filter(task => task.stageId == 1)
         const inProg = arr.filter(task => task.stageId == 2)
         const complete = arr.filter(task => task.stageId == 3)
         return (
             <DragDropContext onDragEnd={onDragEnd}>
-
             <div className='col'>
                 <div className='col vh-5 lr-margin-small'>
-                    {/* <div><Link to={'/'}><i className="fa-solid fa-house-chimney"></i></Link></div>
-                    <div className='bg-green small-box round-sq'> AM</div> */}
-
                     <div className='should-wrap-full row ai-c'>
                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[oneProject.id]}}><i className="fa-solid fa-list-ul"></i></div>&nbsp;&nbsp;
                         <h2>{oneProject.name}</h2>
                         </div>
-
-                    {/* <div><Link to={`/projects/${id}/edit`}>Edit Project</Link></div> */}
-
-
-
-
-
-
                 </div>
                 <div className='f vh-5 lr-margin-small ai-c '>
-
                     <div className='row jc-sa lr-margin-small'>
                     {user &&  user.id == oneProject.ownerId &&
                      <div>
@@ -190,255 +165,33 @@ const NewViewProject = () => {
                     <button onClick={() => (setListView(false),setBoardView(false), setOverView(true))} className='just-text-button  bg-white'>Overview</button>
                     {overView && <div className='gray-line-med'></div> }
                     </div>
-
                     <div>
                     <button onClick={() => (setListView(false), setOverView(false), setBoardView(true))}  className='just-text-button bg-white'>Board</button>
                     {boardView && <div className='gray-line-med'></div> }
                     </div>
-
                     <div>
                     <button onClick={() => (setBoardView(false), setOverView(false), setListView(true))}  className='just-text-button  bg-white'>List</button>
                     {listView && <div className='gray-line-med'></div> }
                     </div>
-
                     </div>
-
-
-
-
-
-
                     {user &&
-                                    (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
+                             (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
                         <div className='row ai-c'>
 
                         <button className='asana-button height-shorter' onClick={() => handleCreateMembership(oneTeam.id)}>Join Team</button>
                         <p className='font-small-med'> &nbsp; *Only team member can engage with tasks &nbsp; &nbsp; </p>
                         </div>
-                        // <div>{isMember.id}</div>
                     ))}
                 </div>
-
                 <div className='bg-light-gray round-sq-05 vw-99-vh-70 scroller-tasks'>
-
                     {/* ONLY SHOWS IF OVERVIEW IS TRUE */}
-
-
-                    {overView && (
-                        //  <div className='f width-100-per lr-margin-small'>
-                        //      <div className='should-wrap-full scroller'>
-                        //     <p className='font-small-med'>Project Lead: {oneProject.owner.username}<br/>
-                        //     <p>Team: {oneTeam.name}</p>
-                        //         {oneProject.description} </p>
-                        //         </div>
-                        //     <div className='long-gray-line tb-margin'></div>
-                        //  </div>
-                        <div className='jc-c width-100-per'>
-                        <div className="col lr-margin-med">
-                        <h2 className='should-wrap-70'></h2>
-
-                        <div className="col">
-                            <div className='tb-margin'>Our Purpose</div>
-                            <div className='long-gray-line'></div>
-                            <div className='should-wrap-100-per tb-margin'>
-                            {oneProject.description}
-                            </div>
-                            {user && user.id == oneProject.owner.id && (
-                                    <div className=' vh-5 ai-c jc-st'>
-                                    <button onClick={() => (setShowModal(true)) } className='no-bor bg-white row'>
-                                    <i className="fa-regular fa-pen-to-square bg-white cursor"></i>
-                                    </button>
-                                    <EditProjectModal showModal={showModal} setShowModal={setShowModal}/>
-                                    </div>
-
-                                )}
-
-                        </div>
-
-                        <div>
-                                        <div> </div>
-                                        <div className='tb-margin'>Project Lead</div>
-                            <div className='long-gray-line'></div>
-                                        <div className='row ai-c width-members tb-margin'>
-                                    <div className='solid-circle jc-c ai-c font-small-med pad-04'
-                                    style={{backgroundColor: arrayOfColors[oneProject.owner.id]}}>{oneProject.owner.username.slice(0,2)}</div>
-                                    <div>&nbsp;&nbsp;&nbsp;{oneProject.owner.username}</div>
-                                </div>
-                                    </div>
-
-
-
-                        <div className='col t-margin jc-c'>
-                            <div>{oneTeam.name}</div>
-                            <div className='tb-margin'>Team Members ({oneTeam.memberships.length})</div>
-                            <div className='long-gray-line'></div>
-                            <div className='row flex-wrap'>
-
-                                    {user &&
-                                    (!(oneTeam.memberships.find(member => member.users[0].id == user.id)) && (
-                                        <div className='row ai-c width-members tb-margin  '>
-                                            <button className='no-bor match-tasks jc-st ai-c cursor pad-0' onClick={() => handleCreateMembership(oneTeam.id)}>
-                                            <div className='dotted-circle jc-c ai-c font-small-med pad-04'>
-                                            <i className="fa-solid fa-plus"></i>
-                                            </div>
-
-                                            <div className='font-med'>&nbsp; Join Team</div>
-                                            </button>
-                                        </div>
-                                    ))}
-
-                                    <div className='ai-c jc-c'>
-                                    {oneTeam.memberships && !oneTeam.memberships.length && (<div  >This team does not yet have any members</div>)}
-                                    </div>
-
-
-                                    {oneTeam.memberships && oneTeam.memberships.map(member => {
-                                        return (
-                                            <div>
-                                        <div> </div>
-                                        <div className='row ai-c width-members tb-margin'>
-                                    <div className='solid-circle jc-c ai-c font-small-med pad-04'
-                                    style={{backgroundColor: arrayOfColors[member.users[0].id]}}>{member.users[0].username.slice(0,2)}</div>
-                                    <div>&nbsp;&nbsp;&nbsp;{member.users[0].username}</div>
-                                </div>
-                                    </div>
-                                        )
-                                    })}
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-
-
-
-
-                    )}
-
-
-
                     {/* ONLY SHOWS IF LIST IS TRUE */}
-                    {listView && !users && (
-                            <div className='lr-margin tb-margin'>List view is only accessible once logged in</div>
-                    )}
-
-                    {listView && users && (
-                         <div className='f width-100-per jc-c'>
-                           {/* <h2 className='lr-margin jc-c'>This feature is still in development</h2> */}
-
-
-
-
-
-
-                        <div className="col lr-margin-med">
-                        {/* <h1 className='tb-margin lr-margin-x-small'>All Teams</h1> */}
-
-                        <div className='row jc-st'>
-                            <div className='all-teams-name '>
-                                <div className='l-margin-small'>Task</div>
-                                </div>
-                            <div className='all-teams-owner'>
-                            <div className='l-margin-small'>Assignee</div>
-                                </div>
-                            <div className='all-teams-members-task'>
-                            <div className='l-margin-small'>Due Date</div>
-                                </div>
-                        </div>
-                        {/* <div className='long-gray-line'></div> */}
-
-
-                         <div className='l-margin-small'>To Do</div>
-                         {toDo && !toDo.length && (<div className='l-margin-small text-blue'>No "to do" tasks</div>)}
-
-
-                         {toDo.map(task => {
-                                  return (
-                                    <div className=''>
-                                    <div className='row'>
-                                        <div className='row all-teams-name ai-c '>
-                                            <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
-                                            <div className='tb-margin'> {task.name} </div>
-                                        </div>
-                                        <div className='row all-teams-owner'>
-                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
-                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
-                                        </div>
-                                        <div className='ai-c'>
-                                            <div className='row all-teams-members-task ai-c'>
-                                                <div className='l-margin-small'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                        </div>)})}
-                        <div className='l-margin-small'>In Progress</div>
-                        {inProg && !inProg.length && (<div className='l-margin-small text-blue'>No "in progress" tasks</div>)}
-                            {inProg.map(task => {
-                        return (
-                        <div className=''>
-                        <div className='row'>
-                            <div className='row all-teams-name ai-c '>
-                                <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
-                                <div className='tb-margin'> {task.name} </div>
-                            </div>
-                            <div className='row all-teams-owner'>
-                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
-                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
-                            </div>
-                            <div className='ai-c'>
-                                <div className='row all-teams-members-task ai-c'>
-                                    <div className='l-margin-small'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
-                                    </div>
-                            </div>
-                        </div>
-                            </div>)})}
-                            <div className='l-margin-small'>Complete</div>
-                            {complete && !complete.length && (<div className='l-margin-small text-blue'>No "complete" tasks</div>)}
-
-                            {complete.map(task => {
-                                  return (
-                                    <div className=''>
-                                    <div className='row'>
-                                        <div className='row all-teams-name ai-c '>
-                                            <div className='solid-round-sq jc-c ai-c tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[task.id]}}><i className="fa-regular fa-circle-check lr-margin-small"></i></div>
-                                            <div className='tb-margin'> {task.name} </div>
-                                        </div>
-                                        <div className='row all-teams-owner'>
-                                             <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[(users.find(user => user.id === task.assigneeId)).id]}}>{((users.find(user => user.id === task.assigneeId)).username).slice(0,2)}</div>
-                                             <div className='ai-c'> {users && (<div> {(users.find(user => user.id === task.assigneeId)).username }</div>)} </div>
-                                        </div>
-                                        <div className='ai-c'>
-                                            <div className='row all-teams-members-task ai-c'>
-                                                <div className='l-margin-small'>{new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(task.dueDate))}</div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                        </div>)})}
-                                        <div className='l-margin-small'>*Use Board View to edit</div>
-
-                    </div>
-                    </div>
-                    )}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     {/* ONLY SHOWS IF BOARD IS TRUE */}
 
                     {boardView && (
                          <div className='f width-100-per'>
                             <div className='progColView'>
-                             <Droppable droppableId={"To Do"} key={`${1}${'To Do'}`}>
+                             <Droppable droppableId={'1'} key={`${1}${'To Do'}`}>
                              {(provided, snapshot) => (
                                         <div key={1} >
                                              <h2>To Do  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask1? setShowAddTask1(false): setShowAddTask1(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
@@ -466,8 +219,11 @@ const NewViewProject = () => {
                                  }
                              </div>
                              </div>
+                            {/* end of one block */}
+
+
                              <div className='progColView'>
-                             <Droppable droppableId={"In Progress"} key={`${2}${'In Progress'}`}>
+                             <Droppable droppableId={'2'} key={`${2}${'In Progress'}`}>
                              {(provided, snapshot) => (
                                         <div key={2} >
                                              <h2>In Progress  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask2? setShowAddTask2(false): setShowAddTask2(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
@@ -496,7 +252,7 @@ const NewViewProject = () => {
                              </div>
                              </div>
                              <div className='progColView'>
-                             <Droppable droppableId={"Complete"} key={`${3}${'Complete'}`}>
+                             <Droppable droppableId={'3'} key={`${3}${'Complete'}`}>
                              {(provided, snapshot) => (
                                         <div key={3} >
                                              <h2>Complete  {isMember && (<button className='just-text-button match-tasks' onClick={() => ( showAddTask3? setShowAddTask3(false): setShowAddTask3(true))}><i className="fa-solid fa-plus"></i></button> )} </h2>
@@ -524,41 +280,20 @@ const NewViewProject = () => {
                                  }
                              </div>
                              </div>
-
-
-
-
-
-
-
-
                          {/* shared show task thing */}
 
                          {showTask && selectedTask &&
-                          <div className='f col width-40-per bg-white box-shadow round-sq-05  ai-c'>
+                          <div className='editTaskView'>
                           <div  className="jc-end just-text-button b-margin bg-white round-sq-05 height-task width-90-per" style={!showTask ? { transform: 'translateX(+105%)' } : {}}>
                               <button className=" width-100-per col just-text-button b-margin bg-white round-sq-05 height-task " >
-
                               <ViewTask selectedTask={selectedTask}/>
                               <EditTask selectedTask={selectedTask} showTask={showTask} setShowTask={setShowTask}/>
-
                               </button>
                           </div>
-
                       </div>
                          }
-
                          </div>
-
-
                     )}
-
-{/* end board view */}
-
-
-
-
-
 
                        </div>
         </div>

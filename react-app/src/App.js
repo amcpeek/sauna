@@ -63,7 +63,7 @@ function App() {
           <ViewAllProjects/>
         </Route>
         <Route path='/projects/:id'exact={true} >
-          <ViewProject/>
+          <NewViewProject/>
         </Route>
         <Route path='/projects/:projectId/tasks/:taskId'exact={true} >
           <ViewTask/>
@@ -85,9 +85,9 @@ function App() {
         {/* <Route path='/newallteams' exact={true}>
           <NewAllTeams/>
         </Route> */}
-   
-        <Route path='/newprojects/:id'exact={true} >
-          <NewViewProject/>
+
+        <Route path='/oldprojects/:id'exact={true} >
+          <ViewProject/>
         </Route>
 
 

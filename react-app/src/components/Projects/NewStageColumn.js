@@ -81,10 +81,10 @@ const StageColumn = ({ column, provided, isDraggingOver, selectedTask, showTask,
     return (
         <div className={''} ref={provided.innerRef} {...provided.droppableProps}>
 
-            <div className='columnView'>
+            <div className={'minDropSpace'}>
 
                 {column.map((task, index) => (
-                    <div key={task.id} className={''}>
+                    <div key={task.id} className={'boxOutsideColumn'}>
                         <Draggable draggableId={task.id.toString()} index={index}>
                             {(provided, snapshot) => (
                                 <NewTask

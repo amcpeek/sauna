@@ -15,7 +15,7 @@ const ViewTask = ({selectedTask}) => {
         <div className=''>
         <h2 className='should-wrap-task-edit'>{selectedTask.name}</h2>
         <p className='should-wrap-task-edit'>{selectedTask.description}</p>
-        <p>Due: {new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(selectedTask.dueDate))}</p>
+        <p className=''>Due: {new Intl.DateTimeFormat('en-US', {  month: 'short', day: 'numeric',  timeZone: 'UTC' }).format(new Date(selectedTask.dueDate))}</p>
         </div>
         }
         </div>

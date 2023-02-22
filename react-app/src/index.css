@@ -76,7 +76,10 @@ textarea {
 }
 
 .match-tasks {
-    background-color: rgba(247,246,246,255);
+    /* background-color: rgba(247,246,246,255); */
+    background-color: #c1d3d7;
+
+
     border: none;
 }
 
@@ -186,6 +189,10 @@ textarea {
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
+.box-shadow-darker {
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
 /* margin, padding */
 
 
@@ -197,6 +204,10 @@ textarea {
 
 .margin-t-05 {
     margin-top: 0.5em;
+}
+
+.margin-t-2 {
+    margin-top: 2em;
 }
 
 .margin-b-2 {
@@ -557,6 +568,12 @@ textarea {
 
 .gray-line-med {
     border-bottom: solid .1em lightgray;
+    width: 100%;
+    margin-top: .5em;
+}
+
+.gray-line-med-none {
+    border-bottom: solid .1em none;
     width: 100%;
     margin-top: .5em;
 }
@@ -922,19 +939,23 @@ height: 2em;
 
 
     .all-teams-name {
-        border-top: solid 0.05em lightgray;
-        border-right: solid 0.05em lightgray;
-        border-bottom: solid 0.05em lightgray;
+        border: solid 0.05em lightgray;
+
         width: 40vw;
         height: 100%;
     }
 
-
-
     .all-teams-owner {
         border: solid 0.05em lightgray;
         width: 20vw;
+        height: 100%;
 
+    }
+
+    .all-teams-members-task {
+        border: solid 0.05em lightgray;
+        width: 30vw;
+        height: 100%;
     }
 
 
@@ -948,19 +969,12 @@ height: 2em;
 
 
     .all-teams-members {
-        border-top: solid 0.05em lightgray;
-        border-left: solid 0.05em lightgray;
-        /* border-bottom: solid 0.05em lightgray; */
-        width: 30vw;
-        height: 100%;
-    }
-
-    .all-teams-members-task {
         border: solid 0.05em lightgray;
-
         width: 30vw;
         height: 100%;
     }
+
+
 
 
      .scroller-members {
@@ -1057,10 +1071,15 @@ height: 2em;
     .columnView {
     display:flex;
     flex-direction: column;
+
     width: 90%;
-    margin-left: 1em;
-    margin-right: 1em;
-    border: solid red .2em;
+    margin: 1em;
+
+    border-radius: .5em;
+    /* border: solid red .2em; */
+    background-color: #c1d3d7;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+
     }
 
     /* f just-text-button b-margin bg-white round-sq-05 height-task cursor pad--1 border-green */
@@ -1073,25 +1092,46 @@ height: 2em;
     cursor: pointer;
     padding: 1em;
     border: none;
-    border: solid green .2em;
+    width: 90%;
+    /* border: solid green .2em; */
+    background-color: #cce4c7;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
     }
+
+    .taskViewOnDrag {
+        margin-bottom: 1em;
+        background-color: none;
+        background-color: white;
+        border-radius: .5em;
+        height: 6em;
+        cursor: pointer;
+        padding: 1em;
+        border: none;
+        width: 90%;
+        /* border: solid green .2em; */
+        background-color: #e9efaa;
+        box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+        }
 
      /* width-100-per bg-white just-text-button round-sq-05 box-shadow b-margin */
     .createTaskView {
     display: flex;
-    width: 100%;
+    min-width: 90%;
     background-color: white;
     background-color: none;
     border: none;
     border-radius: .5em;
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 1em;
+         /* border: solid blue .2em; */
+
     }
 
     .progColView {
         display: flex;
         flex-direction: column;
         width: 30%;
+        align-items: center;
+
     }
 
     /* f col width-40-per bg-white box-shadow round-sq-05  ai-c */
@@ -1103,7 +1143,38 @@ height: 2em;
         box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
         border-radius: .5em;
         align-items: center;
-        border: solid blue .2em;
+        /* border: solid #ddbb98 1em; */
+        /* background-color: #ddbb98; */
+        margin: 1em;
 
 
+
+
+    }
+
+
+    .minDropSpace {
+        min-height: 5vh;
+        /* border: solid blue .2em; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .bg-light-brown {
+        background-color: #c7c4c1;
+    }
+
+
+    .boxOutsideColumn {
+        display: flex;
+        justify-content: center;
+        min-width: 100%;
+    }
+
+
+    .col-title {
+        margin-left: 0.5em;
     }

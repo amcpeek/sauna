@@ -14,7 +14,7 @@ const NewTask = ({ task, provided, innerRef, isDragging,  selectedTask, showTask
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 ref={innerRef}
-                className={isDragging? `taskView` : 'taskView'}
+                className={isDragging? `taskViewOnDrag` : 'taskView'}
                 onClick={() => (showTaskFunc(task))}
             >
                 <div className=''>

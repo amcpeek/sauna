@@ -58,15 +58,17 @@ const ViewAllTeams = () => {
                         <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
                         <div className='row'>
                             <div className='row all-teams-name'>
-                            <div className='box-circle-mem'>
+                            <div className='box-circle-mem ai-c jc-c'>
                             <div className='solid-round-sq ai-c jc-c' style={{backgroundColor: arrayOfColors[team.id]}}><i className="fa-solid fa-list-ul"></i></div>
                             </div>
 
-                                <div className='tb-margin should-wrap-100-per lr-margin-small'> {team.name} </div>
+                                <div className='tb-margin should-wrap-100-per lr-margin-small ai-c'> {team.name} </div>
                             </div>
-                            <div className='row all-teams-owner'>
-                                 <div className='solid-circle jc-c ai-c font-small-med pad-04 tb-margin lr-margin-small' style={{backgroundColor: arrayOfColors[team.owner.id]}}>{(team.owner.username).slice(0,2)}</div>
-                                 <div className='tb-margin'>{team.owner.username}</div>
+                            <div className='row all-teams-owner ai-c'>
+                            <div className='box-circle-mem'>
+                                 <div className='memberCircle' style={{backgroundColor: arrayOfColors[team.owner.id]}}>{(team.owner.username).slice(0,2)}</div>
+                                 </div> &nbsp;&nbsp;
+                                <div className='tb-margin ai-c'>{team.owner.username}</div>
 
                             </div>
                             <div className='row all-teams-members scroller-members'>

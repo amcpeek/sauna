@@ -14,6 +14,7 @@ import arrayOfColors from '../../assets/ArrayOfColors';
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
 import StageColumn from './NewStageColumn'
 import { fetchUpdateTask } from '../../store/task';
+import TryTS from './TryTS'
 
 
 const NewViewProject = () => {
@@ -119,6 +120,7 @@ const NewViewProject = () => {
                     <div className='should-wrap-full row ai-c'>
                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[oneProject.id]}}><i className="fa-solid fa-list-ul"></i></div>&nbsp;&nbsp;
                         <h2>{oneProject.name}</h2>
+                        <TryTS/>
                         </div>
                 </div>
                 <div className='f vh-5 lr-margin-small ai-c '>

@@ -6,7 +6,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/auth/UsersList';
 import User from './components/auth/User';
 import { authenticate } from './store/session';
-import ViewProject from './components/Projects/ViewProject'
 import ViewAllProjects from './components/Projects/ViewAllProjects';
 import ProjectEntry from './components/Projects/ProjectEntry';
 import TaskEntry from './components/Tasks/TaskEntry'
@@ -81,19 +80,6 @@ function App() {
         <Route path='/teams/:id' exact={true}>
           <ViewTeam/>
         </Route>
-
-        {/* <Route path='/newallteams' exact={true}>
-          <NewAllTeams/>
-        </Route> */}
-
-        <Route path='/oldprojects/:id'exact={true} >
-          <ViewProject/>
-        </Route>
-
-
-
-
-
         <Route >
             <PageNotFound/>
         </Route>

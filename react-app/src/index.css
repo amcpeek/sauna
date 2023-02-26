@@ -940,7 +940,6 @@ height: 2em;
 
     .all-teams-name {
         border: solid 0.05em lightgray;
-
         width: 40vw;
         height: 100%;
     }
@@ -956,6 +955,46 @@ height: 2em;
         border: solid 0.05em lightgray;
         width: 30vw;
         height: 100%;
+    }
+
+    .customer-title-generic {
+        border: solid 0.05em lightgray;
+        width: 15vw;
+    }
+
+    .c-t-top {
+        width: 62vw;
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .c-t-name {
+        border: solid 0.05em lightgray;
+        width: 20vw;
+        display:flex;
+        flex-direction: row;
+        align-items: flex-start;
+        /* justify-content: flex-start; */
+        padding-top: 1em;
+    }
+    .c-t-description {
+        border: solid 0.05em lightgray;
+        width: 30vw;
+        display:flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 1em;
+    }
+
+    .c-t-status {
+        border: solid 0.05em lightgray;
+        width: 12vw;
+        display:flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 1em;
     }
 
 

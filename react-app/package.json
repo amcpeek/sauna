@@ -46,5 +46,8 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "build": "CI=false && react-scripts build && cp -R ../app/static/* build/static"
+  "build": "CI=false && react-scripts build && cp -R ../app/static/* build/static",
+  "devDependencies": {
+    "@types/react-router-dom": "^5.3.3"
+  }
 }

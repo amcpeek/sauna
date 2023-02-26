@@ -110,6 +110,7 @@ const NewViewProject = () => {
     }
 
     if(oneProject && oneTeam) {
+        console.log('oneProject Shape', oneProject)
         const toDo = arr.filter(task => task.stageId == 1)
         const inProg = arr.filter(task => task.stageId == 2)
         const complete = arr.filter(task => task.stageId == 3)
@@ -120,7 +121,6 @@ const NewViewProject = () => {
                     <div className='should-wrap-full row ai-c'>
                     <div className='solid-round-sq jc-c ai-c' style={{backgroundColor: arrayOfColors[oneProject.id]}}><i className="fa-solid fa-list-ul"></i></div>&nbsp;&nbsp;
                         <h2>{oneProject.name}</h2>
-                        <TryTS/>
                         </div>
                 </div>
                 <div className='f vh-5 lr-margin-small ai-c '>
@@ -143,6 +143,10 @@ const NewViewProject = () => {
                     </div>
                     <div>
                     <button onClick={() => (setBoardView(false), setOverView(false), setListView(true))}  className='just-text-button  bg-white cursor'>List</button>
+                    {listView && <div className='gray-line-med'></div> }
+                    </div>
+                    <div>
+                    <button onClick={() => (history.push(`/projects/${id}/customer`))}  className='just-text-button  bg-white cursor'>Customer View</button>
                     {listView && <div className='gray-line-med'></div> }
                     </div>
                     </div>

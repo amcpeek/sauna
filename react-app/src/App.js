@@ -16,9 +16,8 @@ import PageNotFound from './components/Navigation/PageNotFound';
 import SplashPage from './components/Navigation/SplashPage'
 import ViewAllTeams from './components/Team/ViewAllTeams';
 import ViewTeam from './components/Team/ViewTeam'
-// import NewTeam from './components/Team/NewTeam';
-// import NewProfile from './components/Team/NewProfile';
 import NewAllTeams from './components/Team/NewAllTeams';
+import TryTS from './components/Projects/TryTS';
 
 import NewViewProject from './components/Projects/NewViewProject';
 
@@ -64,6 +63,11 @@ function App() {
         <Route path='/projects/:id'exact={true} >
           <NewViewProject/>
         </Route>
+
+        <Route path='/projects/:id/customer'exact={true} >
+          <TryTS/>
+        </Route>
+
         <Route path='/projects/:projectId/tasks/:taskId'exact={true} >
           <ViewTask/>
         </Route>

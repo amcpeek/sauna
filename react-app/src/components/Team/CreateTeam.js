@@ -2,19 +2,22 @@ import React from "react";
 import { fetchCreateTeam } from "../../store/team";
 import TeamForm from "./TeamForm";
 
+const CreateTeam = ({ showTModal, setShowTModal }) => {
+  const team = {
+    name: "",
+    description: "",
+  };
 
-const CreateTeam=({showTModal, setShowTModal})=>{
+  return (
+    <div>
+      <TeamForm
+        team={team}
+        formType="Create Team"
+        showTModal={showTModal}
+        setShowTModal={setShowTModal}
+      />
+    </div>
+  );
+};
 
-    const team={
-        name:"",
-        description:"",
-    }
-
-    return (
-        <div>
-        <TeamForm team={team} formType="Create Team" showTModal={showTModal} setShowTModal={setShowTModal}/>
-        </div>
-    )
-}
-
-export default CreateTeam
+export default CreateTeam;

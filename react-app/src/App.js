@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import NavBar from './components/Navigation/NavBar'
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/auth/UsersList';
-import User from './components/auth/User';
-import { authenticate } from './store/session';
-import ViewAllProjects from './components/Projects/ViewAllProjects';
-import ProjectEntry from './components/Projects/ProjectEntry';
-import TaskEntry from './components/Tasks/TaskEntry'
-import ViewTask from './components/Tasks/ViewTask'
-import WhySauna from './components/Navigation/whySauna';
-import ViewCurrentTeams from './components/Team/ViewCurrentTeams'
-import PageNotFound from './components/Navigation/PageNotFound';
-import SplashPage from './components/Navigation/SplashPage'
-import ViewAllTeams from './components/Team/ViewAllTeams';
-import ViewTeam from './components/Team/ViewTeam'
-import NewAllTeams from './components/Team/NewAllTeams';
-import TryTS from './components/Projects/TryTS';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import NavBar from "./components/Navigation/NavBar";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import UsersList from "./components/auth/UsersList";
+import User from "./components/auth/User";
+import { authenticate } from "./store/session";
+import ViewAllProjects from "./components/Projects/ViewAllProjects";
+import ProjectEntry from "./components/Projects/ProjectEntry";
+import TaskEntry from "./components/Tasks/TaskEntry";
+import ViewTask from "./components/Tasks/ViewTask";
+import WhySauna from "./components/Navigation/whySauna";
+import ViewCurrentTeams from "./components/Team/ViewCurrentTeams";
+import PageNotFound from "./components/Navigation/PageNotFound";
+import SplashPage from "./components/Navigation/SplashPage";
+import ViewAllTeams from "./components/Team/ViewAllTeams";
+import ViewTeam from "./components/Team/ViewTeam";
+import NewAllTeams from "./components/Team/NewAllTeams";
+import TryTS from "./components/Projects/TryTS";
 
-import NewViewProject from './components/Projects/NewViewProject';
+import NewViewProject from "./components/Projects/NewViewProject";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -40,52 +40,53 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-
-        <Route path='/' exact={true}>
-          <SplashPage/>
+        <Route path="/" exact={true}>
+          <SplashPage />
         </Route>
-        <ProtectedRoute path='/profile'>
-          <ViewCurrentTeams/>
+        <ProtectedRoute path="/profile">
+          <ViewCurrentTeams />
         </ProtectedRoute>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path='/whySauna'>
-          <WhySauna/>
+        <Route path="/whySauna">
+          <WhySauna />
         </Route>
 
-        <Route path='/projects'exact={true} >
-          <ViewAllProjects/>
+        <Route path="/projects" exact={true}>
+          <ViewAllProjects />
         </Route>
-        <Route path='/projects/:id'exact={true} >
-          <NewViewProject/>
-        </Route>
-
-        <Route path='/projects/:id/customer'exact={true} >
-          <TryTS/>
+        <Route path="/projects/:id" exact={true}>
+          <NewViewProject />
         </Route>
 
-        <Route path='/projects/:projectId/tasks/:taskId'exact={true} >
-          <ViewTask/>
+        <Route path="/projects/:id/customer" exact={true}>
+          <TryTS />
         </Route>
-        <ProtectedRoute path={['/projects/create','/projects/:id/edit']} >
+
+        <Route path="/projects/:projectId/tasks/:taskId" exact={true}>
+          <ViewTask />
+        </Route>
+        <ProtectedRoute path={["/projects/create", "/projects/:id/edit"]}>
           <ProjectEntry />
         </ProtectedRoute>
-        <ProtectedRoute path={['/projects/:projectId/tasks/create','/tasks/:taskId/edit']} >
+        <ProtectedRoute
+          path={["/projects/:projectId/tasks/create", "/tasks/:taskId/edit"]}
+        >
           <ProjectEntry />
         </ProtectedRoute>
 
-        <Route path='/teams' exact={true}>
-          <ViewAllTeams/>
+        <Route path="/teams" exact={true}>
+          <ViewAllTeams />
         </Route>
-        <Route path='/teams/:id' exact={true}>
-          <ViewTeam/>
+        <Route path="/teams/:id" exact={true}>
+          <ViewTeam />
         </Route>
-        <Route >
-            <PageNotFound/>
+        <Route>
+          <PageNotFound />
         </Route>
       </Switch>
     </BrowserRouter>

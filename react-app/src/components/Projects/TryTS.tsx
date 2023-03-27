@@ -75,13 +75,16 @@ const TryTS = () => {
       <div>
         <div className="f width-100-per jc-c">
           <div className="col lr-margin-med">
-            <div className='c-t-top'>
-            <h1 className='text-blue'>{oneProject.name} Project Implemenation</h1>
-          <h3>{oneProject.description}</h3>
-          <div className='text-blue'>Contact Us:</div>
-          <div>{oneProject.owner && oneProject.owner.username}, Project Leader</div>
-          <div>{oneProject.owner && oneProject.owner.email}</div>
-
+            <div className="c-t-top">
+              <h1 className="text-blue">
+                {oneProject.name} Project Implemenation
+              </h1>
+              <h3>{oneProject.description}</h3>
+              <div className="text-blue">Contact Us:</div>
+              <div>
+                {oneProject.owner && oneProject.owner.username}, Project Leader
+              </div>
+              <div>{oneProject.owner && oneProject.owner.email}</div>
             </div>
 
             <div className="row jc-st margin-t-2">
@@ -108,16 +111,15 @@ const TryTS = () => {
                 return (
                   <div className="">
                     <div className="row hi">
-
                       <div className="c-t-name">
                         <div className="l-margin-small">
-                        <div
-                          className="solid-round-sq jc-c ai-c  font-small-med pad-04"
-                          style={{ backgroundColor: arrayOfColors[task.id] }}
-                        >
-                          <i className="fa-regular fa-circle-check lr-margin-small"></i>
-                        </div>
-                        <div className='lr-margin-small'> {task.name} </div>
+                          <div
+                            className="solid-round-sq jc-c ai-c  font-small-med pad-04"
+                            style={{ backgroundColor: arrayOfColors[task.id] }}
+                          >
+                            <i className="fa-regular fa-circle-check lr-margin-small"></i>
+                          </div>
+                          <div className="lr-margin-small"> {task.name} </div>
                         </div>
                       </div>
 
@@ -128,7 +130,8 @@ const TryTS = () => {
                       <div className="c-t-status">
                         <div className="l-margin-small">
                           {(task.stageId == 1 || task.stageId == 2) && "Due"}
-                          {task.stageId == 3 && "Completed" }  {new Intl.DateTimeFormat("en-US", {
+                          {task.stageId == 3 && "Completed"}{" "}
+                          {new Intl.DateTimeFormat("en-US", {
                             month: "short",
                             day: "numeric",
                             timeZone: "UTC",

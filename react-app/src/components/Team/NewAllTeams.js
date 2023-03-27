@@ -1,27 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //old version
-
-
 
 // import { useHistory, Link } from 'react-router-dom';
 // import { useDispatch, useSelector} from 'react-redux';
@@ -30,7 +7,6 @@
 // import { authenticate } from '../../store/session';
 // import CreateTeamModal from './CreateTeamModal';
 // import { fetchCreateMembership } from '../../store/membership';
-
 
 // const ViewAllTeams = () => {
 //     const dispatch = useDispatch()
@@ -58,10 +34,8 @@
 //           })
 //      }
 
-
 //     return (
 //         <div className='main-left col main-left lr-margin'>
-
 
 //             <div className='col main-left-proj'>
 //                 <h1>All Teams</h1>
@@ -69,9 +43,6 @@
 //                     return (
 //                         <div>
 //                         <Link key={team.id} to={`/teams/${team.id}`} className='no-und'>
-
-
-
 
 //                         <h3 className='text-blue should-wrap-70'>
 //                         {/* <i className="fa-solid fa-user-plus"></i> */}
@@ -89,7 +60,6 @@
 //                         <div className='short-gray-line tb-margin'></div>
 //                         </div>
 //                         )
-
 
 //                     }))
 //                     }

@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
 // import { useHistory, Link } from 'react-router-dom';
 // import { useDispatch, useSelector, useStore} from 'react-redux';
 // import React, { useEffect, useState } from 'react';
@@ -155,7 +144,6 @@
 //                         )
 //                      })
 
-
 //                         )
 //                      }
 
@@ -165,9 +153,7 @@
 
 //                 )}
 
-
 //             </div>
-
 
 //          )
 
@@ -186,7 +172,6 @@
 //     //     const returnProjects = await dispatch(fetchAllProjects())
 //     //     const returnUser = await dispatch(authenticate())
 //     // }
-
 
 //     // useEffect(() => {
 //     //    findProjectTest()
@@ -229,7 +214,6 @@
 //     //                 </div>
 //     //                 </Link>
 //     //                 )
-
 
 //     //             }))
 //     //             }

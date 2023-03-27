@@ -1,8 +1,3 @@
-
-
-
-
-
 // import { useParams, useHistory, Link } from 'react-router-dom';
 // import { useDispatch, useSelector} from 'react-redux';
 // import React, { useEffect, useState } from 'react';
@@ -44,8 +39,6 @@
 //           })
 //      }
 
-
-
 //     if (oneTeamObj && oneTeamObj.memberships) {
 
 //     return (
@@ -81,7 +74,6 @@
 
 //                     )}
 
-
 //                       {user &&
 //                       <div className='ai-c'>
 
@@ -102,7 +94,6 @@
 //                       {oneTeamObj.projects && oneTeamObj.projects.map(project => {
 //                       return (
 //                         <div>
-
 
 //                         <Link key={project.id} to={`/projects/${project.id}`} className='no-und'>
 //                         <div>
